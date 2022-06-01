@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="widtd=device-widtd, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'schools.css' %}" type="text/css">
+</head>
+<body>
+    
+            <table>
+                <tr>
+                    <th class='id_td'>
+                        ID
+                    </th>
+                    <th>
+                        Назва
+                    </th>
+                    <th>
+                        Номер
+                    </th>
+                    <th>
+                        Місто
+                    </th>
+                </tr>
+                {% for i in range %}
+                
+                <tr>
+                    <td class= 'id_td'>
+                        <form action="" method="POST">
+                            {% csrf_token %}
+                            <input type="submit" name='id'  value="{{i.id}}">
+                        </form>
+                    </td>
+                    <td>{{i.title}}</td>
+                    
+                    <td>{{i.number}}</td>
+                    <td>{{i.town}}</td>
+                    
+                    
+                </tr>
+                
+           
+        {% endfor %}
+    </table>
+</body>
+</html>

@@ -1,0 +1,26 @@
+table{
+    width: 100%;
+    border: 1px solid black
+}
+td{
+    border-right: 1px solid black;
+    width: 25%;
+    text-align: center;
+}
+th{
+    border: 1px solid black;
+    width: 25%;
+    text-align: center;
+}
+td{
+    border: 1px solid black;
+}
+
+.id_th{
+    width: 1%;
+}
+
+.id_td{
+    width: 1%;
+} 
+

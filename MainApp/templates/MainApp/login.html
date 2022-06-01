@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Реєстрація</title>
+        <link rel="stylesheet" href="{% static 'log.css' %}" type="text/css">
+    </head>
+    <body>
+        {% if errortext != 0 %}
+        <div class='error-box'>
+            <p>{{errortext}}</p>
+        </div>
+        {% endif %}
+        <img src="{% static 'image/logo.png' %}" alt="">
+        <h2>Вхід</h2>
+        <div class="reg-form">
+            <form action="" method="POST">
+                {% csrf_token %}
+                <p>
+                    <input type="text" placeholder="Login" name="user_name" autocomplete="off">
+                </p>
+                <p>
+                    <input type="password" placeholder="Password" name="password_1" autocomplete="off">
+                </p>
+                
+                <p >
+                    <input type="submit" value="Вхід" class="but">
+                </p>
+                <p>
+                    <a href="{% url 'reg' %}">Реєстрація</a>
+                </p>
+            </form>
+        </div> 
+    </body>
+</html>

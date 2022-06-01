@@ -1,0 +1,71 @@
+.ul_but{
+    list-style-type: none;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    border-bottom: 3px solid black;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    /* padding-left: 10vw; */
+}
+
+.li_but{
+    margin-left: 1vw;
+    margin-bottom: 1vw;
+    /* width: 10%;
+    height: 10%; */
+}
+
+.but{
+    position: relative;
+    background-color: violet;
+    /* width: 100%;
+    height: 100%; */
+}
+
+
+.reg_div{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.reg_input{
+    display: block;
+    position: relative;
+    width: 100%;
+    text-align: center;
+}
+
+main{
+    width: 100%;
+}
+.class_td{
+    text-align: center;
+    border: 1px solid black;
+    width: 30%;
+}
+
+.class_th{
+    text-align: center;
+    border: 1px solid black;
+    width: 30%;
+}
+
+.class_table{
+    text-align: center;
+    border: 1px solid black;
+    width: 100%;
+}
+h1{
+    margin: 0;
+    width: 10vw;
+    border-bottom: 3px solid black;
+}
+
+header{
+    display: flex;
+    flex-direction: row;
+}
+

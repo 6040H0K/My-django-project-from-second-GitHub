@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <p>
+            <input type="text" placeholder="Назва школи" name="name" autocomplete="off">
+        </p>
+        <p>
+            <input type="number" placeholder="Номер школи" name="num" autocomplete="off">
+        </p>
+        <p>
+            <input type="text" placeholder="Місто" name="town" autocomplete="off">
+        </p>
+        <p>
+            <input type="text" placeholder="Пароль" name="password" autocomplete="off">
+        </p>
+        <p>
+            <input type="submit" value="Зареєструватися" autocomplete="off">
+        </p>
+    </form>
+</body>
+</html>

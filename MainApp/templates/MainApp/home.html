@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная страница</title>
+    <link rel="stylesheet" href="{% static 'home.css' %}" type="text/css">
+
+    </head>
+    <body>
+      <div class="container">
+        <header >
+    
+          <ul>
+            <li><a href="#" class="li_1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Главная</font></font></a></li>
+            <li><a href="{% url 'schools' %}" class="li_2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Школи</font></font></a></li>
+            <li><a href="#" class="li_2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Врачи</font></font></a></li>
+            <li><a href="#" class="li_2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Часто задаваемые вопросы</font></font></a></li>
+            <li><a href="#" class="li_2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Вакцинация</font></font></a></li>
+          </ul>
+    
+          <div class="">
+            <a href="{% url 'login' %}"><button type="button" class=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Авторизоваться</font></font></button></a>
+            <a href="{% url 'reg' %}"><button type="button" class=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Регистрация</font></font></button></a>
+          </div>
+        </header>
+      </div>
+    
+    </body>
+</html>
