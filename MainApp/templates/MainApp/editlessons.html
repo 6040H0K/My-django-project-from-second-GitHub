@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="{% static 'editlessons.css' %}" type="text/css">
+    </head>
+    <body>
+        <div>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <select name="selected" id="" size='20'>
+                <!-- <option disabled>1</option> -->
+                {% for i in lesson_range %}
+                    <option value="{{i.ID}}" type='submit'>{{i.name}} ({{i.teacher}})</option>
+                {% endfor %}
+            </select>
+            <button name='button' value="1">Видалити</button>
+        </form>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <select name="unselected" id="" size='20' >
+                {% for i in all_lesson_range %}
+                    <option value="{{i.ID}}">{{i.name}} ({{i.teacher}})</option>
+                {% endfor %}
+                
+            </select>
+            <button name='button' value="2">Додати</button>
+        </form>
+    </div>
+    </body>
+</html>

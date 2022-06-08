@@ -14,19 +14,25 @@
         <li class = 'li_but'>
             <form action="" method="POST" class = 'but_form'>
                 {% csrf_token %}
-                <input class = 'but' type="submit" name = 'id' value="Створити клас">
+                <button class = 'but' name = 'id' value="1">Створити клас</button>
             </form>
         </li>
         <li class = 'li_but'>
             <form action="" method="POST" class = 'but_form'>
                 {% csrf_token %}
-                <input class = 'but' type="submit" name = 'id' value="Створити урок">
+                <button class = 'but' name = 'id' value="2">Створити урок</button>
             </form>
         </li>
         <li class = 'li_but'>
             <form action="" method="POST" class = 'but_form'>
                 {% csrf_token %}
-                <input class = 'but' type="submit" name = 'id' value="Перегляд класів">
+                <button class = 'but' name = 'id' value="3">Переглянути класи</button>
+            </form>
+        </li>
+        <li class = 'li_but'>
+            <form action="" method="POST" class = 'but_form'>
+                {% csrf_token %}
+                <button class = 'but' name = 'id' value="6">Переглянути уроки</button>
             </form>
         </li>
     </ul>
@@ -46,7 +52,7 @@
                         <input class = 'reg_input' type="number" name="rank" placeholder="Номер класу" autocomplete="off"  min="1" max="12">
                     </p>
                     <p>
-                        <input class = 'reg_input' type="submit" name="id" value="Підтвердити">
+                        <button class = 'reg_input' name="id" value="4">Підтвердити</button>
                     </p>
                 </form>
             </div>
@@ -56,24 +62,12 @@
         <main>
             <table class="class_table">
                 <tr class="class_tr">
-                    <th class="class_th">ID</th>
+                    <th class="class_th"></th>
                     <th class="class_th">
                         Клас
                     </th>
                     <th class="class_th">
                         Класний керівник
-                    </th>
-                    <th>
-                        <form action="" method="POST" class = 'class_form'>
-                            {% csrf_token %}
-                            <input type="submit" class="class_but" name='id' value='<'>
-                        </form>
-                        <p>Розклад</p>
-                        <p>{{day}}</p>
-                        <form action="" method="POST" class = 'class_form'>
-                            {% csrf_token %}
-                            <input type="submit" class="class_but" name='id' value='>'>
-                        </form>
                     </th>
                 </tr>
             
@@ -82,7 +76,7 @@
                         <td class="class_td">
                             <form action="" method = 'POST'>
                                 {% csrf_token %}
-                                <input type="submit" name = 'id_class' value="{{i.ID}}">
+                                <button name = 'id_class' value="{{i.ID}}">Переглянути</button>
                             </form>
                         </td>
                         <td class="class_td">{{i.rank}}-{{i.name}}</td>
@@ -90,47 +84,46 @@
                         
                         <td class="class_td">
                             <ol class="class_ul">
-                                {% if day == 'Понеділок' %}
-                                    {% for j in i.schedult.Mon %}
-                                    <li class="class_li">
-                                        <p class="class_p">{{j}}</p>
-                                    </li>
-                                    {% endfor %}
-                                {% endif %}
-                                {% if day == 'Вівторок' %}
-                                    {% for j in i.schedult.Tue %}
-                                    <li class="class_li">
-                                        <p class="class_p">{{j}}</p>
-                                    </li>
-                                    {% endfor %}
-                                {% endif %}
-                                {% if day == 'Середа' %}
-                                    {% for j in i.schedult.Wed %}
-                                    <li class="class_li">
-                                        <p class="class_p">{{j}}</p>
-                                    </li>
-                                    {% endfor %}
-                                {% endif %}
-                                {% if day == 'Четвер' %}
-                                    {% for j in i.schedult.Thr %}
-                                    <li class="class_li">
-                                        <p class="class_p">{{j}}</p>
-                                    </li>
-                                    {% endfor %}
-                                {% endif %}
-                                {% if day == "П'ятниця" %}
-                                    {% for j in i.schedult.Fri %}
-                                    <li class="class_li">
-                                        <p class="class_p">{{j}}</p>
-                                    </li>
-                                    {% endfor %}
-                                {% endif %}
                             </ol>
                         </td>
                     </tr>
                 {% endfor %}
             </table>
         </main>
+    {% endif %}
+    {% if type == 'create_lesson' %}
+        <main>
+            <div class = 'reg_div'>
+            <form action="" method= 'POST' class = 'reg_form'>
+                {% csrf_token %}
+                <p>
+                <input class="reg_input" type="text" name= 'lesson_name' placeholder="Назва уроку" autocomplete="off">
+                </p>
+                <p>
+                <input class="reg_input" type="text" name = 'teacher_name_lesson' placeholder="Вчитель" autocomplete="off">
+                </p>
+                <p>
+                <button class = 'reg_input' name="id" value="5">Підтвердити</button>
+                </p>
+            </form>
+        </div>
+        </main>
+    {% endif %}
+    {% if type == 'show_lessons' %}
+    <main>
+        <table class="class_table">
+            <tr class="class_tr">
+                <th class="class_th">Назва уроку</th>
+                <th class="class_th">Вчитель</th>
+            </tr>
+            {% for i in range %}
+                <tr class="class_tr">
+                    <td class="class_td">{{i.name}}</td>
+                    <td class="class_td">{{i.teacher}}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </main>
     {% endif %}
 </body>
 </html>

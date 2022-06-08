@@ -1,0 +1,31 @@
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+div{
+    display: flex;
+    position: relative;
+    width: 90%;
+
+    height: 100%;
+    margin: 5vw;
+}
+
+option{
+    text-align: center;
+    width: 100%;
+    border-bottom: 0.1vw solid black;
+    font-size: 1vw;
+}
+form{
+    margin: 5vw;
+    width: 49%;
+    border: 0.1vw solid black;
+}
+select{
+    width: 100%;
+    height: 100%;
+    border: 0;
+}

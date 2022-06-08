@@ -1,0 +1,147 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="{% static 'class.css' %}" type="text/css">
+    </head>
+    <body>
+        
+        <div>
+            <p class="h_sched">Інформація</p>
+        <table>
+            <tr>
+                <th>
+                    <h2>{{class.rank}} - {{class.name}}</h2>
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    <p> {{class.class_teacher}}</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        <button name='but_id' value='edit_student'>Редагувати список учнів</button>
+                    </form>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                    <button name='but_id' value='edit_lessons'>Редагувати список предметів</button>
+                    </form>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                    <button name='but_id' value='edit_schadult'>Редагувати розклад</button>
+                    </form>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                    <button name='but_id' value='edit_info'>Редагувати інформацію класу</button>
+                    </form>
+                </td>
+            </tr>
+        </table>
+    </div>
+        <div>
+            <p class='h_sched'>Розклад</p>
+        <table>
+            <tr>
+                <th>
+                    Понеділок
+                </th>
+                <th>
+                    Вівторок
+                </th>
+                <th>
+                    Середа
+                </th>
+                <th>
+                    Четвер
+                </th>
+                <th>
+                    П'ятниця
+                </th>
+            </tr>
+            <tr>
+                <td class="class_td">
+                    <ol class="class_ul">
+                            {% for j in class.schedult.Mon %}
+                            <li class="class_li">
+                                <p class="class_p">{{j}}</p>
+                            </li>
+                            {% endfor %}
+                    </ol>
+                    </td>
+                    <td>
+                        <ol>
+                            {% for j in class.schedult.Tue %}
+                            <li class="class_li">
+                                <p class="class_p">{{j}}</p>
+                            </li>
+                            {% endfor %}
+                        </ol>
+                    </td>
+                    <!-- <tr> -->
+                    <td>
+                        <ol>
+                            {% for j in class.schedult.Wed %}
+                            <li class="class_li">
+                                <p class="class_p">{{j}}</p>
+                            </li>
+                            {% endfor %}
+                        </ol>
+                    </td>
+                    
+                    <td>
+                        <ol>
+                            {% for j in class.schedult.Thr %}
+                            <li class="class_li">
+                                <p class="class_p">{{j}}</p>
+                            </li>
+                            {% endfor %}
+                        </ol>
+                    </td>
+                <!-- </tr> -->
+                    <td>
+                        <ol>
+                            {% for j in class.schedult.Fri %}
+                            <li class="class_li">
+                                <p class="class_p">{{j}}</p>
+                            </li>
+                            {% endfor %}
+                        </td>
+                    </ol>
+                </td>
+            <!-- </tr> -->
+        </table>
+    </div>
+        <!-- <table>
+
+        </table> -->
+    
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
