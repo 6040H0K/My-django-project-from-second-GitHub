@@ -5,10 +5,15 @@ from django.views.generic import TemplateView, CreateView
 from django.contrib.auth.models import User
 from django.urls import reverse_lazy
 from .models import*
+from datetime import datetime, date
+from random import randint
 # from DjangoProject import urls
 
 # Create your views here.
 # print(urls.urlpatterns)
+def calculate_age(born):
+    today = date.today()
+    return today.year - born.year - ((today.month, today.day) < (born.month, born.day))
 def home(request):
     return render(request, 'MainApp/home.html')
 class Edit_info(TemplateView):
@@ -52,6 +57,12 @@ class Show_class(TemplateView):
         school = School.objects.all()[id]
         clas = school.clases['clases'][id_class]
         lesson_range = clas['lessons_list']
+        student_range = []
+        student = 0
+        students = Student.objects.all()
+        for i in students:
+            if i.id in clas['students']:
+                student_range.append(i)
         if request.method == 'POST':
             
             if request.POST.get('but_id') == 'edit_lessons':
@@ -60,9 +71,60 @@ class Show_class(TemplateView):
                 return redirect('/school/' + str(school.id) + '/' + str(clas['ID']) + '/schadult')
             elif request.POST.get('but_id') == 'edit_info':
                 return redirect('/school/' + str(school.id) + '/' + str(clas['ID']) + '/info')
+            elif request.POST.get('but_id') == 'edit_student':
+                return redirect('/school/' + str(school.id) + '/' + str(clas['ID']) + '/makestudent')
+            elif request.POST.get('but_id') == 'show_student':
+                temp = request.POST.get('students')
+                if temp != '' and temp != None:
+                    student = Student.objects.get(pk = temp)
         return render(request, self.template_name, context={'class':clas, 
-                                'lesson_range': lesson_range
+                                'lesson_range': lesson_range, 'student_range': student_range,
+                                'student': student
                                 })
+class Make_student(TemplateView):
+    template_name = "MainApp/makestudent.html"
+    def dispatch(self,request,id,id_class):
+        for i in range(len(School.objects.all())):
+            if School.objects.all()[i].id == id:
+                id = i
+        school = School.objects.all()[id]
+        clas = school.clases['clases'][id_class]
+
+        if request.method == 'POST':
+            print(request.POST.get('birthday'))
+            print(str(calculate_age(datetime.strptime(request.POST.get('birthday'), "%Y-%m-%d"))),)
+            try:
+                Student.objects.create(
+                    name = request.POST.get('name'),
+                    surname = request.POST.get('surname'),
+                    second_name = request.POST.get('second_name'),
+                    birthday = request.POST.get('birthday'),
+                    age = str(calculate_age(datetime.strptime(request.POST.get('birthday'), "%Y-%m-%d"))),
+                    login = request.POST.get('email'),
+                    marks = {},
+                    password = str(randint(10000000,99999999)),
+                    email = request.POST.get('email'),
+                    number_phone = request.POST.get('number_phone'),
+                    adress = request.POST.get('adress'),
+                    name_parrent1 = request.POST.get('name_parrent1'),
+                    number_phone_parrent1 = request.POST.get('number_phone_parrent1'),
+                    work_parrent1 = request.POST.get('work_parrent1'),
+                    name_parrent2 = request.POST.get('name_parrent2'),
+                    number_phone_parrent2 = request.POST.get('number_phone_parrent2'),
+                    work_parrent2 = request.POST.get('work_parrent2')
+                )
+                temp = school.clases['clases'][id_class].keys()
+                temp1 = len(Student.objects.all())
+                if 'students' in temp:
+                    school.clases['clases'][id_class]['students'].append(Student.objects.all()[temp1-1].id)
+                else:
+                    school.clases['clases'][id_class]['students'] = [Student.objects.all()[temp1-1].id]
+                school.save()
+                return redirect('/school/' + str(school.id) + '/' + str(clas['ID']))
+            except:
+                pass
+            
+        return render(request, self.template_name)
 class Edit_lessons(TemplateView):
     template_name = "MainApp/editlessons.html"
     

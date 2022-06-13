@@ -28,7 +28,8 @@ urlpatterns = [
     path('school/<int:id>/<int:id_class>', Show_class.as_view(), name = "clas"),
     path('school/<int:id>/<int:id_class>/lessons', Edit_lessons.as_view(), name = "lessons"),
     path('school/<int:id>/<int:id_class>/schadult', Edit_schadult.as_view(), name = "schadult"),
-    path('school/<int:id>/<int:id_class>/info', Edit_info.as_view(), name = "info")
+    path('school/<int:id>/<int:id_class>/info', Edit_info.as_view(), name = "info"),
+    path('school/<int:id>/<int:id_class>/makestudent', Make_student.as_view(), name = "makestudent")
     
     # path(r'schools/(?P<id>[_\w+])$', show_school, name='school')
 ]

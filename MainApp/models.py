@@ -13,6 +13,7 @@ class School(models.Model):
     password = models.CharField(max_length=255)
     time_create = models.DateTimeField(auto_now_add = True)
     time_update = models.DateTimeField(auto_now= True)
+
 class Student(models.Model):
     name = models.CharField(max_length=255)
     surname = models.CharField(max_length=255)
@@ -28,6 +29,7 @@ class Student(models.Model):
     number_phone_parrent1 = models.CharField(max_length=255)
     number_phone_parrent2 = models.CharField(max_length=255)
     adress = models.CharField(max_length=255)
+    marks = models.JSONField()
     work_parrent1 = models.CharField(max_length=255)
     work_parrent2 = models.CharField(max_length=255)
     time_create = models.DateTimeField(auto_now_add = True)

@@ -1,0 +1,30 @@
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+main{
+    display: flex;
+    justify-content: center;
+    margin-top: 1vw;
+}
+p{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+input{
+    width: 20vw;
+    height: 2vw;
+    text-align: center;
+}
+div{
+    margin-left: 10vw;
+    margin-right: 10vw;
+}
+form{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
