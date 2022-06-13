@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="{% static 'class.css' %}" type="text/css">
     </head>
     <body>
-        
+        <main>
         <div>
             <p class="h_sched">Інформація</p>
         <table>
@@ -82,7 +82,7 @@
                     <ol class="class_ul">
                             {% for j in class.schedult.Mon %}
                             <li class="class_li">
-                                <p class="class_p">{{j}}</p>
+                                <p class="class_p">{{j.name}}</p>
                             </li>
                             {% endfor %}
                     </ol>
@@ -91,7 +91,7 @@
                         <ol>
                             {% for j in class.schedult.Tue %}
                             <li class="class_li">
-                                <p class="class_p">{{j}}</p>
+                                <p class="class_p">{{j.name}}</p>
                             </li>
                             {% endfor %}
                         </ol>
@@ -101,7 +101,7 @@
                         <ol>
                             {% for j in class.schedult.Wed %}
                             <li class="class_li">
-                                <p class="class_p">{{j}}</p>
+                                <p class="class_p">{{j.name}}</p>
                             </li>
                             {% endfor %}
                         </ol>
@@ -111,7 +111,7 @@
                         <ol>
                             {% for j in class.schedult.Thr %}
                             <li class="class_li">
-                                <p class="class_p">{{j}}</p>
+                                <p class="class_p">{{j.name}}</p>
                             </li>
                             {% endfor %}
                         </ol>
@@ -121,7 +121,7 @@
                         <ol>
                             {% for j in class.schedult.Fri %}
                             <li class="class_li">
-                                <p class="class_p">{{j}}</p>
+                                <p class="class_p">{{j.name}}</p>
                             </li>
                             {% endfor %}
                         </td>
@@ -130,6 +130,18 @@
             <!-- </tr> -->
         </table>
     </div>
+</main>
+<footer>
+    
+    <div class='div_lessons'>
+        <h3>Список уроків</h3>
+        <select name="" id="" size='10'>
+            {% for i in lesson_range %}
+                <option value="{{i.ID}}">{{i.name}}({{i.teacher}})</option>
+            {% endfor %}
+        </select>
+    </div>
+</footer>
         <!-- <table>
 
         </table> -->

@@ -1,0 +1,16 @@
+form{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+body{
+    display: flex;
+    justify-content: center;
+}
+
+input{
+    text-align: center;
+    margin-top: 1vw;
+    width: 20vw;
+    height: 2vw;
+}

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'editinfo.css' %}" type="text/css">
+</head>
+<body>
+    <form action="" method="POST">
+        {% csrf_token %}
+        
+        <input type="text" name="rank" value="{{class.rank}}" placeholder="Номер класу">
+        <input type="text" name="class_teacher" value="{{class.class_teacher}}" placeholder="Класний керівник">
+        <input type="text" name="name" value='{{class.name}}' placeholder="Літера класу">
+        <input type="submit" value="Зберегти">
+    </form>
+</body>
+</html>

@@ -1,8 +1,13 @@
 body{
     display: flex;
-    /* justify-content: center; */
+    justify-content: center;
+    flex-direction: column;
     /* align-items: center; */
 }
+main{
+    display: flex;
+}
+
 table{
 
     height: 100%;
@@ -19,7 +24,8 @@ td, th{
 }
 p{
     text-align: center;
-    font-size: 2vw;
+    font-size: 1.5vw;
+    margin: 0;
 }
 button{
     width: 100%;
@@ -33,6 +39,27 @@ h2{
 .day{
     font-size: 1.5vw;
 }
-/* div{
-    border-left: 0.1vw solid black;
-} */
+footer{
+    display: flex;
+    margin-top: 3vw;
+    height: 20%;
+}
+.div_lessons{
+   
+   border: 0.1vw solid black;
+   width: 16.5%;
+   height: 17vw;
+}
+select{
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+option{
+    border-bottom: 0.1vw solid black ;
+}
+h3{
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
