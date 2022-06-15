@@ -1,0 +1,10 @@
+.choise{
+    width: 10vw;
+    height: 5vw;
+    margin: 2vw;
+}
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

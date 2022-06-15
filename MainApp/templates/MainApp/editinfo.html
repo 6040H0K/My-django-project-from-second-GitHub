@@ -12,7 +12,7 @@
         {% csrf_token %}
         
         <input type="text" name="rank" value="{{class.rank}}" placeholder="Номер класу">
-        <input type="text" name="class_teacher" value="{{class.class_teacher}}" placeholder="Класний керівник">
+        <input type="text" name="class_teacher" value="{{class.class_teacher.name}}" placeholder="Класний керівник">
         <input type="text" name="name" value='{{class.name}}' placeholder="Літера класу">
         <input type="submit" value="Зберегти">
     </form>

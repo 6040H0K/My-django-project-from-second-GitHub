@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>{{teacher.name}}</h1>
+    <table>
+    {% for i in lessons %}
+    <form action="" method="POST">
+        {% csrf_token %}
+        <tr>
+            <td>
+                <button name='but' value="{{i.ID}}">Переглянути</button>
+            </td>
+            <td>
+                {{i.name}}
+            </td>
+        </tr>
+        
+        
+    
+    </form>
+    {% endfor %}
+</table>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'auth.css' %}" type="text/css">
+</head>
+<body>
+    {% if type_page == 'start' %}
+        <main>
+            <form action="" method="POST">
+                {% csrf_token %}
+                <button class='choise' name='button_choise' value="0">Учень</button>
+                <button class='choise' name='button_choise' value="1">Вчитель</button>
+                <button class='choise' name='button_choise' value="2">Школа</button>
+                <button class='choise' name='button_choise' value="3">Адміністратор</button>
+            </form>
+        </main>
+    {% endif %}
+    {% if type_page == '1' %}
+    
+        <main>
+            <form action="" method="POST">
+                {% csrf_token %}
+                <select name="school_name" id="">
+                    <option value="None" selected>Школа</option>
+                    {% for i in school_range %}
+                        <option value="{{i.id}}">{{i.title}}</option>
+                    {% endfor %}
+                </select>
+                <input type="text" placeholder="Логін" name='login' autocomplete="off">
+                <input type="password" placeholder="Пароль" name='password' autocomplete="off">
+                <button name="submit" value="teacher">Вхід</button>
+                {% if error_text == '1' %}
+                    <p>Error</p>
+                {% endif %}
+            </form>
+        </main>
+    {% endif %}
+</body>
+</html>

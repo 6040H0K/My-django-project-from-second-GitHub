@@ -8,11 +8,13 @@ class School(models.Model):
     town = models.CharField(max_length=255)
     clases = models.JSONField()
     lessons = models.JSONField()
+    teachers = models.JSONField()
     class_form = models.JSONField()
     lesson_form = models.JSONField()
     password = models.CharField(max_length=255)
     time_create = models.DateTimeField(auto_now_add = True)
     time_update = models.DateTimeField(auto_now= True)
+
 
 class Student(models.Model):
     name = models.CharField(max_length=255)

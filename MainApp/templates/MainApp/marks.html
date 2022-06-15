@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'marks.css' %}" type="text/css">
+</head>
+<body>
+    <h2>{{student.name}} {{student.surname}} {{class.rank}}-{{class.name}}</h2>
+    <table>
+        {% for i in range %}
+            <tr>
+                <th>{{i}}</th>
+                {% for j in range2%}
+                    <td>
+                        <input type="number" min="1" max="12">
+                    </td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

@@ -14,7 +14,7 @@
             <select name="selected" id="" size='20'>
                 <!-- <option disabled>1</option> -->
                 {% for i in lesson_range %}
-                    <option value="{{i.ID}}" type='submit'>{{i.name}} ({{i.teacher}})</option>
+                    <option value="{{i.ID}}" type='submit'>{{i.name}} ({{i.teacher.name}})</option>
                 {% endfor %}
             </select>
             <button name='button' value="1">Видалити</button>
@@ -23,12 +23,19 @@
             {% csrf_token %}
             <select name="unselected" id="" size='20' >
                 {% for i in all_lesson_range %}
-                    <option value="{{i.ID}}">{{i.name}} ({{i.teacher}})</option>
+                    <option value="{{i.ID}}">{{i.name}} ({{i.teacher.name}})</option>
                 {% endfor %}
                 
             </select>
             <button name='button' value="2">Додати</button>
+            
         </form>
+        
     </div>
+    
     </body>
+    <form action="" class = 'form_save' method="POST">
+        {% csrf_token %}
+    <button name='button' class='but_save' value="3">Зберегти</button>
+    </form>
 </html>

@@ -39,7 +39,7 @@
                         <option value="null" selected>{{j.name}}</option>
                         
                         {% for k in all_lesson_range %}
-                        <option value="{{k.ID}}"> {{k.name}} ({{k.teacher}}) </option>
+                        <option value="{{k.ID}}"> {{k.name}} ({{k.teacher.name}}) </option>
                         
                         {% endfor %}
                         <option value="pass" ></option>

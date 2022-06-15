@@ -35,6 +35,12 @@
                 <button class = 'but' name = 'id' value="6">Переглянути уроки</button>
             </form>
         </li>
+        <li class = 'li_but'>
+            <form action="" method="POST" class = 'but_form'>
+                {% csrf_token %}
+                <button class = 'but' name = 'id' value="7">Створити вчителя</button>
+            </form>
+        </li>
     </ul>
 </header>
     {% if type == 'create_class' %}
@@ -46,7 +52,12 @@
                         <input class = 'reg_input' type="text" name="name" placeholder="Літера класу" autocomplete="off">
                     </p>
                     <p>
-                        <input class = 'reg_input' type="text"  name="class_teacher" placeholder="Классний керівник" autocomplete="off">
+                        <select name="class_teacher" class="reg_input" id="">
+                            <option value="null" selected>Вчитель</option>
+                            {% for teach in teacher_range %}
+                            <option value="{{teach.ID}}">{{teach.name}}</option>
+                            {% endfor %}
+                        </select>
                     </p>
                     <p>
                         <input class = 'reg_input' type="number" name="rank" placeholder="Номер класу" autocomplete="off"  min="1" max="12">
@@ -80,7 +91,7 @@
                             </form>
                         </td>
                         <td class="class_td">{{i.rank}}-{{i.name}}</td>
-                        <td class="class_td">{{i.class_teacher}}</td>
+                        <td class="class_td">{{i.class_teacher.name}}</td>
                         
                         <td class="class_td">
                             <ol class="class_ul">
@@ -100,7 +111,12 @@
                 <input class="reg_input" type="text" name= 'lesson_name' placeholder="Назва уроку" autocomplete="off">
                 </p>
                 <p>
-                <input class="reg_input" type="text" name = 'teacher_name_lesson' placeholder="Вчитель" autocomplete="off">
+                    <select name="teacher_name_lesson" class="reg_input" id="">
+                        <option value="null" selected>Вчитель</option>
+                        {% for teach in teacher_range %}
+                        <option value="{{teach.ID}}">{{teach.name}}</option>
+                        {% endfor %}
+                    </select>
                 </p>
                 <p>
                 <button class = 'reg_input' name="id" value="5">Підтвердити</button>
@@ -119,10 +135,34 @@
             {% for i in range %}
                 <tr class="class_tr">
                     <td class="class_td">{{i.name}}</td>
-                    <td class="class_td">{{i.teacher}}</td>
+                    <td class="class_td">{{i.teacher.name}}</td>
+                    <td class="class_td"> <form action="" method="POST">
+                        {% csrf_token %}
+                        <button name="button_teacher" value="{{i.teacher.ID}}">Переглянути</button>
+                    </form></td>
                 </tr>
             {% endfor %}
         </table>
+    </main>
+    {% endif %}
+    {% if type == 'create_teacher' %}
+    <main>
+        <div class = 'reg_div'>
+            <form action="" method= 'POST' class = 'reg_form'>
+                {% csrf_token %}
+                <p>
+                <input class="reg_input" type="text" name= 'teacher_name' placeholder="Ім'я вчителя" autocomplete="off">
+                </p>
+                <p>
+                <input class="reg_input" type="text" name = 'teacher_login' placeholder="Логін" autocomplete="off">
+                </p>
+                <p>
+                    <input class="reg_input" type="text" name = 'teacher_password' placeholder="Пароль" autocomplete="off">
+                </p>
+                <p>
+                <button class = 'reg_input' name="id" value="8">Підтвердити</button>
+                </p>
+            </form>
     </main>
     {% endif %}
 </body>

@@ -1,0 +1,18 @@
+input{
+    border: 0;
+}
+table, td, th{
+    border: 0.1vw solid black;
+}
+
+table{
+    width: 100%;
+}
+td, th{
+    width: 100%;
+    text-align: center;
+}
+
+h2{
+    text-align: center;
+}

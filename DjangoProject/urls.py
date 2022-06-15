@@ -29,7 +29,13 @@ urlpatterns = [
     path('school/<int:id>/<int:id_class>/lessons', Edit_lessons.as_view(), name = "lessons"),
     path('school/<int:id>/<int:id_class>/schadult', Edit_schadult.as_view(), name = "schadult"),
     path('school/<int:id>/<int:id_class>/info', Edit_info.as_view(), name = "info"),
-    path('school/<int:id>/<int:id_class>/makestudent', Make_student.as_view(), name = "makestudent")
+    path('school/<int:id>/<int:id_class>/makestudent', Make_student.as_view(), name = "makestudent"),
+    path('school/<int:id>/<int:id_class>/<int:id_student>/marks', Show_student_marks.as_view(), name = "studentmarks"),
+    path('auth/', Auth.as_view(), name='auth'),
+    path('auth/<int:type_page>', Auth.as_view(), name='auth'),
+    path('school/<int:id>/teacher/<int:id_teacher>/', Teacher_page.as_view(), name='teacher_page'),
+    path('school/<int:id>/teacher/<int:id_teacher>/<int:id_lesson>', Teacher_class_page.as_view(), name='teacher_class_page'),
+    path('school/<int:id>/teacher/<int:id_teacher>/<int:id_lesson>/<int:id_class>', Show_lesson_marks.as_view(), name='Show_lesson_marks')
     
     # path(r'schools/(?P<id>[_\w+])$', show_school, name='school')
 ]
