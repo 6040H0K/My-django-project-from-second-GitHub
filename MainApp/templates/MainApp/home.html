@@ -10,23 +10,39 @@
 
     </head>
     <body>
-      <div class="container">
-        <header >
-    
+        <div class="menu">
           <ul>
-            <li><a href="#" class="li_1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Главная</font></font></a></li>
-            <li><a href="{% url 'schools' %}" class="li_2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Школи</font></font></a></li>
-            <li><a href="#" class="li_2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Врачи</font></font></a></li>
-            <li><a href="#" class="li_2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Часто задаваемые вопросы</font></font></a></li>
-            <li><a href="#" class="li_2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Вакцинация</font></font></a></li>
+            <li> 
+              <a href="{% url 'home' %}">
+                <img class="main" src="{% static 'image/home.png' %}" alt="">
+                <a href="{% url 'home' %}" class="li_2"><strong>Головна</strong></a>
+              </a>
+            </li>
+
+            <li> 
+              <a href="{% url 'schools' %}">
+                <img class="main" src="{% static 'image/shool.png' %}" alt="">
+                <a href="{% url 'schools' %}" class="li_2"><strong>Школи</strong></a>
+              </a>
+            </li>
+
+            <li>
+              <a href="{% url 'home'%}"></a>
+              <img class="main" src="{% static 'image/info.png' %}" alt="">
+              <a href="{% url 'info'%}" class="li_2"><strong>Інформація про нас</strong></a>
+            </li>
           </ul>
-    
-          <div class="">
-            <a href="{% url 'login' %}"><button type="button" class=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Авторизоваться</font></font></button></a>
-            <a href="{% url 'reg' %}"><button type="button" class=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Регистрация</font></font></button></a>
-          </div>
-        </header>
-      </div>
-    
+
+          <ul>
+            <a href="{% url 'home'%}"></a>
+            <img class="main" src="{% static 'image/quit.png' %}" alt="">
+            <a href="{% url 'home'%}" class="li_2"><strong>Вийти</strong></a>
+          </ul>
+        </div>
+
+        <!-- <div class=""> -->
+          <!-- <a href="{% url 'login' %}"><button type="button" class=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Авторизоваться</font></font></button></a>
+          <a href="{% url 'reg' %}"><button type="button" class=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Регистрация</font></font></button></a> -->
+        <!-- </div> -->
     </body>
 </html>

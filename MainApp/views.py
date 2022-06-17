@@ -16,6 +16,8 @@ def calculate_age(born):
     return today.year - born.year - ((today.month, today.day) < (born.month, born.day))
 def home(request):
     return render(request, 'MainApp/home.html')
+def info(request):
+    return render(request,'MainApp/info.html')
 class Edit_info(TemplateView):
     template_name = "MainApp/editinfo.html"
     def dispatch(self,request,id,id_class):

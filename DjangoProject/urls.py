@@ -24,6 +24,7 @@ urlpatterns = [
     path('login/', LoginView.as_view(), name = 'login'),
     path('make/', MakeSchool.as_view(), name = 'make'),
     path('schools/', Schoolswork.as_view(), name = "schools"),
+    path('info/', info, name = 'info'),
     path('school/<int:id>', Show_school.as_view(), name = "school"),
     path('school/<int:id>/<int:id_class>', Show_class.as_view(), name = "clas"),
     path('school/<int:id>/<int:id_class>/lessons', Edit_lessons.as_view(), name = "lessons"),

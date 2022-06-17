@@ -1,68 +1,63 @@
-.container{
+/* .container{
     width: 100%;
     padding-right: var(--bs-gutter-x, 0.75rem);
     padding-left: var(--bs-gutter-x, 0.75rem);
     margin-right: auto;
     margin-left: auto;
-  }
+  } */
 
-header{
+/* header{
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
     justify-content: space-between;
-    padding-top: 1rem;
-    padding-bottom: 1rem ;
-    margin-bottom: 1.5rem ;
-    border-bottom: 1px solid #dee2e6 ;
-}
-/* .a_1{
-    display: flex;
-    align-items: center;
-    flex: 0 0 auto;
-    width: 25%;
-    margin-bottom: 0.5rem ;
-    color: #212529;
-    text-decoration: none;
-}
-
-svg{
-    margin-right: 0.5rem
+    padding-top: 0.5vw;
+    padding-bottom: 0.9vw ;
+    margin-bottom: 20rem ;
+    border-bottom: 3px solid #000000;
 } */
 
-ul{
-    display: flex;
-    flex-wrap: wrap;
-    padding-left: 0;
-    margin-bottom: 0;
-    align-items: center;
-    list-style: none;
-    flex: 0 0 auto;
-    width: 100%;
-    flex: 0 0 auto;
-    width: auto;
-    margin-bottom: 0.5rem;
-    justify-content: center;
-    margin-bottom: 0;
-}
-.li_1{
-    display: block;
-    padding: 0.5rem 1rem;
-    color: #0d6efd;
-    text-decoration: none;
-    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
-    padding-right: 0.5rem ;
-    padding-left: 0.5rem ;
-}
+/* ul{ */
+    /* display: flex; */
+    /* padding-left: 0; */
+    /* align-items:center; */
+    /* list-style: none; */
+    /* flex: 0 0 auto; */
+    /* width: auto;  */
+    /* margin-bottom: 0.3rem; */
+    /* justify-content: center; */
+/* } */
 .li_2{
-    display: block;
-    padding: 0.5rem 1rem;
-
-    color: #0d6efd;
+    display: flex;
+    position: relative;
+    margin-right: 1vw;
+    color: #a56608;
     text-decoration: none;
-    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
-    padding-right: 0.5rem ;
-    padding-left: 0.5rem ;
+    padding-right: 0.4vw ;
+    padding-left:0.4vw ;
 }
+
+.main{
+    display: flex;
+    position: relative;
+    width: 35px;
+    height: 35px;
+    margin-right: 0.5vw;
+    margin-bottom: 0.5vw;
+    margin-top:  0.5vw;
+    margin-left: 0vw;
+    flex-direction: column;
+}
+
+li{
+    list-style-type: none;
+}
+
+.menu{
+    position:fixed;
+}
+
+
+
 
