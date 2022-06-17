@@ -137,7 +137,7 @@
                 <h3>Список уроків</h3>
                 <form action="" method="POST" class = 'form_lessons'>
                     {% csrf_token %}
-                    <select name="" id="" size='10' >
+                    <select name="lessons" id="" size='10' >
                         {% for i in lesson_range %}
                             <option value="{{i.ID}}">{{i.name}}({{i.teacher.name}})</option>
                         {% endfor %}

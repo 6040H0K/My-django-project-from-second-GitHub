@@ -74,5 +74,8 @@
     </p>
 </main>
 </form>
+{% if error != None %}
+    <p class="error">{{error}}</p>
+{% endif %}
 </body>
 </html>

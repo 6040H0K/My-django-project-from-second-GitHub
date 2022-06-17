@@ -35,8 +35,8 @@ urlpatterns = [
     path('auth/', Auth.as_view(), name='auth'),
     path('auth/<int:type_page>', Auth.as_view(), name='auth'),
     path('school/<int:id>/teacher/<int:id_teacher>/', Teacher_page.as_view(), name='teacher_page'),
-    path('school/<int:id>/teacher/<int:id_teacher>/<int:id_lesson>', Teacher_class_page.as_view(), name='teacher_class_page'),
-    path('school/<int:id>/teacher/<int:id_teacher>/<int:id_lesson>/<int:id_class>', Show_lesson_marks.as_view(), name='Show_lesson_marks')
+    path('school/<int:id>/lesson/<int:id_lesson>', Teacher_class_page.as_view(), name='teacher_class_page'),
+    path('school/<int:id>/lesson/<int:id_lesson>/<int:id_class>', Show_lesson_marks.as_view(), name='Show_lesson_marks')
     
     # path(r'schools/(?P<id>[_\w+])$', show_school, name='school')
 ]

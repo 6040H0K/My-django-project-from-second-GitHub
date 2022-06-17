@@ -30,15 +30,21 @@
                     <td class= 'id_td'>
                         <form action="" method="POST">
                             {% csrf_token %}
-                            <button type="submit" name='id'  value="{{i.id}}">Переглянути</button>
+                            <button  name='id'  value="{{i.id}}">Переглянути</button>
                         </form>
                     </td>
+                    
                     <td>{{i.title}}</td>
                     
                     <td>{{i.number}}</td>
                     <td>{{i.town}}</td>
                     
-                    
+                    <td class= 'id_td'>
+                        <form action="" method="POST">
+                            {% csrf_token %}
+                            <button  name='del'  value="{{i.id}}">Видалити</button>
+                        </form>
+                    </td>
                 </tr>
                 
            

@@ -37,12 +37,14 @@
     padding-right: 0.4vw ;
     padding-left:0.4vw ;
 }
+a{ text-decoration: none;
+}
 
 .main{
     display: flex;
     position: relative;
-    width: 35px;
-    height: 35px;
+    width: 2.5vw;
+    height: 2.5vw;
     margin-right: 0.5vw;
     margin-bottom: 0.5vw;
     margin-top:  0.5vw;
@@ -52,10 +54,27 @@
 
 li{
     list-style-type: none;
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    
+    
+}
+
+li a{
+    display: flex;
+    justify-content: center;
+    align-items: center ;
+}
+
+li a img{
+    margin-right: vw;
 }
 
 .menu{
     position:fixed;
+    /* display: flex;
+    flex-direction: column; */
 }
 
 

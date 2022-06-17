@@ -12,9 +12,19 @@
         {% csrf_token %}
         
         <input type="text" name="rank" value="{{class.rank}}" placeholder="Номер класу">
-        <input type="text" name="class_teacher" value="{{class.class_teacher.name}}" placeholder="Класний керівник">
+        <select name="teacher" class="reg_input" id="">
+            <option value="null" selected>{{class.class_teacher.name}}</option>
+            {% for teach in teacher_range %}
+            <option value="{{teach.ID}}">{{teach.name}}</option>
+            {% endfor %}
+        </select>
         <input type="text" name="name" value='{{class.name}}' placeholder="Літера класу">
         <input type="submit" value="Зберегти">
+        {% if error != None %}
+        <p class="error">{{error}}</p>
+    {% endif %}
     </form>
+    
 </body>
+
 </html>

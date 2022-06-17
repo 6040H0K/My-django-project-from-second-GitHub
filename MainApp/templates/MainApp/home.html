@@ -15,28 +15,29 @@
             <li> 
               <a href="{% url 'home' %}">
                 <img class="main" src="{% static 'image/home.png' %}" alt="">
-                <a href="{% url 'home' %}" class="li_2"><strong>Головна</strong></a>
+                <p class="li_2"><strong>Головна</strong></p>
               </a>
             </li>
 
             <li> 
               <a href="{% url 'schools' %}">
                 <img class="main" src="{% static 'image/shool.png' %}" alt="">
-                <a href="{% url 'schools' %}" class="li_2"><strong>Школи</strong></a>
+                <p class="li_2"><strong>Школи</strong></p>
               </a>
             </li>
 
             <li>
-              <a href="{% url 'home'%}"></a>
+              <a href="{% url 'home'%}">
               <img class="main" src="{% static 'image/info.png' %}" alt="">
-              <a href="{% url 'info'%}" class="li_2"><strong>Інформація про нас</strong></a>
+              <p  class="li_2"><strong>Інформація про нас</strong></p>
+            </a>
             </li>
-          </ul>
-
-          <ul>
-            <a href="{% url 'home'%}"></a>
+            <li>
+            <a href="{% url 'home'%}">
             <img class="main" src="{% static 'image/quit.png' %}" alt="">
-            <a href="{% url 'home'%}" class="li_2"><strong>Вийти</strong></a>
+            <p class="li_2"><strong>Вийти</strong><p>
+          </a>
+          </li>
           </ul>
         </div>
 

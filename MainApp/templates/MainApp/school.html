@@ -8,41 +8,31 @@
     <link rel="stylesheet" href="{% static 'school.css' %}" type="text/css">
 </head>
 <body>
-    <header>
-    <h1>{{school.title}}</h1>
+    <nav>
+    
     <ul class = 'ul_but'>
         <li class = 'li_but'>
             <form action="" method="POST" class = 'but_form'>
                 {% csrf_token %}
-                <button class = 'but' name = 'id' value="1">Створити клас</button>
+                <button class = 'but' name = 'id' value="3">Класи</button>
             </form>
         </li>
         <li class = 'li_but'>
             <form action="" method="POST" class = 'but_form'>
                 {% csrf_token %}
-                <button class = 'but' name = 'id' value="2">Створити урок</button>
+                <button class = 'but' name = 'id' value="6">Уроки</button>
             </form>
         </li>
         <li class = 'li_but'>
             <form action="" method="POST" class = 'but_form'>
                 {% csrf_token %}
-                <button class = 'but' name = 'id' value="3">Переглянути класи</button>
-            </form>
-        </li>
-        <li class = 'li_but'>
-            <form action="" method="POST" class = 'but_form'>
-                {% csrf_token %}
-                <button class = 'but' name = 'id' value="6">Переглянути уроки</button>
-            </form>
-        </li>
-        <li class = 'li_but'>
-            <form action="" method="POST" class = 'but_form'>
-                {% csrf_token %}
-                <button class = 'but' name = 'id' value="7">Створити вчителя</button>
+                <button class = 'but' name = 'id' value="10">Вчителі</button>
             </form>
         </li>
     </ul>
-</header>
+</nav>
+<div class="main">
+<h1>{{school.title}}</h1>
     {% if type == 'create_class' %}
         <main>
             <div class = 'reg_div'>
@@ -92,14 +82,19 @@
                         </td>
                         <td class="class_td">{{i.rank}}-{{i.name}}</td>
                         <td class="class_td">{{i.class_teacher.name}}</td>
-                        
                         <td class="class_td">
-                            <ol class="class_ul">
-                            </ol>
+                            <form action="" method = 'POST'>
+                                {% csrf_token %}
+                                <button name = 'del_class' value="{{i.ID}}">Видалити</button>
+                            </form>
                         </td>
                     </tr>
                 {% endfor %}
             </table>
+            <form action="" method="POST" class = 'but_form'>
+                {% csrf_token %}
+                <button class = 'but' name = 'id' value="1">Створити клас</button>
+            </form>
         </main>
     {% endif %}
     {% if type == 'create_lesson' %}
@@ -138,11 +133,21 @@
                     <td class="class_td">{{i.teacher.name}}</td>
                     <td class="class_td"> <form action="" method="POST">
                         {% csrf_token %}
-                        <button name="button_teacher" value="{{i.teacher.ID}}">Переглянути</button>
+                        <button name="button_lesson" value="{{i.ID}}">Переглянути</button>
                     </form></td>
+                    <td class="class_td">
+                        <form action="" method = 'POST'>
+                            {% csrf_token %}
+                            <button name = 'del_lesson' value="{{i.ID}}">Видалити</button>
+                        </form>
+                    </td>
                 </tr>
             {% endfor %}
         </table>
+        <form action="" method="POST" class = 'but_form'>
+            {% csrf_token %}
+            <button class = 'but' name = 'id' value="2">Створити урок</button>
+        </form>
     </main>
     {% endif %}
     {% if type == 'create_teacher' %}
@@ -165,5 +170,43 @@
             </form>
     </main>
     {% endif %}
+
+    {% if type == 'show_teachers' %}
+    <main>
+        <table class="class_table">
+            <tr class="class_tr">
+                <th class="class_th">Ім'я</th>
+                <th class="class_th">Логін</th>
+                <th class="class_th">Пароль</th>
+            </tr>
+            {% for i in range %}
+                <tr class="class_tr">
+                    <td class="class_td">{{i.name}}</td>
+                    <td class="class_td">{{i.login}}</td>
+                    <td class="class_td">{{i.password}}</td>
+                    <td class="class_td"> <form action="" method="POST">
+                        {% csrf_token %}
+                        <button name="button_teacher" value="{{i.ID}}">Переглянути</button>
+                    </form></td>
+                    <td class="class_td">
+                        <form action="" method = 'POST'>
+                            {% csrf_token %}
+                            <button name = 'del_teacher' value="{{i.ID}}">Видалити</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+        <form action="" method="POST" class = 'but_form'>
+            {% csrf_token %}
+            <button class = 'but' name = 'id' value="7">Створити вчителя</button>
+        </form>
+        
+    </main>
+    {% endif %}
+    {% if error != None %}
+        <p class="error">{{error}}</p>
+    {% endif %}
+</div>
 </body>
 </html>

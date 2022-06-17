@@ -1,15 +1,19 @@
 .ul_but{
     list-style-type: none;
     display: flex;
+    flex-direction: column;
     width: 100%;
     justify-content: center;
-    border-bottom: 3px solid black;
+    /* border-bottom: 3px solid black; */
     align-items: center;
     padding: 0;
     margin: 0;
     /* padding-left: 10vw; */
 }
-
+body{
+    display: flex;
+    justify-content: center;
+}
 .li_but{
     margin-left: 1vw;
     margin-bottom: 1vw;
@@ -64,8 +68,20 @@ h1{
     border-bottom: 3px solid black;
 }
 
-header{
+nav{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
 }
 
+.main{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-left: 5vw;
+}
+
+.error{
+    color: red;
+    font-size: 2vw;
+    text-align: center;
+}
