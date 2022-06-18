@@ -26,7 +26,10 @@ class Edit_info(TemplateView):
             if School.objects.all()[i].id == id:
                 id = i
         school = School.objects.all()[id]
-        clas = school.clases['clases'][id_class]
+        for i in school.clases['clases']:
+            if int(i['ID']) == int(id_class):
+                clas = i
+                id_class = school.clases['clases'].index(i)
         teachers = school.teachers['teachers']
         if request.method == 'POST':
             name = request.POST.get('name')
@@ -53,7 +56,9 @@ class Show_student_marks(TemplateView):
     template_name = "MainApp/marks.html"
     def dispatch(self, request, id,id_class, id_student):
         school = School.objects.get(pk = id)
-        clas = school.clases['clases'][id_class]
+        for i in school.clases['clases']:
+            if int(i['ID']) == int(id_class):
+                clas = i
         student = Student.objects.get(pk = id_student)
         range1 = student.marks
         range2 = []
@@ -62,10 +67,12 @@ class Show_student_marks(TemplateView):
         return render(request, self.template_name, context={'range': range1,
                     'range2': range(30), 'student':student, 'class':clas})
 class Show_lesson_marks(TemplateView):
-    template_name = "MainApp/marks_lesson.html"
+    template_name = "MainApp/marks.html"
     def dispatch(self, request, id, id_lesson, id_class):
         school = School.objects.get(pk = id)
-        clas = school.clases['clases'][id_class]
+        for i in school.clases['clases']:
+            if int(i['ID']) == int(id_class):
+                clas = i
         for i in school.lessons['lessons']:
             if i['ID'] == id_lesson:
                 lesson = i
@@ -104,6 +111,9 @@ class Show_class(TemplateView):
             if School.objects.all()[i].id == id:
                 id = i
         school = School.objects.all()[id]
+        for i in range(len(school.clases['clases'])):
+            if int(school.clases['clases'][i]['ID']) == int(id_class):
+                id_class = i
         clas = school.clases['clases'][id_class]
         lesson_range = clas['lessons_list']
         student_range = []
@@ -166,7 +176,6 @@ class Teacher_class_page(TemplateView):
             if i['ID'] == lesson['teacher']['ID']:
                 teacher = i
                 break
-        print(teacher)
         clases = []
         for i in school.clases['clases']:
             for j in i['lessons_list']:
@@ -206,6 +215,9 @@ class Make_student(TemplateView):
             if School.objects.all()[i].id == id:
                 id = i
         school = School.objects.all()[id]
+        for i in range(len(school.clases['clases'])):
+            if int(school.clases['clases'][i]['ID']) == int(id_class):
+                id_class = i
         clas = school.clases['clases'][id_class]
 
         if request.method == 'POST':
@@ -253,6 +265,9 @@ class Edit_lessons(TemplateView):
             if School.objects.all()[i].id == id:
                 id = i
         school = School.objects.all()[id]
+        for i in range(len(school.clases['clases'])):
+            if int(school.clases['clases'][i]['ID']) == int(id_class):
+                id_class = i
         clas = school.clases['clases'][id_class]
         lesson_range = clas['lessons_list']
         all_lesson_range = school.lessons['lessons'].copy()
@@ -309,6 +324,9 @@ class Edit_schadult(TemplateView):
             if School.objects.all()[i].id == id:
                 id = i
         school = School.objects.all()[id]
+        for i in range(len(school.clases['clases'])):
+            if int(school.clases['clases'][i]['ID']) == int(id_class):
+                id_class = i
         clas = school.clases['clases'][id_class]
         lesson_range = []
         lesson_range_for_html = clas['lessons_list']
