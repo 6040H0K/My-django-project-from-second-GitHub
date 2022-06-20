@@ -8,18 +8,54 @@
     <link rel="stylesheet" href="{% static 'marks.css' %}" type="text/css">
 </head>
 <body>
-    <h2>{{student.name}} {{student.surname}} {{class.rank}}-{{class.name}}</h2>
+    <div class="select_filtr">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <select name="month">
+                <option value="{{month.ID}}" selected>{{month.name}}</option>
+                {% for i in monthes %}
+                    {% if i.ID != month.ID %}
+                        <option value="{{i.ID}}">{{i.name}}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+            <select name="student">
+                {% if student == None %}
+                    <option value="null" selected>Учень</option>
+                {% else %}
+                    <option value="{{student.id}}" selected>{{student.name}} {{student.surname}}</option>
+                {% endif %}
+                {% for i in students %}
+                    {% if i.id != student.id %}
+                        <option value="{{i.id}}">{{i.name}} {{i.surname}}</option>
+                    {% endif %}
+                {% endfor %}
+                <option value="null"></option>
+            </select>
+            <select name="lesson">
+                <option value="null" selected>Предмет</option>
+                {% for i in lessons %}
+                    <option value="{{i.ID}}">{{i.name}} ({{i.teacher.name}})</option>
+                {% endfor %}
+            </select>
+            <button name='but_filtr' value="1">Знайти</button>
+        </form>
+    </div>
+    <form action="" method="POST">
+        {% csrf_token %}
     <table>
         {% for i in range %}
             <tr>
-                <th>{{i}}</th>
-                {% for j in range2%}
+                <th>{{i.name}}</th>
+                {% for j in i.marks %}
                     <td>
-                        <input type="number" min="1" max="12">
+                        <input type="number" name ='{{i.ID}}-{{j.ID}}' min="1" max="12" value="{{j.mark}}"></button>
                     </td>
                 {% endfor %}
             </tr>
         {% endfor %}
     </table>
+    <button name='save_marks' value="1">Зберегти</button>
+</form>
 </body>
 </html>

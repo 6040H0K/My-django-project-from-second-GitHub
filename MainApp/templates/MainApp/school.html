@@ -1,36 +1,11 @@
-<!DOCTYPE html>
-{% load static %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="{% static 'school.css' %}" type="text/css">
-</head>
-<body>
-    <nav>
-    
-    <ul class = 'ul_but'>
-        <li class = 'li_but'>
-            <form action="" method="POST" class = 'but_form'>
-                {% csrf_token %}
-                <button class = 'but' name = 'id' value="3">Класи</button>
-            </form>
-        </li>
-        <li class = 'li_but'>
-            <form action="" method="POST" class = 'but_form'>
-                {% csrf_token %}
-                <button class = 'but' name = 'id' value="6">Уроки</button>
-            </form>
-        </li>
-        <li class = 'li_but'>
-            <form action="" method="POST" class = 'but_form'>
-                {% csrf_token %}
-                <button class = 'but' name = 'id' value="10">Вчителі</button>
-            </form>
-        </li>
-    </ul>
-</nav>
+{% extends 'MainApp/base.html' %}
+
+
+{% block content %}
+<main class="base_main">
+
+</main>
+{% endblock %}
 <div class="main">
 <h1>{{school.title}}</h1>
     {% if type == 'create_class' %}

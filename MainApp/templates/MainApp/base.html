@@ -1,0 +1,164 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная страница</title>
+    <link rel="stylesheet" href="{% static 'base.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'schools.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'home.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'school.css' %}" type="text/css">
+    </head>
+    <body>
+        {% block main-menu %}
+        <nav class="menu">
+          <ul class="menu_ul">
+                {% if select_menu == 0 %}
+                    <div class="menu_div_selected">
+                {% else %}
+                    <div class="menu_div">
+                {% endif %}
+                    <form action="" method="GET" class="menu_form">
+                        <button class="menu_a" name='button_id' value="1">
+                    
+                            <li class="menu_li">
+                                <span   class="menu_span">
+                                    <p class='menu_icon'>􀎟</p>
+                                    <p class="menu_text">Головна</p>
+                                </span>
+                            </li>
+                        </button>
+                    </form>
+                    </div>
+
+                {% if select_menu == 1 %}
+                    <div class="menu_div_selected">
+                {% else %}
+                    <div class="menu_div">
+                {% endif %}
+                    <form action="" method="GET" class="menu_form">
+                        <button class="menu_a" name='button_id' value="1">
+                            <li class="menu_li">
+                                <span   class="menu_span">
+                                    <p class='menu_icon'>􀫔</p>
+                                    {% if type_menu == 1 %}
+                                    <p class="menu_text">Школи</p>
+                                    {% else %}
+                                    
+                                    <p class="menu_text">Школа</p>
+                                    {% endif %}
+                                </span>
+                            </li>
+                        </button>
+                    </form>
+                    </div>
+                
+                {% if select_menu == 2 %}
+                    <div class="menu_div_selected">
+                {% else %}
+                    <div class="menu_div">
+                {% endif %}
+                        <a href="" class="menu_a">
+                        <li class="menu_li">
+                            <span   class="menu_span">
+                                {% if type_menu == 1 %}
+                                {% else %}
+                                    <p class='menu_icon'>􀓤</p>
+                                    <p class="menu_text">Вчителі</p> 
+                                {% endif %}
+                            </span>  
+                        </li>
+                        </a>
+                    </div>
+                {% if select_menu == 3 %}
+                    <div class="menu_div_selected">
+                {% else %}
+                    <div class="menu_div">
+                {% endif %}
+                        <a href="" class="menu_a">
+                        <li class="menu_li">
+                            <span   class="menu_span">
+                                {% if type_menu == 1 %}
+                                {% else %}
+                                    <p class='menu_icon'>􀉬</p>
+                                    <p class="menu_text">Учні</p>
+                                {% endif %}
+                            </span>  
+                        </li>
+                        </a>
+                    </div>
+                {% if select_menu == 4 %}
+                    <div class="menu_div_selected">
+                {% else %}
+                    <div class="menu_div">
+                {% endif %}
+                        <a href="" class="menu_a">
+                        <li class="menu_li">
+                            <span   class="menu_span">
+                                {% if type_menu == 1 %}
+                                {% else %}
+                                    <p class='menu_icon'>􀝋</p>
+                                    <p class="menu_text">Класи</p>
+                                {% endif %}
+                            </span>  
+                        </li>
+                        </a>
+                    </div>
+                {% if select_menu == 5 %}
+                    <div class="menu_div_selected">
+                {% else %}
+                    <div class="menu_div">
+                {% endif %}
+                        <a href="" class="menu_a">
+                        <li class="menu_li">
+                            <span   class="menu_span">
+                                {% if type_menu == 1 %}
+                                {% else %}
+                                    <p class='menu_icon'>􀌱</p>
+                                    <p class="menu_text">Уроки</p>
+                                {% endif %}
+                            </span>  
+                        </li>
+                        </a>
+                    </div>
+                {% if select_menu == 6 %}
+                    <div class="menu_div_selected">
+                {% else %}
+                    <div class="menu_div">
+                {% endif %}
+                        <a href="" class="menu_a">
+                        <li class="menu_li">
+                            <span   class="menu_span">
+                                {% if type_menu == 1 %}
+                                {% else %}
+                                    <p class='menu_icon'>􀅵</p>
+                                    <p class="menu_text">Інформація</p>
+                                {% endif %}
+                            </span>  
+                        </li>
+                        </a>
+                    </div>
+                {% if select_menu == 7 %}
+                    <div class="menu_div_selected">
+                {% else %}
+                    <div class="menu_div">
+                {% endif %}
+                        <a href="" class="menu_a">
+                        <li class="menu_li">
+                            <span   class="menu_span">
+                                    <p class='menu_icon'>􀷄</p>
+                                    <p class="menu_text">Вихід</p>
+                            </span>  
+                        </li>
+                        </a>
+                    </div>
+          </ul>
+        </nav>
+        {% endblock main-menu %}
+        
+        {% block content %}
+        {% endblock %}
+    </body>
+</html>

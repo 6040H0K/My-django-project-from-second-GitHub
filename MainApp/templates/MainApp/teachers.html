@@ -6,17 +6,17 @@
     <ul class="ul_named">
         <li class="li_named">
             <h3 class="h3_named">
-                Назва школи
+                Ім'я
             </h3>
         </li>
         <li class="li_named">
             <h3 class="h3_named">
-                Номер
+                Логін
             </h3>
         </li>
         <li class="li_named">
             <h3 class="h3_named">
-                Місто
+                Пароль
             </h3>
         </li>
     </ul>
@@ -31,13 +31,13 @@
                         <button name='id'  value="{{i.id}}" class='button_schools'>
                             <ul class='ul_school'>
                                 <li class="li_school">
-                                    {{i.title}}
+                                    {{i.name}}
                                 </li>
                                 <li class="li_school">
-                                    №{{i.number}}
+                                    {{i.login}}
                                 </li>
                                 <li class="li_school">
-                                    {{i.town}}
+                                    {{i.password}}
                                 </li>
                             </ul>
                         </button>
@@ -50,7 +50,7 @@
     <p class="p_make_school">
         <form action="" method="POST">
             {% csrf_token %}
-            <button  class="button_make_school" name='make' value="1">Cтворити школу</button>
+            <button  class="button_make_school" name='make' value="1">Cтворити вчителя</button>
         </form>
     </p>
 </main>
@@ -64,11 +64,10 @@
             <form action="" method="POST" class='form_new_school'>
                 {% csrf_token %}
                 <p class = 'h_new_school'>Створити школу</p>
-                    <input class='input_new_school' type="text" placeholder="Назва школи" name="name" autocomplete="off">
-                    <input class='input_new_school' type="number" placeholder="Номер школи" name="num" autocomplete="off">
-                    <input class='input_new_school' type="text" placeholder="Місто" name="town" autocomplete="off">
+                    <input class='input_new_school' type="text" placeholder="Ім'я вчителя" name="name" autocomplete="off">
+                    <input class='input_new_school' type="text" placeholder="Логін" name="login" autocomplete="off">
                     <input class='input_new_school' type="text" placeholder="Пароль" name="password" autocomplete="off">
-                    <button value="1" name="new_school" class="button_new_school" autocomplete="off">Створити</button>
+                    <button value="1" name="new_teacher" class="button_new_school" autocomplete="off">Створити</button>
             </form>
         </div>
     {% endif %}

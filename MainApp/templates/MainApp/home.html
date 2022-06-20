@@ -1,49 +1,13 @@
+{% extends 'MainApp/base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Главная страница</title>
-    <link rel="stylesheet" href="{% static 'home.css' %}" type="text/css">
+{% block content %}
+  <main class="base_main">
+      <div class="two">
+        <img class = 'home_image' src="{% static 'image/home1.png' %}" alt="">
+      </div>
 
-    </head>
-    <body>
-        <div class="menu">
-          <ul>
-            <li> 
-              <a href="{% url 'home' %}">
-                <img class="main" src="{% static 'image/home.png' %}" alt="">
-                <p class="li_2"><strong>Головна</strong></p>
-              </a>
-            </li>
-
-            <li> 
-              <a href="{% url 'schools' %}">
-                <img class="main" src="{% static 'image/shool.png' %}" alt="">
-                <p class="li_2"><strong>Школи</strong></p>
-              </a>
-            </li>
-
-            <li>
-              <a href="{% url 'home'%}">
-              <img class="main" src="{% static 'image/info.png' %}" alt="">
-              <p  class="li_2"><strong>Інформація про нас</strong></p>
-            </a>
-            </li>
-            <li>
-            <a href="{% url 'home'%}">
-            <img class="main" src="{% static 'image/quit.png' %}" alt="">
-            <p class="li_2"><strong>Вийти</strong><p>
-          </a>
-          </li>
-          </ul>
-        </div>
-
-        <!-- <div class=""> -->
-          <!-- <a href="{% url 'login' %}"><button type="button" class=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Авторизоваться</font></font></button></a>
-          <a href="{% url 'reg' %}"><button type="button" class=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Регистрация</font></font></button></a> -->
-        <!-- </div> -->
-    </body>
-</html>
+      <div class="two">
+        <img class = 'home_image' src="{% static 'image/home2.png' %}" alt="">
+      </div>
+  </main>
+{% endblock %}
