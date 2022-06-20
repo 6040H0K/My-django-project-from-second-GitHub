@@ -11,10 +11,28 @@ from random import randint
 
 # Create your views here.
 # print(urls.urlpatterns)
+def buttons_menu(request, school_id = None):
+    if request.method == 'GET':
+        if request.GET.get('button_id_menu') == '1':
+            if school_id == None:
+                return 'home'
+            else:
+                return '/school/' + str(school_id) +'/home_page'
+        elif request.GET.get('button_id_menu') == '2':
+            if school_id == None:
+                return 'schools'
+            else:
+                return '/school/' + str(school_id)
+        elif request.GET.get('button_id_menu') == '3':
+                return '/school/' + str(school_id) + '/teachers'
+        
 def calculate_age(born):
     today = date.today()
     return today.year - born.year - ((today.month, today.day) < (born.month, born.day))
 def home(request, id_school = None):
+    tmp = buttons_menu(request, id_school)
+    if tmp != None:
+        return redirect(tmp)
     if id_school:
         School.objects.get(pk = id_school)
         return render(request, 'MainApp/home.html', context={"select_menu":0})
@@ -135,6 +153,10 @@ class Schoolswork(TemplateView):
     errortext = 0
     def dispatch(self, request):
         make = False
+        tmp = buttons_menu(request)
+        if tmp != None:
+            return redirect(tmp)
+        
         if request.method == "POST":
             if request.POST.get('del'):
                 school = School.objects.get(pk = request.POST.get('del'))
@@ -263,6 +285,7 @@ class Show_class(TemplateView):
 class Teacher_page(TemplateView):
     template_name = "MainApp/teacher.html"
     def dispatch(self, request, id, id_teacher):
+        
         school = School.objects.get(pk = id)
         for i in school.teachers['teachers']:
             if i['ID'] == id_teacher:
@@ -504,6 +527,9 @@ class Teachers(TemplateView):
     range_cycle = 0
     error_text = None
     def dispatch(self, request ,id_school):
+        tmp = buttons_menu(request, id_school)
+        if tmp != None:
+            return redirect(tmp)
         make = False
         school = School.objects.get(pk = id_school)
         self.range_cycle = school.teachers['teachers']
@@ -533,6 +559,46 @@ class Teachers(TemplateView):
                     context= {'school': school,
                             'range': self.range_cycle,
                             'error': self.error_text, 'make':make,'select_menu': 2})
+class Lessons(TemplateView):
+    template_name = "MainApp/lessons.html"
+    range_cycle = 0
+    error_text = None
+    def dispatch(self, request, id_school):
+        tmp = buttons_menu(request, id_school)
+        if tmp != None:
+            return redirect(tmp)
+        make = False
+        school = School.objects.get(pk = id_school)
+        self.range_cycle = school.lessons['lessons']
+        teacher_range = school.teachers['teachers']
+        if request.method == 'POST':
+            if request.POST.get('make'):
+                make = True
+            elif request.POST.get('new_lesson'):
+                lesson = school.lesson_form.copy()
+                name = request.POST.get('name')
+                teacher = request.POST.get('teacher')
+                for i in school.teachers['teachers']:
+                    if str(i['ID']) == teacher:
+                        teacher = i
+                        break
+                if name and teacher != 'null':
+                    lesson['name'] = name
+                    lesson['teacher'] = teacher
+                    if len(school.lessons['lessons']) > 0:
+                        lesson['ID'] = school.lessons['lessons'][-1]['ID'] + 1
+                    else:
+                        lesson['ID'] = 0
+                    school.lessons['lessons'].append(lesson)
+                    school.save()
+                    self.range_cycle = school.lessons['lessons']
+                else:
+                    self.error_text = 'Заповніть усі поля'
+        return render(request, self.template_name, 
+                    context= {'school': school,
+                            'range': self.range_cycle,
+                            'error': self.error_text, 'make':make,'select_menu': 5,
+                            'teacher_range':teacher_range})
 class Show_school(TemplateView):
     
     template_name = "MainApp/school.html"
@@ -553,6 +619,9 @@ class Show_school(TemplateView):
         #         break
         # id = int(id_str[::-1])
         # print(id)
+        tmp = buttons_menu(request, id)
+        if tmp != None:
+            return redirect(tmp)
         school = School.objects.get(pk = id)
         teacher_range = school.teachers['teachers']
         if request.method == 'POST':
@@ -672,12 +741,12 @@ class Show_school(TemplateView):
             return render(request, self.template_name, 
                         context= {'school': school, 'type': self.type_page, 
                                 'range': self.range_cycle, 'teacher_range':teacher_range,
-                                'error': self.error_text})
+                                'error': self.error_text, 'select_menu':1})
 
         return render(request, self.template_name, 
                     context= {'school': school, 'type': self.type_page, 
                             'range': self.range_cycle, 'teacher_range':teacher_range,
-                            'error': self.error_text})
+                            'error': self.error_text, 'select_menu':1})
     # except:
     #     print('error')
     #     return render(request, template_name)

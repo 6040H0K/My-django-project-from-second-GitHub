@@ -51,6 +51,7 @@
 
 }
 .menu_ul{
+    margin-top: -2vw;
     position: relative;
     padding: 0;
     list-style-type: none;
@@ -58,18 +59,24 @@
 .menu_li{
     /* display: flex; */
     
-    margin: 4vw;
-    margin-top: 1vw;
+    /* margin: 4vw; */
+    /* margin-top: 1vw; */
+
     margin-left: 0;
     align-items: center;
     
 }
 .menu_div{
     width: 91%;
-    height: 5.35vw;
+    margin-top: 3vw;
+    margin-bottom: 3vw;
+    height: 3vw;
 }
 .menu_div_selected{
+    margin-top: 3vw;
+    margin-bottom: 3vw;
     width: 91%;
+    height: 3vw;
     border-right: 0.2vw solid #E19A38 ;
 }
 .menu_form{
@@ -91,8 +98,8 @@
     padding: 0;
     margin: 0;
     border: 0;
-    /* background-color: transparent; */
-    height: 100%;
+    background-color: transparent;
+    height: 2.38vw;
     width: 100%;
 }
 .menu_text{

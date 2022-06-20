@@ -21,7 +21,7 @@
                     <div class="menu_div">
                 {% endif %}
                     <form action="" method="GET" class="menu_form">
-                        <button class="menu_a" name='button_id' value="1">
+                        <button class="menu_a" name='button_id_menu' value="1">
                     
                             <li class="menu_li">
                                 <span   class="menu_span">
@@ -39,7 +39,7 @@
                     <div class="menu_div">
                 {% endif %}
                     <form action="" method="GET" class="menu_form">
-                        <button class="menu_a" name='button_id' value="1">
+                        <button class="menu_a" name='button_id_menu' value="2">
                             <li class="menu_li">
                                 <span   class="menu_span">
                                     <p class='menu_icon'>􀫔</p>
@@ -60,99 +60,114 @@
                 {% else %}
                     <div class="menu_div">
                 {% endif %}
-                        <a href="" class="menu_a">
-                        <li class="menu_li">
-                            <span   class="menu_span">
-                                {% if type_menu == 1 %}
-                                {% else %}
-                                    <p class='menu_icon'>􀓤</p>
-                                    <p class="menu_text">Вчителі</p> 
-                                {% endif %}
-                            </span>  
-                        </li>
-                        </a>
+                    <form action="" method="GET" class="menu_form">
+                        {% if type_menu == 1 %}
+                        {% else %}
+                        <button class="menu_a" name='button_id_menu' value="3">
+                            <li class="menu_li">
+                                <span   class="menu_span">
+                                    
+                                        <p class='menu_icon'>􀓤</p>
+                                        <p class="menu_text">Вчителі</p> 
+                                    
+                                </span>  
+                            </li>
+                        </button>
+                        {% endif %}
+                    </form>
                     </div>
                 {% if select_menu == 3 %}
                     <div class="menu_div_selected">
                 {% else %}
                     <div class="menu_div">
                 {% endif %}
-                        <a href="" class="menu_a">
+                <form action="" method="GET" class="menu_form">
+                    {% if type_menu == 1 %}
+                    {% else %}
+                    <button class="menu_a" name='button_id_menu' value="4">
                         <li class="menu_li">
                             <span   class="menu_span">
-                                {% if type_menu == 1 %}
-                                {% else %}
                                     <p class='menu_icon'>􀉬</p>
                                     <p class="menu_text">Учні</p>
-                                {% endif %}
                             </span>  
                         </li>
-                        </a>
+                    </button>
+                    {% endif %}
+                </form>
                     </div>
                 {% if select_menu == 4 %}
                     <div class="menu_div_selected">
                 {% else %}
                     <div class="menu_div">
                 {% endif %}
-                        <a href="" class="menu_a">
+                <form action="" method="GET" class="menu_form">
+                    {% if type_menu == 1 %}
+                    {% else %}
+                    <button class="menu_a" name='button_id_menu' value="5">
                         <li class="menu_li">
                             <span   class="menu_span">
-                                {% if type_menu == 1 %}
-                                {% else %}
                                     <p class='menu_icon'>􀝋</p>
                                     <p class="menu_text">Класи</p>
-                                {% endif %}
                             </span>  
                         </li>
-                        </a>
+                    </button>
+                    {% endif %}
+                </form>
                     </div>
                 {% if select_menu == 5 %}
                     <div class="menu_div_selected">
                 {% else %}
                     <div class="menu_div">
                 {% endif %}
-                        <a href="" class="menu_a">
+                <form action="" method="GET" class="menu_form">
+                    {% if type_menu == 1 %}
+                    {% else %}
+                    <button class="menu_a" name='button_id_menu' value="6">
                         <li class="menu_li">
                             <span   class="menu_span">
-                                {% if type_menu == 1 %}
-                                {% else %}
                                     <p class='menu_icon'>􀌱</p>
                                     <p class="menu_text">Уроки</p>
-                                {% endif %}
                             </span>  
                         </li>
-                        </a>
+                    </button>
+                    {% endif %}
+                </form>
                     </div>
                 {% if select_menu == 6 %}
                     <div class="menu_div_selected">
                 {% else %}
                     <div class="menu_div">
                 {% endif %}
-                        <a href="" class="menu_a">
+                <form action="" method="GET" class="menu_form">
+                    {% if type_menu == 1 %}
+                    {% else %}
+                    <button class="menu_a" name='button_id_menu' value="7">
                         <li class="menu_li">
                             <span   class="menu_span">
-                                {% if type_menu == 1 %}
-                                {% else %}
                                     <p class='menu_icon'>􀅵</p>
                                     <p class="menu_text">Інформація</p>
-                                {% endif %}
+                                
                             </span>  
                         </li>
-                        </a>
+                    </button>
+                    {% endif %}
+                </form>
                     </div>
                 {% if select_menu == 7 %}
                     <div class="menu_div_selected">
                 {% else %}
                     <div class="menu_div">
                 {% endif %}
-                        <a href="" class="menu_a">
+                <form action="" method="GET" class="menu_form">
+                    <button class="menu_a" name='button_id_menu' value="8">
                         <li class="menu_li">
                             <span   class="menu_span">
                                     <p class='menu_icon'>􀷄</p>
                                     <p class="menu_text">Вихід</p>
                             </span>  
                         </li>
-                        </a>
+                    </button>
+                </form>
                     </div>
           </ul>
         </nav>

@@ -1,0 +1,79 @@
+{% extends 'MainApp/base.html' %}
+
+
+{% block content %}
+<main class='base_main'>
+    <ul class="ul_named">
+        <!-- <li class="li_named">
+            <h3 class="h3_named">
+                №
+            </h3>
+        </li> -->
+        <li class="li_named">
+            <h3 class="h3_named">
+                Назва урока
+            </h3>
+        </li>
+        <li class="li_named">
+            <h3 class="h3_named">
+                Вчитель
+            </h3>
+        </li>
+    </ul>
+    <div class="div_schools">
+        <ul class='ul_schools'>
+            {% for i in range %}
+            <li class="li_schools">
+                <form action="" class="form_school" method="POST">
+                    {% csrf_token %}
+                    <!-- <div class="div_school"> -->
+                        <!-- <p> Переглянути</p> -->
+                        <button name='id'  value="{{i.id}}" class='button_schools'>
+                            <ul class='ul_school'>
+                                <!-- <li class="li_school">
+                                    {{i.ID}}
+                                </li> -->
+                                <li class="li_school">
+                                    {{i.name}}
+                                </li>
+                                <li class="li_school">
+                                    {{i.teacher.name}}
+                                </li>
+                            </ul>
+                        </button>
+                    <!-- </div> -->
+                </form>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <p class="p_make_school">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <button  class="button_make_school" name='make' value="1">Cтворити урок</button>
+        </form>
+    </p>
+</main>
+    {% if make == True %}
+    
+        <div class='div_new_school'>
+            <form action="" method="POST">
+                {% csrf_token %}
+                <button class='but_new_school'></button>
+            </form>
+            <form action="" method="POST" class='form_new_school'>
+                {% csrf_token %}
+                <p class = 'h_new_school'>Створити школу</p>
+                    <input class='input_new_school' type="text" placeholder="Назва уроку" name="name" autocomplete="off">
+                    <select class='select_new_school' name="teacher" class="reg_input" id="" >
+                        <option value="null" selected>Вчитель</option>
+                        {% for teach in teacher_range %}
+                        <option value="{{teach.ID}}">{{teach.name}}</option>
+                        {% endfor %}
+                    </select>
+                    <button value="1" name="new_lesson" class="button_new_school" autocomplete="off">Створити</button>
+            </form>
+        </div>
+    {% endif %}
+{% endblock %}
+                   
