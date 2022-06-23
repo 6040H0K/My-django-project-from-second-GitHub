@@ -44,6 +44,12 @@
                                 </li> -->
                             </ul>
                         </button>
+                        <button name="button_edit" value="{{i.ID}}" class="button_edit_school">
+                            􀈎
+                        </button>
+                        <button name="button_del" value="{{i.ID}}"class="button_del_school">
+                            􀆚
+                        </button>
                         <div class="disable_error">Переглянути</div>
                     <!-- </div> -->
                 </form>
@@ -67,7 +73,8 @@
             </form>
             <form action="" method="POST" class='form_new_student'>
                 {% csrf_token %}
-                <p class = 'h_new_school'>Створити вчителя</p>
+                {% if info_for_edit == None %}
+                    <p class = 'h_new_school'>Створити вчителя</p>
                     <input class='input_new_school' type="text" placeholder="Ім'я вчителя" name="name" autocomplete="off">
                     <input class='input_new_school' type="email" placeholder="Email" name="email" autocomplete="off">
                     <input class="input_new_school" type="tel" name="phone" 
@@ -76,6 +83,17 @@
                     <input class='input_new_school' type="text" placeholder="Логін" name="login" autocomplete="off">
                     <input class='input_new_school' type="text" placeholder="Пароль" name="password" autocomplete="off">
                     <button value="1" name="new_teacher" class="button_new_school" autocomplete="off">Створити</button>
+                {% else %}
+                    <p class = 'h_new_school'>Редагувати вчителя</p>
+                    <input class='input_new_school' type="text" placeholder="Ім'я вчителя" name="name" autocomplete="off" value="{{info_for_edit.name}}">
+                    <input class='input_new_school' type="email" placeholder="Email" name="email" autocomplete="off" value="{{info_for_edit.email}}">
+                    <input class="input_new_school" type="tel" name="phone" 
+                    pattern="[0-9]{3}[0-9]{3}[0-9]{4}"
+                    placeholder="Номер телефону (0951234567)" value="{{info_for_edit.phone}}">
+                    <input class='input_new_school' type="text" placeholder="Логін" name="login" autocomplete="off" value="{{info_for_edit.login}}">
+                    <input class='input_new_school' type="text" placeholder="Пароль" name="password" autocomplete="off" value="{{info_for_edit.password}}">
+                    <button value="{{info_for_edit.ID}}" name="save_teacher" class="button_new_school" autocomplete="off">Зберегти</button>
+                {% endif %}
             </form>
         </div>
     {% endif %}

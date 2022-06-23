@@ -39,7 +39,19 @@
                                 <li class="li_school">
                                     {{i.town}}
                                 </li>
+                                <!-- <li class="li_school_buttons">
+                                    
+                                </li>
+                                <li class="li_school_buttons">
+                                    
+                                </li> -->
                             </ul>
+                        </button>
+                        <button name="button_edit" value="{{i.id}}" class="button_edit_school">
+                            􀈎
+                        </button>
+                        <button name="button_del" value="{{i.id}}"class="button_del_school">
+                            􀆚
                         </button>
                         <div class="disable_error">Переглянути</div>
                     <!-- </div> -->
@@ -64,12 +76,22 @@
             </form>
             <form action="" method="POST" class='form_new_school'>
                 {% csrf_token %}
-                <p class = 'h_new_school'>Створити школу</p>
-                    <input class='input_new_school' type="text" placeholder="Назва школи" name="name" autocomplete="off">
-                    <input class='input_new_school' type="number" placeholder="Номер школи" name="num" autocomplete="off">
-                    <input class='input_new_school' type="text" placeholder="Місто" name="town" autocomplete="off">
-                    <input class='input_new_school' type="text" placeholder="Пароль" name="password" autocomplete="off">
-                    <button value="1" name="new_school" class="button_new_school" autocomplete="off">Створити</button>
+                
+                    {% if info_for_edit == None %}
+                        <p class = 'h_new_school'>Створити школу</p>
+                        <input class='input_new_school' type="text" placeholder="Назва школи" name="name" autocomplete="off">
+                        <input class='input_new_school' type="number" placeholder="Номер школи" name="num" autocomplete="off">
+                        <input class='input_new_school' type="text" placeholder="Місто" name="town" autocomplete="off">
+                        <input class='input_new_school' type="text" placeholder="Пароль" name="password" autocomplete="off">
+                        <button value="1" name="new_school" class="button_new_school" autocomplete="off">Створити</button>
+                    {% else %}
+                        <p class = 'h_new_school'>Редагувати школу</p>
+                        <input class='input_new_school' type="text" placeholder="Назва школи" name="name" autocomplete="off" value="{{info_for_edit.title}}">
+                        <input class='input_new_school' type="number" placeholder="Номер школи" name="num" autocomplete="off" value="{{info_for_edit.number}}">
+                        <input class='input_new_school' type="text" placeholder="Місто" name="town" autocomplete="off" value="{{info_for_edit.town}}">
+                        <input class='input_new_school' type="text" placeholder="Пароль" name="password" autocomplete="off" value="{{info_for_edit.password}}">
+                        <button value="{{info_for_edit.id}}" name="save_school" class="button_new_school" autocomplete="off">Збергти</button>
+                    {% endif %}
             </form>
         </div>
     {% endif %}

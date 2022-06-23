@@ -89,7 +89,7 @@
     border: 0;
     /* z-index: 1; */
 }
-.form_school:hover button{
+.form_school:hover .button_schools{
     background: rgba(18, 18, 18, 0.63);
     filter: blur(2px);
 }
@@ -130,6 +130,7 @@
     font-weight: 600;
     font-size: 1.2vw;
     line-height: 1vw;
+    /* z-index: 1; */
 }
 .form_school:hover div{
     color: #FFFFFF;
@@ -328,7 +329,7 @@
     font-family: 'Gilroy';
     font-style: normal;
     font-weight: 500;
-    font-size: 1.2vw;
+    font-size: 1vw;
     line-height: 1.4vw;
 
     /* Text */
@@ -336,6 +337,46 @@
     color: #121212;
 }
 
-.button_del{
-    background-image: url('image/del.png');
+.button_del_school{
+    position: absolute;
+    display: block;
+    width: 2.26vw;
+    height: 2.26vw;
+    left: 72vw;
+    bottom: 1.4vw;
+    background-color: transparent;
+    border: 0;
+    font-family: 'SF Pro';
+    font-style: normal;
+    font-weight: 510;
+    font-size: 1.5vw;
+    line-height: 2.5vw;
+
+    /* Grey */  
+    text-decoration: none;
+
+    color: #FF3B30;
+    /* z-index: 2; */
 }
+.button_edit_school{
+    position: absolute;
+    left: 70vw;
+    bottom: 1.4vw;
+    display: block;
+    width: 2.26vw;
+    height: 2.26vw;
+    background-color: transparent;
+    border: 0;
+    font-family: 'SF Pro';
+    font-style: normal;
+    font-weight: 510;
+    font-size: 1.5vw;
+    line-height: 2.5vw;
+
+    /* Grey */  
+    text-decoration: none;
+
+    color: #7E858E;
+    /* z-index: 2; */
+}
+

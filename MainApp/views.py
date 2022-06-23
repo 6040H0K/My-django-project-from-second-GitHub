@@ -31,6 +31,8 @@ def buttons_menu(request, school_id = None):
             return '/school/' + str(school_id) + '/clases'
         elif request.GET.get('button_id_menu') == '6':
             return '/school/' + str(school_id) + '/lessons'
+        elif request.GET.get('button_id_menu') == '7':
+            return '/school/' + str(school_id) + '/info_site/about_us'
         
 def calculate_age(born):
     today = date.today()
@@ -163,13 +165,24 @@ class Schoolswork(TemplateView):
         tmp = buttons_menu(request)
         if tmp != None:
             return redirect(tmp)
-        
+        info_for_edit = None
         if request.method == "POST":
-            if request.POST.get('del'):
-                school = School.objects.get(pk = request.POST.get('del'))
+            if request.POST.get('button_del'):
+                school = School.objects.get(pk = int(request.POST.get('button_del')))
                 school.delete()
+            elif request.POST.get('button_edit'):
+                school = School.objects.get(pk = int(request.POST.get('button_edit')))
+                make = True
+                info_for_edit = school
             elif request.POST.get('make'):
                 make = True
+            elif request.POST.get('save_school'):
+                school = School.objects.get(pk = request.POST.get('save_school'))
+                school.title = request.POST.get("name") 
+                school.number = request.POST.get("num") 
+                school.town = request.POST.get("town") 
+                school.password = request.POST.get("password")
+                school.save()
             elif request.POST.get('new_school'):
                 # errortext = 0
                 # a = {'errortext': self.errortext}
@@ -246,7 +259,7 @@ class Schoolswork(TemplateView):
         school = School.objects.all()
     # print(len(school), '--------------------------------------')
         return render(request, self.template_name, context= {"school": school, 'range': school, 'make':make,
-                    'select_menu':1, 'type_menu':1})
+                    'select_menu':1, 'type_menu':1, 'info_for_edit':info_for_edit})
 class Class(TemplateView):
     template_name = "MainApp/class.html"
     def dispatch(self,request,id_school,id_class):
@@ -520,9 +533,40 @@ class Teachers(TemplateView):
         make = False
         school = School.objects.get(pk = id_school)
         self.range_cycle = school.teachers['teachers']
+        info_for_edit = None
         if request.method == 'POST':
             if request.POST.get('make'):
                 make = True
+            elif request.POST.get('button_del'):
+                for i in school.teachers['teachers']:
+                    if i['ID'] == int(request.POST.get('button_del')):
+                        school.teachers['teachers'].remove(i)
+                        school.save()
+            if request.POST.get('button_edit'):
+                make = True
+                
+                for i in school.teachers['teachers']:
+                    if i['ID'] == int(request.POST.get('button_edit')):
+                        teacher = i
+                        break
+                info_for_edit = teacher
+            elif request.POST.get('save_teacher'):
+                for i in school.teachers['teachers']:
+                    print(i['ID'], int(request.POST.get('save_teacher')))
+                    if i['ID'] == int(request.POST.get('save_teacher')):
+                        teacher = school.teachers['teachers'].index(i)
+                        break
+                name = request.POST.get('name')
+                login = request.POST.get('login')
+                password = request.POST.get('password')
+                email = request.POST.get('email')
+                phone = request.POST.get('phone')
+                school.teachers['teachers'][teacher]['name'] = name
+                school.teachers['teachers'][teacher]['login'] = login
+                school.teachers['teachers'][teacher]['password'] = password
+                school.teachers['teachers'][teacher]['email'] = email
+                school.teachers['teachers'][teacher]['phone'] = phone
+                school.save()
             elif request.POST.get('new_teacher'):
                 name = request.POST.get('name')
                 login = request.POST.get('login')
@@ -530,7 +574,6 @@ class Teachers(TemplateView):
                 email = request.POST.get('email')
                 phone = request.POST.get('phone')
                 teacher = {}
-                print(login, email)
                 teacher['name'] = name
                 teacher['login'] = login
                 teacher['password'] = password
@@ -553,7 +596,7 @@ class Teachers(TemplateView):
         return render(request, self.template_name, 
                     context= {'school': school,
                             'range': self.range_cycle,
-                            'error': self.error_text, 'make':make,'select_menu': 2})
+                            'error': self.error_text, 'make':make,'select_menu': 2, 'info_for_edit':info_for_edit})
 class Lessons(TemplateView):
     template_name = "MainApp/lessons.html"
     range_cycle = 0
@@ -622,7 +665,7 @@ class Info(TemplateView):
             elif request.POST.get("button_info_menu") == '2':
                 return redirect('/school/' + str(id_school)+ '/info_site/about_site')
             elif request.POST.get("button_info_menu") == '3':
-                return redirect('/school/' + str(id_school)+ '/info_site/contacts')
+                return redirect('/school/' + str(id_school)+ '/info_site /contacts')
         return render(request, template_name, 
                 context= {'school': school,
                         'select_menu': 6, 'select_info_menu':select_info_menu})
