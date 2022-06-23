@@ -9,7 +9,7 @@
     width: 18.63vw;
     height: 17.32vw;
 }
-.two{
+.news_box{
     margin-top: 1.5vw;
     margin-bottom: 1.5vw;
     margin-left: 2.5%;
@@ -20,6 +20,37 @@
     border-radius: 15px;
 }
 
+.news_text{
+    overflow: auto;
+    position: relative;
+    width: 38vw;
+    height: 7vw;
+    margin-top: 6vw;
+    margin-left: 3vw;
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.5vw;
+    line-height: 2vw;
+    text-align: center;
+    /* background-color: tomato; */
+    /* or 150% */
 
 
+    /* Text */
+
+    color: #121212;
+}
+.news_text::-webkit-scrollbar {
+    width: 0.59vw;
+    background-color: #C4C4C4;
+    border-radius: 15px;
+}
+.news_text::-webkit-scrollbar-thumb {
+
+    /* Primary */
+
+    background-color: #7E858E;
+    border-radius: 15px;
+}
 

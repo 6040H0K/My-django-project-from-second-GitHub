@@ -1,0 +1,99 @@
+{% extends 'MainApp/base.html' %}
+
+{% load static %}
+{% block content %}
+    <main class="base_main">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <ul class='menu_school_ul'>
+                <li class='menu_school_li'>
+                    {% if menu_class_select == 1 %} 
+                        <div class='menu_school_div menu_school_selected'>
+                    {% else %}
+                        <div class='menu_school_div'>
+                    {% endif %}   
+                        <button class="menu_school_button" name = 'button_menu' value="1">{{class.rank}} - {{class.name}}</button>
+                    </div>
+                    
+                    
+                </li>
+                <li class='menu_school_li'>
+                    {% if menu_class_select == 2 %} 
+                        <div class='menu_school_div menu_school_selected'>
+                    {% else %}
+                        <div class='menu_school_div'>
+                    {% endif %}  
+                        <button class="menu_school_button" name = 'button_menu' value="2">Розклад</button>
+                    </div>
+                </li>
+                <li class='menu_school_li'>
+                    {% if menu_class_select == 3 %} 
+                        <div class='menu_school_div menu_school_selected'>
+                    {% else %}
+                        <div class='menu_school_div'>
+                    {% endif %}  
+                        <button class="menu_school_button" name = 'button_menu' value="3">Список учнів</button>
+                    </div>
+                </li>
+                <li class='menu_school_li'>
+                    {% if menu_class_select == 4 %} 
+                        <div class='menu_school_div menu_school_selected'>
+                    {% else %}
+                        <div class='menu_school_div'>
+                    {% endif %}  
+                        <button class="menu_school_button" name = 'button_menu' value="4">Список уроків</button>
+                    </div>
+                </li>
+            </ul>
+        <p class="schadult_h">Розклад на {{day}}</p>
+        <div class="schadult_main">
+            <img class = 'home_image schadult1_image' src="{% static 'image/schadult1.png' %}" alt="">
+            <img class = 'home_image schadult2_image' src="{% static 'image/schadult2.png' %}" alt="">
+            <div class="schadult_box">
+                <ol class="schadult_ol">
+                    {% if edit %}
+                        {% for j in range_schadult %}
+                            <li class="schadult_li" id='li{{j.num}}'>
+                                <select name="{{j.num}}" class="edit_schadult_select" id="">
+                                    <option class="edit_schadult_option" selected value="null">{{j.name.name}}</option>
+                                    {% for lesson in lessons_range %}
+                                        <option class="edit_schadult_option"  value="{{lesson.ID}}">{{lesson.name}} ({{lesson.teacher.name}})</option>
+                                    {% endfor %}
+                                    <option class="edit_schadult_option" value="pass"> </option>
+                                </select>
+                            </li>
+                        {% endfor %}
+                    {% else %}
+                        {% for j in range_schadult %}
+                            <li class="schadult_li" id='li{{j.num}}'>
+                                <!-- <p>{{j.num}}.</p>  -->
+                                {{j.name.name}}
+                            </li>
+                        {% endfor %}
+                    {% endif %}
+                </ol>
+            </div>
+            <div class="select_day_div">
+                    {% csrf_token %}
+                    <ul class="select_day_ul">
+                        {% for j in range_days %}
+                            <li class="select_day_li">
+                                {% if j.id == day_id %}
+                                    <button name="day_change" value="{{j.id}}" class="select_day_button" id="button_select_day">{{j.name}}</button>
+                                {% else %}
+                                    <button name="day_change" value="{{j.id}}" class="select_day_button" >{{j.name}}</button>
+                                {% endif %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+            </div>
+        </div>
+            {% csrf_token %}
+            {% if edit %}
+                <button class="edit_schadult_button" name="save_schadult" value="1">Зберегти</button>
+            {% else %}
+                <button class="edit_schadult_button" name="edit_schadult" value="1">Редагувати розклад</button>
+            {% endif %}
+        </form>
+    </main>
+{% endblock %}

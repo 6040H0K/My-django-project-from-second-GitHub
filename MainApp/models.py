@@ -14,6 +14,8 @@ class School(models.Model):
     password = models.CharField(max_length=255)
     time_create = models.DateTimeField(auto_now_add = True)
     time_update = models.DateTimeField(auto_now= True)
+    news_text1 = models.CharField(max_length=1000, default='На цьому місці ви можете дізнатися останні новини вашої школи')
+    news_text2 = models.CharField(max_length=1000, default='А це на випадок якщо новин занадто багато')
 
 
 class Student(models.Model):
@@ -36,11 +38,8 @@ class Student(models.Model):
     work_parrent2 = models.CharField(max_length=255)
     time_create = models.DateTimeField(auto_now_add = True)
     time_update = models.DateTimeField(auto_now= True)
-# class SchoolClass(models.Model):
-#     title = models.CharField(max_length=255)
-#     rank = models.IntegerField()
-#     schedule = models.JSONField()
-#     studensts = models.JSONField()
-#     lessons = models.JSONField
-#     time_create = models.DateTimeField(auto_now_add = True)
-#     time_update = models.DateTimeField(auto_now= True)
+class News(models.Model):
+    text1 = models.CharField(max_length=1000,default='На цьому місці може бути ваша реклама')
+    text2 = models.CharField(max_length=1000, default='На цьому також')
+    time_create = models.DateTimeField(auto_now_add = True)
+    time_update = models.DateTimeField(auto_now= True)

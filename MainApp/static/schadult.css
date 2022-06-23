@@ -1,0 +1,143 @@
+.schadult_h{
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1.42vw;
+    line-height: 1.66vw;
+
+    /* Text */
+
+    color: #121212;
+}
+.schadult_box{
+    position: relative;
+    margin-left: 25vw;
+    background: #FFFFFF;
+    width: 29vw;
+    height: 21vw;
+
+    border-radius: 15px;
+}
+.schadult_ol{
+    padding-left: 7%;
+    width: 90%;
+}
+.schadult_li{
+    /* display: flex; */
+    /* justify-content: center; */
+    /* list-style: none; */
+    /* align-items: center; */
+    position: relative;
+    width: 100%;
+    height: 1.75vw;
+    padding-top: 0.7vw;
+    font-family: 'SF Pro Text';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1vw;
+    line-height: 1.4vw;
+    /* text-align: center; */
+    /* identical to box height, or 129% */
+
+
+    border-bottom: 0.03vw solid #C6C6C8;
+    /* Label Color / Light / Primary */
+
+    color: #000000;
+}
+#li8{
+    border: 0;
+}
+
+.schadult_p{
+    margin: 0;
+}
+.schadult_main{
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+.select_day_div{
+    /* position: absolute; */
+    width: 10vw;
+    height: 15vw;
+    /* margin-top: 5vw; */
+    margin-left: 13vw;
+    padding-bottom: 2vw;
+    /* padding-top: 2vw; */
+    background: #FFFFFF;
+    border-radius: 15px;
+    z-index: 1;
+}
+
+.select_day_ul{
+    padding: 0;
+    list-style: none;
+}
+.select_day_button{
+    width: 100%;
+    height: 3vw;
+    text-align: left;
+    font-family: 'Gilroy';
+    font-style: normal;
+    padding-left: 2vw;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 23px;
+    /* identical to box height */
+    background-color: transparent;
+    border: 0;
+    /* Text */
+
+    color: #7E858E;
+}
+
+#button_select_day{
+    color: #121212;
+}
+
+.schadult1_image{
+    left: 0;
+    width: 32vw;
+    height: 23vw;
+    z-index: 0;
+}
+
+.schadult2_image{
+    left: 42vw;
+    top: 20vw;
+    width: 40vw;
+    height: 30vw;
+    z-index: 0;
+}
+
+.edit_schadult_button{
+    position: absolute;
+    width: 14vw;
+    height: 3.6vw;
+    left: 32.5vw;
+    top: 32vw;
+    border: 0;
+    /* Primary */
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1.2vw;
+    line-height: 1.3vw;
+    z-index: 2;
+    background: #E19A38;
+    border-radius: 5px;
+}
+
+.edit_schadult_select{
+    border: 0;
+    width: 100%;
+    text-align: center;
+    height: 100%;
+
+    font-family: 'SF Pro Text';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1vw;
+    line-height: 1.4vw;
+}

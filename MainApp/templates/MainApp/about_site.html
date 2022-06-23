@@ -1,0 +1,39 @@
+{% extends 'MainApp/base.html' %}
+
+{% load static %}
+{% block content %}
+    <main class="base_main">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <ul class="ul_info_menu">
+                <li class="li_info_menu">
+                    {% if select_info_menu == 1 %}
+                        <div class="div_info_menu div_info_menu_select">
+                    {% else %}
+                        <div class="div_info_menu">
+                    {% endif %}
+                        <button class="button_info_menu" value="1" name="button_info_menu">Про нас</button>
+                    </div>
+                </li>
+                <li class="li_info_menu">
+                    {% if select_info_menu == 2 %}
+                        <div class="div_info_menu div_info_menu_select">
+                    {% else %}
+                        <div class="div_info_menu">
+                    {% endif %}
+                        <button class="button_info_menu" value="2" name="button_info_menu">Про сайт</button>
+                    </div>
+                </li>
+                <li class="li_info_menu">
+                    {% if select_info_menu == 3 %}
+                        <div class="div_info_menu div_info_menu_select">
+                    {% else %}
+                        <div class="div_info_menu">
+                    {% endif %}
+                        <button class="button_info_menu" value="3" name="button_info_menu">Контакты</button>
+                    </div>
+                </li>
+            </ul>
+        </form>
+    </main>
+{% endblock %}

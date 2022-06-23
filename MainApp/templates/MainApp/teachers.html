@@ -11,12 +11,12 @@
         </li>
         <li class="li_named">
             <h3 class="h3_named">
-                Логін
+                Email
             </h3>
         </li>
         <li class="li_named">
             <h3 class="h3_named">
-                Пароль
+                Номер телефону
             </h3>
         </li>
     </ul>
@@ -28,19 +28,23 @@
                     {% csrf_token %}
                     <!-- <div class="div_school"> -->
                         <!-- <p> Переглянути</p> -->
-                        <button name='id'  value="{{i.id}}" class='button_schools'>
+                        <button name='id'  value="{{i.ID}}" class='button_schools'>
                             <ul class='ul_school'>
                                 <li class="li_school">
                                     {{i.name}}
                                 </li>
                                 <li class="li_school">
-                                    {{i.login}}
+                                    {{i.email}}
                                 </li>
                                 <li class="li_school">
-                                    {{i.password}}
+                                    {{i.phone}}
                                 </li>
+                                <!-- <li class="li_school">
+                                    <button class="button_del" name="button_del"> </button>
+                                </li> -->
                             </ul>
                         </button>
+                        <div class="disable_error">Переглянути</div>
                     <!-- </div> -->
                 </form>
             </li>
@@ -61,10 +65,14 @@
                 {% csrf_token %}
                 <button class='but_new_school'></button>
             </form>
-            <form action="" method="POST" class='form_new_school'>
+            <form action="" method="POST" class='form_new_student'>
                 {% csrf_token %}
-                <p class = 'h_new_school'>Створити школу</p>
+                <p class = 'h_new_school'>Створити вчителя</p>
                     <input class='input_new_school' type="text" placeholder="Ім'я вчителя" name="name" autocomplete="off">
+                    <input class='input_new_school' type="email" placeholder="Email" name="email" autocomplete="off">
+                    <input class="input_new_school" type="tel" name="phone" 
+                    pattern="[0-9]{3}[0-9]{3}[0-9]{4}"
+                    placeholder="Номер телефону (0951234567)">
                     <input class='input_new_school' type="text" placeholder="Логін" name="login" autocomplete="off">
                     <input class='input_new_school' type="text" placeholder="Пароль" name="password" autocomplete="off">
                     <button value="1" name="new_teacher" class="button_new_school" autocomplete="off">Створити</button>

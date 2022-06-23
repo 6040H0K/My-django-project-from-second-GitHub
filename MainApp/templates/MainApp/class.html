@@ -1,13 +1,83 @@
+{% extends 'MainApp/base.html' %}
 
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
-        <link rel="stylesheet" href="{% static 'class.css' %}" type="text/css">
-    </head>
+{% block content %}
+    <main class="base_main">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <ul class='menu_school_ul'>
+                <li class='menu_school_li'>
+                    {% if menu_class_select == 1 %} 
+                        <div class='menu_school_div menu_school_selected'>
+                    {% else %}
+                        <div class='menu_school_div'>
+                    {% endif %}   
+                        <button class="menu_school_button" name = 'button_menu' value="1">{{class.rank}} - {{class.name}}</button>
+                    </div>
+                    
+                    
+                </li>
+                <li class='menu_school_li'>
+                    {% if menu_class_select == 2 %} 
+                        <div class='menu_school_div menu_school_selected'>
+                    {% else %}
+                        <div class='menu_school_div'>
+                    {% endif %}  
+                        <button class="menu_school_button" name = 'button_menu' value="2">Розклад</button>
+                    </div>
+                </li>
+                <li class='menu_school_li'>
+                    {% if menu_class_select == 3 %} 
+                        <div class='menu_school_div menu_school_selected'>
+                    {% else %}
+                        <div class='menu_school_div'>
+                    {% endif %}  
+                        <button class="menu_school_button" name = 'button_menu' value="3">Список учнів</button>
+                    </div>
+                </li>
+                <li class='menu_school_li'>
+                    {% if menu_class_select == 4 %} 
+                        <div class='menu_school_div menu_school_selected'>
+                    {% else %}
+                        <div class='menu_school_div'>
+                    {% endif %}  
+                        <button class="menu_school_button" name = 'button_menu' value="4">Список уроків</button>
+                    </div>
+                </li>
+            </ul>
+        </form>
+        <div class="class_div">
+            
+            <div class="div_class_teacher_info">
+                <p class="h_class_teacher_info">Інформація про класного керівника:</p>
+                <ul class="ul_class_teacher_info">
+                    <li class="li_class_teacher_info">
+                        <p class="p_class_teacher_info">Ім'я:</p>
+                        <p class="p_class_teacher_info">{{class.class_teacher.name}}</p>
+                    </li>
+                    <li class="li_class_teacher_info">
+                        <p class="p_class_teacher_info">Email:</p>
+                        <p class="p_class_teacher_info">{{class.class_teacher.email}}</p>
+                    </li>
+                    <li class="li_class_teacher_info">
+                        <p class="p_class_teacher_info">Номер телефону:</p>
+                        <p class="p_class_teacher_info">+38{{class.class_teacher.phone}}</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="vertical_news_box">
+                <p class="h_news_class">Новина класу</p>
+                <p class="news_text_class">{{class.news_text1}}</p>
+                <img class = 'home_image class2_image' src="{% static 'image/class2.png' %}" alt="">
+            </div>
+            <div class="vertical_news_box">
+                <p class="h_news_class">Новина класу</p>
+                <p class="news_text_class">{{class.news_text2}}</p>
+                <img class = 'home_image class_image' src="{% static 'image/class1.png' %}" alt="">
+            </div>
+        </div>
+    </main>
+{% endblock %}
     <body>
         <main>
         <div>
@@ -157,60 +227,6 @@
                     <button name='but_id' value='show_student'>Переглянути</button>
                 </form>
             </div>
-        </footer>
-        {% if student != 0 %}
-            <main class="student">
-                <div class="student_div">
-                    <h2 class = 'student_h2'>Учень</h2>
-                    <div class='student_div2'>
-                        
-                        <div class='student_p_div'>
-                            <h3 class = 'student_h3'>Ім'я</h3>
-                            <p class='student_p'>{{student.surname}} {{student.name}} {{student.second_name}}</p>
-                            <h3 class = 'student_h3'>Дата народження</h3>
-                            <p class='student_p'>{{student.birthday}} ({{student.age}} років)</p>
-                            <h3 class = 'student_h3'>Адреса</h3>
-                            <p class='student_p'>{{student.adress}}</p>
-                        </div>
-                        <div class='student_p_div'>
-                            <h3 class = 'student_h3'>Номер телефону</h3>
-                            <p class='student_p'>{{student.number_phone}}</p>
-                            <h3 class = 'student_h3'>Електронна адреса</h3>
-                            <p class='student_p'>{{student.email}}</p>
-                            <h3 class = 'student_h3'>Пароль</h3>
-                            <p class='student_p'>{{student.password}}</p>
-                        </div>
-                    </div>
-                    <h2 class = 'student_h2'>Батьки</h2>
-                    <div class='student_div2'>
-                            
-                            <div class='student_p_div'>
-                                <h3 class = 'student_h3'>Ім'я</h3>
-                                <p class='student_p'>{{student.name_parrent1}}</p>
-                                <h3 class = 'student_h3'>Номер телефону</h3>
-                                <p class='student_p'>{{student.number_phone_parrent1}}</p>
-                                <h3 class = 'student_h3'>Місце роботи</h3>
-                                <p class='student_p'>{{student.work_parrent1}}</p>
-                            </div>
-                            <div class='student_p_div'>
-                                <h3 class = 'student_h3'>Ім'я</h3>
-                                <p class='student_p'>{{student.name_parrent2}}</p>
-                                <h3 class = 'student_h3'>Номер телефону</h3>
-                                <p class='student_p'>{{student.number_phone_parrent2}}</p>
-                                <h3 class = 'student_h3'>Місце роботи</h3>
-                                <p class='student_p'>{{student.work_parrent2}}</p>
-                            </div>
-                    </div>
-                    <form action="" method="POST" class = 'student_form'>
-                        {% csrf_token %}
-                        <button name='but_id' class='but_close' value='close_student'>Закрити</button>
-                        <button name='but_id' class='but_open' value='open_student'>Переглянути оцінки</button>
-                    </form>
-                </div>
-            </main>
-        {% endif %}
-    </body>
-</html>
 
 
 

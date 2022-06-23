@@ -1,156 +1,100 @@
-body{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    height: 99%;
-    width: 99%;
-    /* align-items: center; */
-}
-/* html{
-    height: 100%;
-    width: 100%;
-} */
-main{
-    display: flex;
-}
-
-table{
-
-    height: 100%;
-    border: 0.1vw solid black;
-    }
-
-.h_sched{
-    margin: 0;
-}
-td, th{
-    border: 0.1vw solid black;
-
-    width: 16.5vw;
-}
-p{
-    text-align: center;
-    font-size: 1.5vw;
-    margin: 0;
-}
-button{
-    width: 100%;
-}
-h2{
-    font-size: 5vw;
-}
-.sched_but{
-    width: 2vw;
-}
-.day{
-    font-size: 1.5vw;
-}
-footer{
-    display: flex;
-    margin-top: 3vw;
-    height: 20%;
-}
-.div_lessons{
-   
-   /* border: 0.1vw solid black; */
-   width: 16.5%;
-   height: 20vw;
-   margin-left: 1vw;
-}
-select{
-    width: 100%;
-    height: 93%;
-    background-color: rgba(0, 0, 0, 0);
-    text-align: center;
-    /* border: 0; */
-    border: 0.1vw solid black;
+.div_class_teacher_info{
+    margin: 1vw;
+    width: 20%;
 
 }
-option{
-    border-bottom: 0.1vw solid black ;
-}
-h3{
-    margin: 0;
+.ul_class_teacher_info{
     padding: 0;
-    text-align: center;
+    list-style-type: none;
 }
-.form_lessons{
+.li_class_teacher_info{
+    margin-top: 2vw;
+}
+.p_class_teacher_info{
+    margin: 0;
+    text-align: left;
+
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.19vw;
+    line-height: 2.14vw;
+}
+.h_class_teacher_info{
+    text-align: left;
+
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1.42vw;
+    line-height: 2.14vw;
+}
+.vertical_news_box{
+    padding-left: 2vw;
+    padding-right: 2vw;
+    margin: 1vw;
+    position: relative;
+    background-color: #ffffff;
+    width:34.5%;
+    height: 95%;
+    border-radius: 15px;
+}
+.class_div{
+    display: flex;
+    padding: 1vw;
+    width: 100%;
     height: 100%;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
 }
-.student{
-    display: block;
-    position: fixed;
-    width: 200vw;
-    height: 200vw;
-    background-color: rgba(10, 10, 10, 0.774);
-    margin-left: -1vw;
-    margin-top: -1vw;
+.class_image{
+    position: relative;
+    top: 10vw;
+    width: 15.77vw;
+    height: 18.86vw;
 }
 
-.student_div{
-    display: flex;
-    flex-direction: column;
-    position: fixed;
-    width: 60%;
-    height: 60%;
-    top: 20%;
-    left: 20%;
-    background-color: seashell;
-    border: 0.5vw solid black;
-    /* border-radius: 5vw; */
+.class2_image{
+    position: relative;
+    width: 25.67vw;
+    height: 28.47vw;
 }
-.student_div2{
-    display: flex;
-    margin: 3vw;
-    border: 0.1vw solid black;
-    margin-bottom: 0.5vw;
-    margin-top: 0.5vw;
-    justify-content: center;
-}
-.student_p_div{
-    display: flex;
-    
-    flex-direction: column;
-    margin-left: 5vw;
-    margin-right: 5vw;
-    margin-top: 0;
-    /* justify-content: center; */
-    /* margin-left: 10vw; */
-}
-.student_h2{
-    font-size: 2vw;
+
+.h_news_class{
+    position: relative;
     text-align: center;
     margin: 0;
-    color: brown;
-}
-.student_h3{
+
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 600;
     font-size: 1.5vw;
+    line-height: 2.14vw;
+}
+
+.news_text_class{
+    overflow: auto;
+    position: relative;
+    width: 100%;
+    height: 9vw;
+    margin-top: 1vw;
+    /* margin-left: 3vw; */
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.2vw;
+    line-height: 2vw;
     text-align: center;
-    margin: 0;
-    color: coral;
-}
+    /* background-color: tomato; */
 
+}
+.news_text_class::-webkit-scrollbar {
+    width: 0.59vw;
+    background-color: #C4C4C4;
+    border-radius: 15px;
+}
+.news_text_class::-webkit-scrollbar-thumb {
 
-.but_open{
-    width: 30%;
-    height: 3vw;
-    margin: 2vw;
-    font-size: 1.5vw;
-    background-color: rgb(28, 223, 87);
-    border: 0.25vw solid black;
-}
-.but_close{
-    width: 30%;
-    height: 3vw;
-    margin: 2vw;
-    font-size: 1.5vw;
-    background-color: rgb(199, 34, 12);
-    border: 0.25vw solid black;
-}
-.student_form{
-    display: flex;
-    justify-content: center;
+    /* Primary */
+
+    background-color: #E19A38;
+    border-radius: 15px;
 }

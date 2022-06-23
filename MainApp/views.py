@@ -24,7 +24,13 @@ def buttons_menu(request, school_id = None):
             else:
                 return '/school/' + str(school_id)
         elif request.GET.get('button_id_menu') == '3':
-                return '/school/' + str(school_id) + '/teachers'
+            return '/school/' + str(school_id) + '/teachers'
+        elif request.GET.get('button_id_menu') == '4':
+            return '/school/' + str(school_id) + '/students'
+        elif request.GET.get('button_id_menu') == '5':
+            return '/school/' + str(school_id) + '/clases'
+        elif request.GET.get('button_id_menu') == '6':
+            return '/school/' + str(school_id) + '/lessons'
         
 def calculate_age(born):
     today = date.today()
@@ -33,13 +39,14 @@ def home(request, id_school = None):
     tmp = buttons_menu(request, id_school)
     if tmp != None:
         return redirect(tmp)
+    last_id_news = len(News.objects.all()) - 1
     if id_school:
         School.objects.get(pk = id_school)
-        return render(request, 'MainApp/home.html', context={"select_menu":0})
+        return render(request, 'MainApp/home.html', context={"select_menu":0,'news':News.objects.all()[last_id_news]})
     else:
-        return render(request, 'MainApp/home.html', context={"select_menu":0,'type_menu':1})
-def info(request):
-    return render(request,'MainApp/info.html')
+        return render(request, 'MainApp/home.html', context={"select_menu":0,'type_menu':1,
+        'news':News.objects.all()[last_id_news]})
+
 class Edit_info(TemplateView):
     template_name = "MainApp/editinfo.html"
     error_text = None
@@ -240,47 +247,29 @@ class Schoolswork(TemplateView):
     # print(len(school), '--------------------------------------')
         return render(request, self.template_name, context= {"school": school, 'range': school, 'make':make,
                     'select_menu':1, 'type_menu':1})
-class Show_class(TemplateView):
+class Class(TemplateView):
     template_name = "MainApp/class.html"
-    def dispatch(self,request,id,id_class):
-        for i in range(len(School.objects.all())):
-            if School.objects.all()[i].id == id:
-                id = i
-        school = School.objects.all()[id]
+    def dispatch(self,request,id_school,id_class):
+        tmp = buttons_menu(request, id_school)
+        id_class_for_redirect = id_class
+        if tmp != None:
+            return redirect(tmp)
+        school = School.objects.get(pk = id_school)
         for i in range(len(school.clases['clases'])):
             if int(school.clases['clases'][i]['ID']) == int(id_class):
                 id_class = i
-        clas = school.clases['clases'][id_class]
-        lesson_range = clas['lessons_list']
-        student_range = []
-        student = 0
-        students = Student.objects.all()
-        for i in students:
-            if i.id in clas['students']:
-                student_range.append(i)
         if request.method == 'POST':
-            if request.POST.get('but_id') == 'edit_lessons':
-                return redirect('/school/' + str(school.id) + '/' + str(clas['ID']) + '/lessons')
-            elif request.POST.get('but_id') == 'edit_schadult':
-                return redirect('/school/' + str(school.id) + '/' + str(clas['ID']) + '/schadult')
-            elif request.POST.get('but_id') == 'edit_info':
-                return redirect('/school/' + str(school.id) + '/' + str(clas['ID']) + '/info')
-            elif request.POST.get('but_id') == 'edit_student':
-                return redirect('/school/' + str(school.id) + '/' + str(clas['ID']) + '/makestudent')
-            elif request.POST.get('but_id') == 'show_student':
-                temp = request.POST.get('students')
-                if temp != '' and temp != None:
-                    student = Student.objects.get(pk = temp)
-                    self.student_last = student
-            elif request.POST.get('but_id') == 'show_lesson':
-                temp = request.POST.get('lessons')
-                if temp != '' and temp != None:
-                    return redirect('/school/' + str(school.id) + '/lesson/' + str(temp) + '/' + str(clas['ID']))
-            if request.POST.get('but_id') == 'open_student':
-                return redirect('/school/' + str(school.id) + '/' + str(clas['ID']) + '/' + str(self.student_last.id) + '/marks')
-        return render(request, self.template_name, context={'class':clas, 
-                                'lesson_range': lesson_range, 'student_range': student_range,
-                                'student': student
+            if request.POST.get('button_menu') == '1':
+                return redirect('/school/' + str(id_school) + '/clases/' + str(id_class_for_redirect))
+            elif request.POST.get('button_menu') == '2':
+                return redirect('/school/' + str(id_school) + '/clases/' + str(id_class_for_redirect) + '/schadult/Mon')
+            elif request.POST.get('button_menu') == '3':
+                return redirect('/school/' + str(id_school) + '/clases/' + str(id_class_for_redirect) + '/students/')
+            elif request.POST.get('button_menu') == '3':
+                return redirect('/school/' + str(id_school) + '/clases/' + str(id_class_for_redirect) + '/lessons/')
+        clas = school.clases['clases'][id_class]
+        return render(request, self.template_name, context={'class':clas, 'menu_class_select':1,
+                                                            'select_menu':4
                                 })
 class Teacher_page(TemplateView):
     template_name = "MainApp/teacher.html"
@@ -504,8 +493,6 @@ class Edit_schadult(TemplateView):
         if request.method == 'POST':
             for i in range_week:
                 for j in range(8):
-                    # print(str(j + 1) + '-' + i)
-                    print(request.POST.get(str(j + 1) + '-' + i))
                     if request.POST.get(str(j + 1) + '-' + i) != 'null':
                         print(1)
                         if request.POST.get(str(j + 1) + '-' + i) != 'pass':
@@ -540,11 +527,16 @@ class Teachers(TemplateView):
                 name = request.POST.get('name')
                 login = request.POST.get('login')
                 password = request.POST.get('password')
+                email = request.POST.get('email')
+                phone = request.POST.get('phone')
                 teacher = {}
+                print(login, email)
                 teacher['name'] = name
                 teacher['login'] = login
                 teacher['password'] = password
-                if name and login and password:
+                teacher['email'] = email
+                teacher['phone'] = phone
+                if name and login and password and email and phone:
                     if len(school.teachers['teachers']) > 0:
                         teacher['ID'] = school.teachers['teachers'][-1]['ID'] + 1
                     else:
@@ -555,6 +547,9 @@ class Teachers(TemplateView):
                 else:
                     make = True
                     self.error_text = 'Заповніть усі поля'
+            elif request.POST.get('id'):
+                id = request.POST.get('id')
+                return redirect('/school/' + str(id_school) + '/teachers/' + str(id))
         return render(request, self.template_name, 
                     context= {'school': school,
                             'range': self.range_cycle,
@@ -572,6 +567,7 @@ class Lessons(TemplateView):
         self.range_cycle = school.lessons['lessons']
         teacher_range = school.teachers['teachers']
         if request.method == 'POST':
+            print(0)
             if request.POST.get('make'):
                 make = True
             elif request.POST.get('new_lesson'):
@@ -592,13 +588,319 @@ class Lessons(TemplateView):
                     school.lessons['lessons'].append(lesson)
                     school.save()
                     self.range_cycle = school.lessons['lessons']
+                
                 else:
                     self.error_text = 'Заповніть усі поля'
+            elif request.POST.get('id'):
+                id = request.POST.get('id')
+                return redirect('/school/' + str(id_school) + '/lessons/' + str(id))
         return render(request, self.template_name, 
                     context= {'school': school,
                             'range': self.range_cycle,
                             'error': self.error_text, 'make':make,'select_menu': 5,
                             'teacher_range':teacher_range})
+class Info(TemplateView):
+    
+    def dispatch(self,request,id_school,type_info):
+        tmp = buttons_menu(request, id_school)
+        school = School.objects.get(pk = id_school)
+        if tmp != None:
+            return redirect(tmp)
+        select_info_menu = 0
+        if type_info == 'about_us':
+            template_name = "MainApp/about_us.html"
+            select_info_menu = 1
+        elif type_info == 'about_site':
+            template_name = "MainApp/about_site.html"
+            select_info_menu = 2
+        elif type_info == 'contacts':
+            template_name = "MainApp/contacts.html"
+            select_info_menu = 3
+        if request.method == 'POST':
+            if request.POST.get("button_info_menu") == '1':
+                return redirect('/school/' + str(id_school)+ '/info_site/about_us')
+            elif request.POST.get("button_info_menu") == '2':
+                return redirect('/school/' + str(id_school)+ '/info_site/about_site')
+            elif request.POST.get("button_info_menu") == '3':
+                return redirect('/school/' + str(id_school)+ '/info_site/contacts')
+        return render(request, template_name, 
+                context= {'school': school,
+                        'select_menu': 6, 'select_info_menu':select_info_menu})
+class Clases(TemplateView):
+    template_name = "MainApp/clases.html"
+    range_cycle = 0
+    error_text = None
+    def dispatch(self, request, id_school):
+        tmp = buttons_menu(request, id_school)
+        if tmp != None:
+            return redirect(tmp)
+        make = False
+        school = School.objects.get(pk = id_school)
+        teacher_range = school.teachers['teachers']
+        self.range_cycle = school.clases['clases']
+        if request.method == 'POST':
+            print(0)
+            if request.POST.get('make'):
+                make = True
+            elif request.POST.get('new_class'):
+                rank = request.POST.get('rank')
+                class_teacher = request.POST.get('teacher')
+                name = request.POST.get('name')
+                for i in school.teachers['teachers']:
+                    if str(i['ID']) == class_teacher:
+                        class_teacher = i
+                        break
+                if rank and class_teacher != 'null' and name:
+                    clas = school.class_form.copy()
+                    clas['rank'] = rank
+                    clas['class_teacher'] = class_teacher
+                    clas['name'] = name
+                    clas['news_text1'] = 'У цьому блоці ви дізнаетеся останні новини саме вашого класу'
+                    clas['news_text2'] = '''Також ви можете запропонувати вашому классному 
+                    керівнику розмістита на цьому місці ваш інстаграм. До речі, на випадок якщо бажаючих дуже багато
+                            ми додали ось таку прокрутку '''
+                    if len(school.clases['clases']) > 0:
+                        clas['ID'] = school.clases['clases'][-1]['ID'] + 1
+                    else:
+                        clas['ID'] = 0
+                    school.clases['clases'].append(clas)
+                    school.save()
+                    self.range_cycle = school.clases['clases']
+                else:
+                    self.error_text = 'Заповніть усі поля'
+            elif request.POST.get('id'):
+                id = request.POST.get('id')
+                return redirect('/school/' + str(id_school) + '/clases/' + str(id))
+        return render(request, self.template_name, 
+                    context= {'school': school,
+                            'range': self.range_cycle, 'teacher_range':teacher_range,
+                            'error': self.error_text, 'make':make,'select_menu': 4})
+class Schadult(TemplateView):
+    template_name = "MainApp/schadult.html"
+    def dispatch(self, request, id_school, id_class, day, edit = False):
+        days = {
+            'Mon': 'Понеділок',
+            'Tue': 'Вівторок',
+            'Wed': 'Середу',
+            'Thr': 'Четвер',
+            'Fri': "П'ятницю",
+        }
+        edit = bool(edit)
+        id_class_for_redirect = id_class
+        school = School.objects.get(pk = id_school)
+        tmp = buttons_menu(request, id_school)
+        all_lesson_range = school.lessons['lessons'].copy()
+        if tmp != None:
+            return redirect(tmp)
+        for i in range(len(school.clases['clases'])):
+            if int(school.clases['clases'][i]['ID']) == int(id_class):
+                id_class = i
+        clas = school.clases['clases'][id_class]
+        lessons_range = clas['lessons_list']
+        range_schadult = clas['schedult'][day]
+        range_days = [{'id':'Mon', 'name':'Понеділок'},
+            {'id':'Tue', 'name':'Вівторок'},
+            {'id':'Wed', 'name':'Середа'},
+            {'id':'Thr', 'name':'Четвер'},
+            {'id':'Fri', 'name':"П'ятниця"}]
+        if request.method == 'POST':
+            if request.POST.get('button_menu') == '1':
+                return redirect('/school/' + str(id_school) + '/clases/' + str(id_class_for_redirect))
+            elif request.POST.get('button_menu') == '2':
+                return redirect('/school/' + str(id_school) + '/clases/' + str(id_class_for_redirect) + '/schadult/Mon')
+            elif request.POST.get('button_menu') == '3':
+                return redirect('/school/' + str(id_school) + '/clases/' + str(id_class_for_redirect) + '/students/')
+            elif request.POST.get('button_menu') == '3':
+                return redirect('/school/' + str(id_school) + '/clases/' + str(id_class_for_redirect) + '/lessons/')
+            elif request.POST.get('day_change'):
+                if not edit:
+                    return redirect('/school/' + str(id_school) + '/clases/' + str(id_class_for_redirect) + '/schadult/' +request.POST.get('day_change'))
+                else:
+                    return redirect('/school/' + str(id_school) + '/clases/' + str(id_class_for_redirect) + '/schadult/' +request.POST.get('day_change') + '/edit/')
+            elif request.POST.get('edit_schadult'):
+                return redirect('/school/' + str(id_school) + '/clases/' + str(id_class_for_redirect) + '/schadult/' +str(day) + '/edit/')
+            elif request.POST.get('save_schadult'):
+                
+                for j in range(8):
+                    if request.POST.get(str(j + 1)) != 'null':
+                        if request.POST.get(str(j + 1)) != 'pass':
+                            for k in all_lesson_range:
+                                if str(k['ID']) == request.POST.get(str(j + 1)):
+                                    flag = True
+                                    for clas_check in school.clases['clases']:
+                                        # try:
+                                        if clas_check['schedult'][day][j]['name']:
+                                            if str(clas_check['schedult'][day][j]['name']['ID']) != str(k['ID']):
+                                                flag = True
+                                            else:
+                                                flag = False
+                                                break
+                                        else:
+                                            flag = True
+                                        
+                                        # except:
+                                        #     print(-1)
+                                        #     temp1 = k
+                                    if flag:
+                                        temp1 = k
+                                    else:
+                                        temp1 = ''
+                        else:
+                            temp1 = ''
+                        school.clases['clases'][id_class]["schedult"][day][j] = {'name':temp1, 'num': str(j + 1)}
+                school.save()
+                return redirect('/school/' + str(id_school) + '/clases/' + str(id_class_for_redirect) + '/schadult/' +str(day))
+        return render(request, self.template_name, context={'class':clas, 'menu_class_select':2,
+                                                            'select_menu':4,
+                                'day':days[day], 'range_schadult':range_schadult, 'range_days':range_days,
+                                'day_id': day, 'edit':edit, 'lessons_range': lessons_range
+                                })
+class Students(TemplateView):
+    template_name = "MainApp/students.html"
+    range_cycle = 0
+    error_text = None
+    def dispatch(self, request, id_school):
+        
+        id_student_for_parents_form = False
+        tmp = buttons_menu(request, id_school)
+        if tmp != None:
+            return redirect(tmp)
+        make = False
+        self.range_cycle = []
+        school = School.objects.get(pk = id_school)
+        teacher_range = school.teachers['teachers']
+        range_clases = school.clases['clases']
+        for i in range_clases:
+            for j in i['students']:
+                self.range_cycle.append({'student':Student.objects.get(pk = j), 'class': i})
+        if request.method == 'POST':
+            # print(0)
+            print(request.POST.get('id'))
+            if request.POST.get('make'):
+                make = 1
+            elif request.POST.get('new_student'):
+                print(request.POST.get('student_id'))
+                student = Student.objects.get(pk = int(request.POST.get('student_id')))
+                student.name_parrent1 = request.POST.get('name_parrent1')
+                student.number_phone_parrent1 = request.POST.get('number_phone_parrent1')
+                student.work_parrent1 = request.POST.get('work_parrent1')
+                student.name_parrent2 = request.POST.get('name_parrent2')
+                student.number_phone_parrent2 = request.POST.get('number_phone_parrent2')
+                student.work_parrent2 = request.POST.get('work_parrent2')
+                student.save()
+            elif request.POST.get('next1'):
+                make = 2
+                try:
+                # print(1)
+                    if request.POST.get("birthday"):
+                        # print(2)
+                        Student.objects.create(
+                            name = request.POST.get('name'),
+                            surname = request.POST.get('surname'),
+                            second_name = request.POST.get('second_name'),
+                            birthday = request.POST.get('birthday'),
+                            age = str(calculate_age(datetime.strptime(request.POST.get('birthday'), "%Y-%m-%d"))),
+                            login = request.POST.get('email'),
+                            marks = {
+                                0:[],
+                                1:[],
+                                2:[],
+                                3:[],
+                                4:[],
+                                5:[],
+                                6:[],
+                                7:[],
+                                8:[],
+                            },
+                            password = str(randint(10000000,99999999)),
+                            email = request.POST.get('email'),
+                            number_phone = request.POST.get('number_phone'),
+                            adress = request.POST.get('adress'),
+                            name_parrent1 = '',
+                            number_phone_parrent1 = '',
+                            work_parrent1 = '',
+                            name_parrent2 = '',
+                            number_phone_parrent2 = '',
+                            work_parrent2 = ''
+                        )
+                        
+                        for clas_num in school.clases['clases']:
+                            # print(clas_num['ID'], request.POST.get('class_stud'))
+                            if str(clas_num['ID']) == request.POST.get('class_stud'):
+                                id_class = school.clases['clases'].index(clas_num)
+                        temp = school.clases['clases'][id_class].keys()
+                        temp1 = len(Student.objects.all())
+                        student = Student.objects.all()[temp1 - 1]
+                        temp_list = []
+                        marks_temp = []
+                        for el in range(30):
+                            marks_temp.append({'ID': el,"mark": ' '})
+                        for j in school.clases['clases'][id_class]['lessons_list']:
+                            temp_list.append({'ID':j['ID'],'marks':marks_temp})
+                        for i in student.marks.keys():
+                            student.marks[i] = temp_list
+                        student.save()
+                        id_student_for_parents_form = str(Student.objects.all()[len(Student.objects.all()) - 1].id)
+                        # print(id_student_for_parents_form)
+                        if 'students' in temp:
+                            school.clases['clases'][id_class]['students'].append(Student.objects.all()[temp1-1].id)
+                        else:
+                            school.clases['clases'][id_class]['students'] = [Student.objects.all()[temp1-1].id]
+                        # print(3)
+                        school.save()
+                    
+                    
+                    else:
+                        self.error_text = 'Заповніть усі поля'
+                except:
+
+                    self.error_text = 'Заповніть усі поля'
+            elif request.POST.get('id'):
+                
+                id = request.POST.get('id')
+                return redirect('/school/' + str(id_school) + '/students/' + str(id))
+        return render(request, self.template_name, 
+                    context= {'school': school,
+                            'range': self.range_cycle, 'teacher_range':teacher_range,
+                            'error': self.error_text, 'make':make,'select_menu': 3,
+                            'clases':range_clases,
+                            'id_student_for_parents_form':id_student_for_parents_form})
+class School_info(TemplateView):
+    template_name = "MainApp/school_info.html"
+
+    def dispatch(self, request, id):
+        tmp = buttons_menu(request, id)
+        if tmp != None:
+            return redirect(tmp)
+        school = School.objects.get(pk = id)
+        if request.method == 'POST':
+            if request.POST.get('button_menu') == '1':
+                return redirect('/school/' + str(id))
+            elif request.POST.get('button_menu') == '2':
+                return redirect('/school/' + str(id) + '/info')
+            elif request.POST.get('button_menu') == '3':
+                return redirect('/school/' + str(id) + '/contacts')
+        return render(request, self.template_name, 
+                context= {'school': school,
+                            'select_menu':1, 'menu_school_select':2})
+class School_contacts(TemplateView):
+    template_name = "MainApp/school_info.html"
+
+    def dispatch(self, request, id):
+        tmp = buttons_menu(request, id)
+        if tmp != None:
+            return redirect(tmp)
+        school = School.objects.get(pk = id)
+        if request.method == 'POST':
+            if request.POST.get('button_menu') == '1':
+                return redirect('/school/' + str(id))
+            elif request.POST.get('button_menu') == '2':
+                return redirect('/school/' + str(id) + '/info')
+            elif request.POST.get('button_menu') == '3':
+                return redirect('/school/' + str(id) + '/contacts')
+        return render(request, self.template_name, 
+                context= {'school': school,
+                            'select_menu':1, 'menu_school_select':3})
 class Show_school(TemplateView):
     
     template_name = "MainApp/school.html"
@@ -623,130 +925,42 @@ class Show_school(TemplateView):
         if tmp != None:
             return redirect(tmp)
         school = School.objects.get(pk = id)
-        teacher_range = school.teachers['teachers']
         if request.method == 'POST':
-            if request.POST.get("id") == '1':
-                self.type_page = 'create_class'
-            elif request.POST.get("id") == '2':
-                self.type_page = 'create_lesson'
-            # print(request.POST.get("id"))
-            # print(type_page)
-            elif request.POST.get("id") == "4" :
-
-                rank = request.POST.get('rank')
-                class_teacher = request.POST.get('class_teacher')
-                name = request.POST.get('name')
-                for i in school.teachers['teachers']:
-                    if str(i['ID']) == class_teacher:
-                        class_teacher = i
-                        break
-                if rank and class_teacher != 'null' and name:
-                    clas = school.class_form.copy()
-                    clas['rank'] = rank
-                    clas['class_teacher'] = class_teacher
-                    clas['name'] = name
-
-                    if len(school.clases['clases']) > 0:
-                        clas['ID'] = school.clases['clases'][-1]['ID'] + 1
-                    else:
-                        clas['ID'] = 0
-                    school.clases['clases'].append(clas)
-                    school.save()
-                    self.type_page = 'show_clases'
-                    self.range_cycle = school.clases['clases']
-                else:
-                    self.type_page = 'create_class'
-                    self.error_text = 'Заповніть усі поля'
-            elif request.POST.get('id') == '3':
-                self.type_page = 'show_clases'
-                self.range_cycle = school.clases['clases']
-            elif request.POST.get('id') == '5':
-                lesson = school.lesson_form.copy()
-                name = request.POST.get('lesson_name')
-                teacher = request.POST.get('teacher_name_lesson')
-                for i in school.teachers['teachers']:
-                    if str(i['ID']) == teacher:
-                        teacher = i
-                        break
-                if name and teacher != 'null':
-                    lesson['name'] = name
-                    lesson['teacher'] = teacher
-                    if len(school.lessons['lessons']) > 0:
-                        lesson['ID'] = school.lessons['lessons'][-1]['ID'] + 1
-                    else:
-                        lesson['ID'] = 0
-                    school.lessons['lessons'].append(lesson)
-                    school.save()
-                    self.type_page = 'show_lessons'
-                    self.range_cycle = school.lessons['lessons']
-                else:
-                    self.type_page = 'create_lesson'
-                    self.error_text = 'Заповніть усі поля'
-            elif request.POST.get('id') == '6':
-                self.type_page = 'show_lessons'
-                self.range_cycle = school.lessons['lessons']
-            elif request.POST.get("id_class") != None:
-                return redirect('/school/' + str(school.id) + '/' + str(request.POST.get("id_class")))
-            elif request.POST.get('id') == '7':
-                self.type_page = 'create_teacher'
-            elif request.POST.get('id') == '8':
-                name = request.POST.get('teacher_name')
-                login = request.POST.get('teacher_login')
-                password = request.POST.get('teacher_password')
-                teacher = {}
-                teacher['name'] = name
-                teacher['login'] = login
-                teacher['password'] = password
-                if name and login and password:
-                    if len(school.teachers['teachers']) > 0:
-                        teacher['ID'] = school.teachers['teachers'][-1]['ID'] + 1
-                    else:
-                        teacher['ID'] = 0
-                    school.teachers['teachers'].append(teacher)
-                    school.save()
-                    self.type_page = 'show_teachers'
-                    self.range_cycle = school.teachers['teachers']
-                else:
-                    self.type_page = 'create_teacher'
-                    self.error_text = 'Заповніть усі поля'
-            elif request.POST.get('id') == '10':
-                self.type_page = 'show_teachers'
-                self.range_cycle = school.teachers['teachers']
-            elif request.POST.get('button_lesson') != None:
-                
-                return redirect('/school/' + str(id) + '/lesson/'  + request.POST.get('button_lesson'))
-            elif request.POST.get('button_teacher') != None:
-                return redirect('/school/' + str(school.id) + '/teacher/' + str(request.POST.get('button_teacher')))
-            elif request.POST.get('del_class') != None:
-                for i in school.clases['clases']:
-                    if i['ID'] == int(request.POST.get('del_class')):
-                        school.clases['clases'].remove(i)
-                        school.save()
-                        self.type_page = 'show_clases'
-                        self.range_cycle = school.clases['clases']
-            elif request.POST.get('del_lesson') != None:
-                for i in school.lessons['lessons']:
-                    if i['ID'] == int(request.POST.get('del_lesson')):
-                        school.lessons['lessons'].remove(i)
-                        school.save()
-                        self.type_page = 'show_lessons'
-                        self.range_cycle = school.lessons['lessons']
-            elif request.POST.get('del_teacher') != None:
-                for i in school.teachers['teachers']:
-                    if i['ID'] == int(request.POST.get('del_teacher')):
-                        school.teachers['teachers'].remove(i)
-                        school.save()
-                        self.type_page = 'show_teachers'
-                        self.range_cycle = school.teachers['teachers']
-            return render(request, self.template_name, 
-                        context= {'school': school, 'type': self.type_page, 
-                                'range': self.range_cycle, 'teacher_range':teacher_range,
-                                'error': self.error_text, 'select_menu':1})
+            if request.POST.get('button_menu') == '1':
+                return redirect('/school/' + str(id))
+            elif request.POST.get('button_menu') == '2':
+                return redirect('/school/' + str(id) + '/info')
+            elif request.POST.get('button_menu') == '3':
+                return redirect('/school/' + str(id) + '/contacts')
+            # elif request.POST.get('del_class') != None:
+            #     for i in school.clases['clases']:
+            #         if i['ID'] == int(request.POST.get('del_class')):
+            #             school.clases['clases'].remove(i)
+            #             school.save()
+            #             self.type_page = 'show_clases'
+            #             self.range_cycle = school.clases['clases']
+            # elif request.POST.get('del_lesson') != None:
+            #     for i in school.lessons['lessons']:
+            #         if i['ID'] == int(request.POST.get('del_lesson')):
+            #             school.lessons['lessons'].remove(i)
+            #             school.save()
+            #             self.type_page = 'show_lessons'
+            #             self.range_cycle = school.lessons['lessons']
+            # elif request.POST.get('del_teacher') != None:
+            #     for i in school.teachers['teachers']:
+            #         if i['ID'] == int(request.POST.get('del_teacher')):
+            #             school.teachers['teachers'].remove(i)
+            #             school.save()
+            #             self.type_page = 'show_teachers'
+            #             self.range_cycle = school.teachers['teachers']
+            # return render(request, self.template_name, 
+            #             context= {'school': school, 'type': self.type_page, 
+            #                     'range': self.range_cycle, 'teacher_range':teacher_range,
+            #                     'error': self.error_text, 'select_menu':1})
 
         return render(request, self.template_name, 
-                    context= {'school': school, 'type': self.type_page, 
-                            'range': self.range_cycle, 'teacher_range':teacher_range,
-                            'error': self.error_text, 'select_menu':1})
+                    context= {'school': school,
+                                'select_menu':1, 'menu_school_select':1})
     # except:
     #     print('error')
     #     return render(request, template_name)

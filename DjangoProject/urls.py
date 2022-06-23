@@ -21,30 +21,27 @@ urlpatterns = [
     path('', home),
     path('home/', home, name = 'home'),
     path('school/<int:id_school>/home_page/', home, name = 'home_page'),
-    path('registration/', RegisterUser.as_view(), name = 'reg'),
-    path('login/', LoginView.as_view(), name = 'login'),
-    path('make/', MakeSchool.as_view(), name = 'make'),
     path('schools/', Schoolswork.as_view(), name = "schools"),
-    path('info/', info, name = 'info'),
     path('school/<int:id>/', Show_school.as_view(), name = "school"),
-    path('school/<int:id>/<int:id_class>/', Show_class.as_view(), name = "clas"),
-    path('school/<int:id>/<int:id_class>/lessons/', Edit_lessons.as_view(), name = "lessons_class"),
-    path('school/<int:id>/<int:id_class>/schadult/', Edit_schadult.as_view(), name = "schadult"),
-    path('school/<int:id>/<int:id_class>/info/', Edit_info.as_view(), name = "info"),
-    path('school/<int:id>/<int:id_class>/makestudent/', Make_student.as_view(), name = "makestudent"),
-    path('school/<int:id>/<int:id_class>/marks/<int:month>/', Show_marks.as_view(), name = "marks"),
-    path('school/<int:id>/<int:id_class>/marks/<int:month>/student=<int:id_student>/', Show_marks.as_view(), name = "marks"),
-    path('school/<int:id>/<int:id_class>/marks/<int:month>/lesson=<int:id_lesson>/', Show_marks.as_view(), name = "marks"),
-    path('auth/', Auth.as_view(), name='auth'),
-    path('auth/<int:type_page>/', Auth.as_view(), name='auth'),
-    path('school/<int:id>/teacher/<int:id_teacher>/', Teacher_page.as_view(), name='teacher_page'),
-    path('school/<int:id>/lesson/<int:id_lesson>/', Teacher_class_page.as_view(), name='teacher_class_page'),
+    # path('school/<int:id>/<int:id_class>/lessons/', Edit_lessons.as_view(), name = "lessons_class"), ------------
+    # path('school/<int:id>/<int:id_class>/marks/<int:month>/', Show_marks.as_view(), name = "marks"),------------
+    # path('school/<int:id>/<int:id_class>/marks/<int:month>/student=<int:id_student>/', Show_marks.as_view(), name = "marks"),------------
+    # path('school/<int:id>/<int:id_class>/marks/<int:month>/lesson=<int:id_lesson>/', Show_marks.as_view(), name = "marks"),------------
+    # path('auth/', Auth.as_view(), name='auth'), ------------
+    # path('auth/<int:type_page>/', Auth.as_view(), name='auth'), ------------
+    # path('school/<int:id>/teacher/<int:id_teacher>/', Teacher_page.as_view(), name='teacher_page'), ------------
+    # path('school/<int:id>/lesson/<int:id_lesson>/', Teacher_class_page.as_view(), name='teacher_class_page'), ------------
     path('school/<int:id_school>/teachers/', Teachers.as_view(), name='teachers'),
     path('school/<int:id_school>/lessons/', Lessons.as_view(), name='lessons'),
-    # path('school/<int:id>/lesson/<int:id_lesson>/<int:id_class>', Show_lesson_marks.as_view(), name='Show_lesson_marks')
+    path('school/<int:id_school>/clases/', Clases.as_view(), name = 'clases'),
+    path('school/<int:id_school>/students/', Students.as_view(), name = 'students'),
+    path('school/<int:id>/info/', School_info.as_view(), name = "school_info"),
+    path('school/<int:id>/contacts/', School_contacts.as_view(), name = "school_contacts"),
+    path('school/<int:id_school>/clases/<int:id_class>/', Class.as_view(), name = 'class'),
+    path('school/<int:id_school>/clases/<int:id_class>/schadult/<str:day>/', Schadult.as_view(), name = 'schadult'),
+    path('school/<int:id_school>/clases/<int:id_class>/schadult/<str:day>/<str:edit>/', Schadult.as_view(), name = 'edit_schadult'),
+    path('school/<int:id_school>/info_site/<str:type_info>', Info.as_view(), name = "info"),
+    # path('school/<int:id>/lesson/<int:id_lesson>/<int:id_class>', Show_lesson_marks.as_view(), name='Show_lesson_marks') ------------
     
     # path(r'schools/(?P<id>[_\w+])$', show_school, name='school')
 ]
-
-schools = School.objects.all()
-

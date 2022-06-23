@@ -2,12 +2,14 @@
 {% load static %}
 {% block content %}
   <main class="base_main">
-      <div class="two">
+      <div class="news_box">
         <img class = 'home_image' src="{% static 'image/home1.png' %}" alt="">
+        <p class = 'news_text'>{{news.text1}}</p>
       </div>
 
-      <div class="two">
+      <div class="news_box">
         <img class = 'home_image' src="{% static 'image/home2.png' %}" alt="">
+        <p class = 'news_text'>{{news.text2}}</p>
       </div>
   </main>
 {% endblock %}
