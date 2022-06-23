@@ -5,6 +5,8 @@
     <main class="base_main">
         <form action="" method="POST">
             {% csrf_token %}
+            <img class = 'about_us_image1' src="{% static 'image/about_us1.png' %}" alt="">
+            <img class = 'about_us_image2' src="{% static 'image/about_us2.png' %}" alt="">
             <ul class="ul_info_menu">
                 <li class="li_info_menu">
                     {% if select_info_menu == 1 %}
@@ -32,6 +34,25 @@
                     {% endif %}
                         <button class="button_info_menu" value="3" name="button_info_menu">Контакты</button>
                     </div>
+                </li>
+                <li class="li_text_site">
+                    <p class="a_text_about_us"> Про нас </p>
+                </li>
+
+                <li class="li_text_who_we">
+                    <p class="p_text_name_who_we"> Хто ми такі? </p>
+                    <p class="p_text_who_we">
+                    Наша команда складається з усього лише 4 чоловік, а саме 2 програмістів та 2 дизайнерів.
+                    Разом працювати ми почали трохи більше місяця тому, і це наш перший спільний проект.
+                    </p>
+                </li>
+
+                <li class="li_text_our_history">
+                    <p class="p_text_name_our_history"> Наша історія. </p>
+                    <p class="p_text_our_history"> 
+                        Олександр та Дмитро – програмісти, Анастасія - дизайнер яка зробила лого для нашого сайту, а також трішки малювала. Ми познайомилися у школі програмування – Logika. Спільно працювати 
+                        над проектом ми розпочали завдяки нашому вчителю – Миколі, який до кінця нашого навчання був лідером та наставником для нас. З нашим головним дизайнером – ще однією Анастасією, нас познайомив все той же Микола.
+                    </p>
                 </li>
             </ul>
         </form>

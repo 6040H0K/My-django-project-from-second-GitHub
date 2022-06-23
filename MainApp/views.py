@@ -31,6 +31,8 @@ def buttons_menu(request, school_id = None):
             return '/school/' + str(school_id) + '/clases'
         elif request.GET.get('button_id_menu') == '6':
             return '/school/' + str(school_id) + '/lessons'
+        elif request.GET.get('button_id_menu') == '7':
+            return '/school/' + str(school_id) + '/info_site/about_us'
         
 def calculate_age(born):
     today = date.today()
