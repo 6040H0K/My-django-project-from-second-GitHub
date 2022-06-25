@@ -5,6 +5,9 @@
     <main class="base_main">
         <form action="" method="POST">
             {% csrf_token %}
+            <img class = 'about_site_image1' src="{% static 'image/about_site1.png' %}" alt="">
+            <img class = 'about_site_image2' src="{% static 'image/about_site2.png' %}" alt="">
+            <img class = 'about_site_image3' src="{% static 'image/about_site3.png' %}" alt="">
             <ul class="ul_info_menu">
                 <li class="li_info_menu">
                     {% if select_info_menu == 1 %}
@@ -32,6 +35,32 @@
                     {% endif %}
                         <button class="button_info_menu" value="3" name="button_info_menu">Контакты</button>
                     </div>
+                </li>
+                <li class="li_text_about_site">
+                    <p class="p_text_about_site"> Про сайт </p>
+                </li>
+                <li class="li_text_site_info">
+                    <p class="p_text_name_site_info"> У чому сутність сайту? </p>
+                    <p class="p_text_site_info">
+                        Цей сайт є заміною всіх шкільних журналів та щоденників. Ми постаралися
+                        зробити його максимально зручним і зрозумілим для використання як учням, так і
+                        вчителям.
+                    </p>
+                </li>
+                <li class="li_text_goal_site">
+                    <p class="p_text_name_goal_site"> У чому мета сайту? </p>
+                    <p class="p_text_goal_site">
+                        Мета полягає в тому, щоб позбавитися паперових щоденників, і шкільних журналів,
+                        і щоб усі щоденники та журнали були в електронному вигляді.                        
+                    </p>
+                </li>
+                <li class="li_text_updates_site">
+                    <p class="p_text_name_updates_site"> Що на вас чекає? </p>
+                    <p class="p_text_updates_site">
+                        У нас ще є багато ідей, як оновити сайт, що на нього додати, як зробити
+                        його ще простішим у використанні. А також всі користувачі нашого сайту,
+                        зможуть спостерігати за його зростанням, змінами, оновленнями.
+                    </p>
                 </li>
             </ul>
         </form>

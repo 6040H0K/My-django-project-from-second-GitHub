@@ -28,7 +28,7 @@
                     {% csrf_token %}
                     <!-- <div class="div_school"> -->
                         <!-- <p> Переглянути</p> -->
-                        <button name='id'  value="{{i.ID}}" class='button_schools'>
+                        <div  class='button_schools'>
                             <ul class='ul_school'>
                                 <!-- <li class="li_school">
                                     {{i.ID}}
@@ -40,8 +40,14 @@
                                     {{i.teacher.name}}
                                 </li>
                             </ul>
+                        </div>
+                        <button name="button_edit" value="{{i.ID}}" class="button_edit_school">
+                            􀈎
                         </button>
-                        <div class="disable_error">Переглянути</div>
+                        <button name="button_del" value="{{i.ID}}"class="button_del_school">
+                            􀆚
+                        </button>
+                        <button name='id'  value="{{i.ID}}" class="disable_error">Переглянути</button>
                     <!-- </div> -->
                 </form>
             </li>
@@ -64,15 +70,27 @@
             </form>
             <form action="" method="POST" class='form_new_school'>
                 {% csrf_token %}
-                <p class = 'h_new_school'>Створити урок</p>
-                    <input class='input_new_school' type="text" placeholder="Назва уроку" name="name" autocomplete="off">
+                {% if info_for_edit == None %}
+                    <p class = 'h_new_school'>Створити урок</p>
+                        <input class='input_new_school' type="text" placeholder="Назва уроку" name="name" autocomplete="off">
+                        <select class='select_new_school' name="teacher" class="reg_input" id="" >
+                            <option value="null" selected>Вчитель</option>
+                            {% for teach in teacher_range %}
+                            <option value="{{teach.ID}}">{{teach.name}}</option>
+                            {% endfor %}
+                        </select>
+                        <button value="1" name="new_lesson" class="button_new_school" autocomplete="off">Створити</button>
+                {% else %}
+                    <p class = 'h_new_school'>Редагувати урок</p>
+                    <input class='input_new_school'value="{{info_for_edit.name}}" type="text" placeholder="Назва уроку" name="name" autocomplete="off">
                     <select class='select_new_school' name="teacher" class="reg_input" id="" >
-                        <option value="null" selected>Вчитель</option>
+                        <option value="{{info_for_edit.ID}}" selected>{{info_for_edit.teacher.name}}</option>
                         {% for teach in teacher_range %}
                         <option value="{{teach.ID}}">{{teach.name}}</option>
                         {% endfor %}
                     </select>
-                    <button value="1" name="new_lesson" class="button_new_school" autocomplete="off">Створити</button>
+                    <button value="{{info_for_edit.ID}}" name="save_lesson" class="button_new_school" autocomplete="off">Редагувати</button>
+                {% endif %}
             </form>
         </div>
     {% endif %}

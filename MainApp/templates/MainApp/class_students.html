@@ -1,0 +1,161 @@
+{% extends 'MainApp/base.html' %}
+
+
+{% block content %}
+<main class="base_main">
+    <form action="" method="POST">
+        {% csrf_token %}
+        <ul class='menu_school_ul'>
+            <li class='menu_school_li'>
+                {% if menu_class_select == 1 %} 
+                    <div class='menu_school_div menu_school_selected'>
+                {% else %}
+                    <div class='menu_school_div'>
+                {% endif %}   
+                    <button class="menu_school_button" name = 'button_menu' value="1">{{class.rank}} - {{class.name}}</button>
+                </div>
+                
+                
+            </li>
+            <li class='menu_school_li'>
+                {% if menu_class_select == 2 %} 
+                    <div class='menu_school_div menu_school_selected'>
+                {% else %}
+                    <div class='menu_school_div'>
+                {% endif %}  
+                    <button class="menu_school_button" name = 'button_menu' value="2">Розклад</button>
+                </div>
+            </li>
+            <li class='menu_school_li'>
+                {% if menu_class_select == 3 %} 
+                    <div class='menu_school_div menu_school_selected'>
+                {% else %}
+                    <div class='menu_school_div'>
+                {% endif %}  
+                    <button class="menu_school_button" name = 'button_menu' value="3">Список учнів</button>
+                </div>
+            </li>
+            <li class='menu_school_li'>
+                {% if menu_class_select == 4 %} 
+                    <div class='menu_school_div menu_school_selected'>
+                {% else %}
+                    <div class='menu_school_div'>
+                {% endif %}  
+                    <button class="menu_school_button" name = 'button_menu' value="4">Список уроків</button>
+                </div>
+            </li>
+            <li class='menu_school_li'>
+                {% if menu_class_select == 5 %} 
+                    <div class='menu_school_div menu_school_selected'>
+                {% else %}
+                    <div class='menu_school_div'>
+                {% endif %}  
+                    <button class="menu_school_button" name = 'button_menu' value="7">Оцінки</button>
+                </div>
+            </li>
+        </ul>
+    </form>
+    <div class="div_schools">
+        <ul class='ul_schools'>
+            {% for i in range %}
+            <li class="li_schools">
+                <form action="" class="form_school" method="POST">
+                    {% csrf_token %}
+                    <!-- <div class="div_school"> -->
+                        <!-- <p> Переглянути</p> -->
+                        <div  class='button_schools'>
+                            <ul class='ul_school'>
+                                <li class="li_school">
+                                    {{i.name}} {{i.surname}}
+                                </li>
+                                <li class="li_school">
+                                    +38{{i.number_phone}}
+                                </li>
+                            </ul>
+                        </div>
+                        <button name="button_del" value="{{i.id}}"class="button_del_school">
+                            􀆚
+                        </button>
+                        <button name='id'  value="{{i.id}}" class="disable_error">Переглянути</button>
+                    <!-- </div> -->
+                </form>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <p class="p_make_school">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <button  class="button_make_school" name='make' value="1">Cтворити учня</button>
+        </form>
+    </p>
+</main>
+    {% if make == 1 %}
+    
+        <div class='div_new_school'>
+            <form action="" method="POST">
+                {% csrf_token %}
+                <button class='but_new_school'></button>
+            </form>
+            <form action="" method="POST" class='form_new_student'>
+                {% csrf_token %}
+                <p class = 'h_new_school'>Створити учня</p>
+
+                    <input class="input_new_school" type="text" name= 'name' placeholder="Ім'я учня">
+            
+                    <input class="input_new_school" type="text" name= 'surname' placeholder="Прізвище учня">
+            
+                    <input class="input_new_school" type="text" name= 'second_name' placeholder="По батькові учня">
+            
+                    <input class="input_new_school" type="date" name = 'birthday' placeholder="Дата народження">
+            
+                    <input class="input_new_school" type="email" name = 'email' placeholder="Email">
+            
+            
+                    <input class="input_new_school" type="tel" name="number_phone" 
+                    pattern="[0-9]{3}[0-9]{3}[0-9]{4}"
+                    placeholder="Номер телефону учня (0951234567)">
+                    <!-- <small>Format: 0951234567</small> -->
+            
+                    <input class="input_new_school" type="text" name= 'adress' placeholder="Адреса проживання">
+                    <select class='select_new_school' name="class_stud" id="">
+                        <option selected value="{{class.ID}}">{{class.rank}} - {{class.name}}</option>
+                    </select>
+            
+                    <button value="1" name="next1" class="button_new_school"  >Створити</button>
+            </form>
+        </div>
+    {% endif %}
+    {% if make == 2 %}
+    
+    <div class='div_new_school'>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <button class='but_new_school'></button>
+        </form>
+        <form action="" method="POST" class='form_new_student'>
+            {% csrf_token %}
+            <p class = 'h_new_school'>Інформація про батьків (Необов'язково) {{id_student_for_parents_form}}</p>
+                    <input class="input_new_school" type="text" name= 'name_parrent1' placeholder="Повне ім`я одного з батьків">
+                
+                    <input class="input_new_school" type="tel" name="number_phone_parrent1" 
+                    pattern="[0-9]{3}[0-9]{3}[0-9]{4}"
+                    placeholder="Номер телефону одного з батьків (0951234567)">
+                
+                    <input class="input_new_school" type="text" name= 'work_parrent1' placeholder="Місце праці одного з батьків">
+                
+                    <input class="input_new_school" type="text" name= 'name_parrent2' placeholder="Повне ім`я одного з батьків">
+                
+                    <input class="input_new_school" type="tel" name="number_phone_parrent2" 
+                    pattern="[0-9]{3}[0-9]{3}[0-9]{4}"
+                    placeholder="Номер телефону одного з батьків (0951234567)">
+               
+                    <input class="input_new_school" type="text" name= 'work_parrent2' placeholder="Місце праці одного з батьків">
+                    <input type="hidden" name="student_id" value="{{id_student_for_parents_form}}">
+        
+                <button value="1" name="new_student" class="button_new_school" autocomplete="off">Завершити</button>
+        </form>
+    </div>
+{% endif %}
+{% endblock %}
+                   

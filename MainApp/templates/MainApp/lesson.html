@@ -1,0 +1,62 @@
+{% extends 'MainApp/base.html' %}
+
+{% load static %}
+{% block content %}
+    <main class="base_main">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <ul class='menu_school_ul'>
+                <li class='menu_school_li'>
+                    {% if menu_class_select == 1 %} 
+                        <div class='menu_school_div menu_school_selected'>
+                    {% else %}
+                        <div class='menu_school_div'>
+                    {% endif %}   
+                        <button class="menu_school_button" name = 'button_menu' value="1">{{lesson.name}}</button>
+                    </div>
+                    
+                    
+                </li>
+            </ul>
+        </form>
+        <div class="class_div">
+            <img class = 'image_teacher_info' src="{% static 'image/lesson_info.png' %}" alt="">
+            <div class="div_class_teacher_info">
+                <p class="h_class_teacher_info">Інформація про вчителя:</p>
+                <ul class="ul_class_teacher_info">
+                    <li class="li_class_teacher_info">
+                        <p class="p_class_teacher_info">Ім'я:</p>
+                        <p class="p_class_teacher_info">{{lesson.teacher.name}}</p>
+                    </li>
+                    <li class="li_class_teacher_info">
+                        <p class="p_class_teacher_info">Email:</p>
+                        <p class="p_class_teacher_info">{{lesson.teacher.email}}</p>
+                    </li>
+                    <li class="li_class_teacher_info">
+                        <p class="p_class_teacher_info">Номер телефону:</p>
+                        <p class="p_class_teacher_info">+38{{lesson.teacher.phone}}</p>
+                    </li>
+                </ul>
+            </div>
+            <p class="h_teacher_info" id="lesson_info_p"> Список класів: </p>
+            <form action="" method="POST" id="lesson_info_form" class="form_teacher_info">
+                {% csrf_token %}
+                <ol class="ol_teacher_info">
+                    {% for i in clases %}
+                    <li class = 'ol_li_teacher_info'>
+                        <ul class="ul_for_li_teacher_info">
+                            <li class="li_teacher_info">
+                                {{i.rank}} - {{i.name}}
+                            </li>
+                            <li class="li_teacher_button">
+                                <button name="view" value="{{i.ID}}" class="button_teacher_info">􀋮</button>
+                                
+                            </li>
+                        </ul>
+                    </li>
+                    {% endfor %}
+                </ol>
+            </form>
+        </div>
+    </main>
+{% endblock %}

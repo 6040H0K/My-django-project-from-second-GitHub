@@ -1,20 +1,21 @@
-.p_text_contacts{
+.p_name_contacts_school{
     position: absolute;
-    height: 1.6vw;
-    left: 38vw;
+    margin-top: 1.6vw;
+    left: 36vw;
     right: 45vw;
     top: 5vw;
-
     font-family: 'Gilroy';
     font-style: normal;
     font-weight: 600;
     font-size: 1.4vw;
     line-height: 1.6vw;
+    text-align: left;
+
 }
 
-.p_phone_Dogonov{
+.p_phone_school{
     position: absolute;
-    width: 10.8vw;
+    width: 10.9vw;
     height: 1.3vw;
     left: 5.2vw;
     top: 12.3vw;
@@ -25,74 +26,58 @@
     font-size: 1.2vw;
     line-height: 1.3vw;
 
-    letter-spacing: 0.02vw;   
+    letter-spacing: 0.02vw;
 }
 
-.p_email_Dogonov{
+.p_email_school{
     position: absolute;
     width: 12.4vw;
     height: 1.3vw;
     left: 5.2vw;
     top: 17.8vw;
-
+    
     font-family: 'Gilroy';
     font-style: normal;
     font-weight: 600;
     font-size: 1.2vw;
     line-height: 1.3vw;
-
+    
     letter-spacing: 0.02vw;
 }
 
-.p_phone_Mozolevsky{
-    position: absolute;
-    width: 10.8vw;
-    height: 1.3vw;
-    left: 5.2vw;
-    top: 23.4vw;
-
-    font-family: 'Gilroy';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 1.2vw;
-    line-height: 1.3vw;
-
-    letter-spacing: 0.02vw;
-}
-
-.p_email_Mozolevsky{
-    position: absolute;
-    width: 12.4vw;
-    height: 1.3vw;
-    left: 5.2vw;
-    top: 28.9vw;
-
-    font-family: 'Gilroy';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 1.2vw;
-    line-height: 1.3vw;
-
-    letter-spacing: 0.02vw;
-}
-
-.p_our_instagram{
+.p_facebook_school{
     position: absolute;
     width: 5.2vw;
     height: 1.3vw;
     left: 5.2vw;
-    top: 34.4vw;
-
+    top: 23vw;
+    
     font-family: 'Gilroy';
     font-style: normal;
     font-weight: 600;
     font-size: 1.2vw;
     line-height: 1.3vw;
-
+    
     letter-spacing: 0.02vw;
 }
 
-.phone_image1{
+.p_instagram_school{
+    position: absolute;
+    width: 5.2vw;
+    height: 1.3vw;
+    left: 5.2vw;
+    top: 28.9vw;
+    
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1.2vw;
+    line-height: 1.3vw;
+    
+    letter-spacing: -0.408px;
+}
+
+.phone_school{
     position: absolute;
 
     width: 2.8vw;
@@ -100,11 +85,11 @@
 
     left: 1.3vw;
     right: 93.72vw;
-    top: 13.7vw;
+    top: 12.7vw;
     bottom: 71.16vw;
 }
 
-.google_image1{
+.google_school{
     position: absolute;
 
     width: 2.8vw;
@@ -112,23 +97,23 @@
 
     left: 1.3vw;
     right: 93.72vw;
-    top: 19.2vw;
-    bottom: 60vw;
+    top: 18.2vw;
+    bottom: 37.9vw;
 }
 
-.phone_image2{
+.facebook_school{
     position: absolute;
 
     width: 2.8vw;
     height: 2.8vw;
 
     left: 1.3vw;
-    right: 93.72vw;
-    top: 24.8vw;
+    right: 93.7vw;
+    top: 23.4vw;
     bottom: 48.99vw;
 }
 
-.google_image2{
+.instagram_school{
     position: absolute;
 
     width: 2.8vw;
@@ -136,26 +121,22 @@
 
     left: 1.3vw;
     right: 93.72vw;
-    top: 30.3vw;
-    bottom: 37.9vw;
-} 
-
-.instagram_image{
-    position: absolute;
-
-    width: 2.8vw;
-    height: 2.8vw;
-
-    left: 1.3vw;
-    right: 93.72vw;
-    top: 35.8vw;
+    top: 29.3vw;
     bottom: 26.8vw;
 }
 
-.image_contacts{
+.school_contacts_image1{
     position: absolute;
-    width: 31vw;
-    height: 35vw;
-    left: 33vw;
-    top: 13.6vw;
+    width: 21.8vw;
+    height: 22.5vw;
+    left: 43.5vw;
+    top: 9.3vw;
+}
+
+.school_contacts_image2{
+    position: absolute;
+    width: 27.5vw;
+    height: 23.5vw;
+    left: 15vw;
+    top: 26.3vw;
 }

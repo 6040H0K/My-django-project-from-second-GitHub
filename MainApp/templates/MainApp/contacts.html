@@ -5,6 +5,12 @@
     <main class="base_main">
         <form action="" method="POST">
             {% csrf_token %}
+            <img class = 'phone_image1' src="{% static 'image/PhoneImage1.png' %}" alt="">
+            <img class = 'google_image1' src="{% static 'image/GoogleImage1.png' %}" alt="">
+            <img class = 'phone_image2' src="{% static 'image/PhoneImage2.png' %}" alt="">
+            <img class = 'google_image2' src="{% static 'image/GoogleImage2.png' %}" alt="">
+            <img class = 'instagram_image' src="{% static 'image/InstagramImage.png' %}" alt="">
+            <img class = 'image_contacts' src="{% static 'image/image_contacts.png' %}" alt="">
             <ul class="ul_info_menu">
                 <li class="li_info_menu">
                     {% if select_info_menu == 1 %}
@@ -32,6 +38,34 @@
                     {% endif %}
                         <button class="button_info_menu" value="3" name="button_info_menu">Контакты</button>
                     </div>
+                </li>
+                <li>
+                    <p class="p_text_contacts"> Контакти </p>
+                </li>
+                <li>
+                    <p class="p_phone_Dogonov">
+                        +380 (95) 88 828 65
+                    </p>
+                </li>
+                <li>
+                    <p class="p_email_Dogonov">
+                        ddogonov3@gmail.com
+                    </p>
+                </li>
+                <li>
+                    <p class="p_phone_Mozolevsky">
+                        +380 (73) 43 594 67
+                    </p>
+                </li>
+                <li>
+                    <p class="p_email_Mozolevsky">
+                        amozolevskii13@gmail.com
+                    </p>
+                </li>
+                <li>
+                    <p class="p_our_instagram">
+                        SchoolUa
+                    </p>
                 </li>
             </ul>
         </form>

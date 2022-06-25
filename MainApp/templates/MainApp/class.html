@@ -44,6 +44,15 @@
                         <button class="menu_school_button" name = 'button_menu' value="4">Список уроків</button>
                     </div>
                 </li>
+                <li class='menu_school_li'>
+                    {% if menu_class_select == 5 %} 
+                        <div class='menu_school_div menu_school_selected'>
+                    {% else %}
+                        <div class='menu_school_div'>
+                    {% endif %}  
+                        <button class="menu_school_button" name = 'button_menu' value="7">Оцінки</button>
+                    </div>
+                </li>
             </ul>
         </form>
         <div class="class_div">
@@ -227,8 +236,6 @@
                     <button name='but_id' value='show_student'>Переглянути</button>
                 </form>
             </div>
-
-
 
 
 

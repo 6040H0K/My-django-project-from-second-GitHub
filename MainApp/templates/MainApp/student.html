@@ -1,0 +1,142 @@
+{% extends 'MainApp/base.html' %}
+
+{% load static %}
+{% block content %}
+    <main class="base_main">
+        
+        <form action="" method="POST">
+            {% csrf_token %}
+            <ul class='menu_school_ul'>
+                {% if type_page == 1 %}
+                <li class='menu_school_li'>
+                    {% if menu_class_select == 1 %} 
+                        <div class='menu_school_div menu_school_selected'>
+                    {% else %}
+                        <div class='menu_school_div'>
+                    {% endif %}   
+                        <button class="menu_school_button" name = 'button_menu' value="1">{{class.rank}} - {{class.name}}</button>
+                    </div>
+                    
+                    
+                </li>
+                <li class='menu_school_li'>
+                    {% if menu_class_select == 2 %} 
+                        <div class='menu_school_div menu_school_selected'>
+                    {% else %}
+                        <div class='menu_school_div'>
+                    {% endif %}  
+                        <button class="menu_school_button" name = 'button_menu' value="2">Розклад</button>
+                    </div>
+                </li>
+                <li class='menu_school_li'>
+                    {% if menu_class_select == 3 %} 
+                        <div class='menu_school_div menu_school_selected'>
+                    {% else %}
+                        <div class='menu_school_div'>
+                    {% endif %}  
+                        <button class="menu_school_button" name = 'button_menu' value="3">Список учнів</button>
+                    </div>
+                </li>
+                <li class='menu_school_li'>
+                    {% if menu_class_select == 4 %} 
+                        <div class='menu_school_div menu_school_selected'>
+                    {% else %}
+                        <div class='menu_school_div'>
+                    {% endif %}  
+                        <button class="menu_school_button" name = 'button_menu' value="4">Список уроків</button>
+                    </div>
+                </li>
+                <li class='menu_school_li'>
+                    {% if menu_class_select == 2 %} 
+                        <div class='menu_school_div menu_school_selected'>
+                    {% else %}
+                        <div class='menu_school_div'>
+                    {% endif %}  
+                        <button class="menu_school_button" name = 'button_menu' value="5">Оцінки</button>
+                    </div>
+                </li>
+                {% else %}
+                    <li class='menu_school_li'>
+                        {% if menu_class_select == 1 %} 
+                            <div class='menu_school_div menu_school_selected'>
+                        {% else %}
+                            <div class='menu_school_div'>
+                        {% endif %}  
+                            <button class="menu_school_button" name = 'button_menu' value="6">{{student.name}} {{student.surname}}</button>
+                        </div>
+                    </li>
+                    <li class='menu_school_li'>
+                        {% if menu_class_select == 2 %} 
+                            <div class='menu_school_div menu_school_selected'>
+                        {% else %}
+                            <div class='menu_school_div'>
+                        {% endif %}  
+                            <button class="menu_school_button" name = 'button_menu' value="7">Оцінки</button>
+                        </div>
+                    </li>
+                {% endif %}
+            </ul>
+        </form>
+        
+        <div class="main_student">
+            <img class = 'student_image1' src="{% static 'image/student1.png' %}" alt="">
+            <img class = 'student_image2' src="{% static 'image/student2.png' %}" alt="">
+            <img class = 'student_image3' src="{% static 'image/student3.png' %}" alt="">
+
+            <div class="info_for_student">
+                <p class="p_info_for_student">Інформація про учня</p>
+                <ul class="ul_info_for_all">
+                    <li class="li_info_for_all">
+                        <div class='block_in_li'><p class="span_named_info">Ім’я</p></div> <div class='block_in_li1'><p class="span_value_info">{{student.name}} {{student.surname}}</p></div>
+                    </li>
+                    <li class="li_info_for_all">
+                        <div class='block_in_li'><p class="span_named_info">Дата народження</p></div> <div class='block_in_li1'><p class="span_value_info">{{student.birthday}}</p></div>
+                    </li>
+                    <li class="li_info_for_all">
+                        <div class='block_in_li'><p class="span_named_info">Адреса</p></div> <div class='block_in_li1'><p class="span_value_info">{{student.adress}}</p></div>
+                    </li>
+                    <li class="li_info_for_all">
+                        <div class='block_in_li'><p class="span_named_info">Номер телефону</p></div> <div class='block_in_li1'><p class="span_value_info">+38{{student.number_phone}}</p></div>
+                    </li>
+                    <li class="li_info_for_all">
+                        <div class='block_in_li'><p class="span_named_info">Email</p></div> <div class='block_in_li1'><p class="span_value_info">{{student.email}}</p></div>
+                    </li>
+                    <li class="li_info_for_all">
+                        <div class='block_in_li'><p class="span_named_info">Пароль</p></div> <div class='block_in_li1'><p class="span_value_info">{{student.password}}</p></div>
+                    </li>
+
+                </ul>
+            </div>
+
+            <div class="info_for_parents">
+                <p class="p_info_for_all">Інформація про батьків учня</p>
+                <div class="div_info_for_parents">
+                    <ul class="ul_info_for_parrents">
+                        <li class="li_info_for_parents">
+                            <div class='block_in_li'><p class="span_named_info">Ім’я</p></div> <div class='block_in_li1'><p class="span_value_info">{{student.name_parrent1}}</p></div>
+                        </li>
+                        <li class="li_info_for_parents">
+                            <div class='block_in_li'><p class="span_named_info">Номер телефону</p></div> <div class='block_in_li1'><p class="span_value_info">+38{{student.number_phone_parrent1}}</p></div>
+                        </li>
+                        <li class="li_info_for_parents">
+                            <div class='block_in_li'><p class="span_named_info">Місце роботи</p></div> <div class='block_in_li1'><p class="span_value_info">{{student.work_parrent1}}</p></div>
+                        </li>
+                    </ul>
+
+                    <ul class="ul_info_for_parrents">
+                        <li class="li_info_for_parents">
+                            <div class='block_in_li'><p class="span_named_info">Ім’я</p></div> <div class='block_in_li1'><p class="span_value_info">{{student.name_parrent2}}</p></div>
+                        </li>
+                        <li class="li_info_for_parents">
+                            <div class='block_in_li'><p class="span_named_info">Номер телефону</p></div> <div class='block_in_li1'><p class="span_value_info">+38{{student.number_phone_parrent2}}</p></div>
+                        </li>
+                        <li class="li_info_for_parents">
+                            <div class='block_in_li'><p class="span_named_info">Місце роботи</p></div> <div class='block_in_li1'><p class="span_value_info">{{student.work_parrent2}}</p></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+        {% endblock %}
+                 

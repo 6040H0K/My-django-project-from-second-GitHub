@@ -1,0 +1,131 @@
+.teacher_main{
+    display: flex;
+    width: 100%;
+    padding: 2vw;
+}
+.form_teacher_info{
+    background: #FFFFFF;
+    width: 25%;
+    height: 20vw;
+    padding-left: 2vw;
+    margin-top: 2vw;
+    
+    border-radius: 15px;
+}
+.h_teacher_info{
+    position: absolute;
+    left: 2.7vw;
+    top: 4.5vw;
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1.5vw;
+    line-height: 1.8vw;
+
+    /* Text */
+
+    color: #121212;
+}
+.image_teacher_info{
+    position: absolute;
+    width: 27vw;
+    height: 30vw;
+    right: 2vw;
+    top: 20vw;
+}
+.h_teacher_info1{
+    position: absolute;
+    left: 28.5vw;
+    top: 4.5vw;
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1.5vw;
+    line-height: 1.8vw;
+
+    /* Text */
+
+    color: #121212;
+}
+#form_teacher_info1{
+    margin-left: 4vw;
+}
+
+.ol_teacher_info{
+    overflow: auto;
+    position: relative;
+    list-style: none;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    /* background-color: tomato; */
+}
+.ol_teacher_info::-webkit-scrollbar {
+    width: 0.59vw;
+    background-color: #C4C4C4;
+    border-radius: 15px;
+}
+.ol_teacher_info::-webkit-scrollbar-thumb {
+
+    /* Primary */
+
+    background-color: #E19A38;
+    border-radius: 15px;
+}
+.ul_for_li_teacher_info{
+    position: relative;
+    display: flex;
+    list-style: none;
+    padding-left: 0;
+    height: 100%;
+}
+.li_teacher_button{
+    width: 40%;
+}
+.ol_li_teacher_info{
+    padding-top: 1vw;
+    /* height: 2vw; */
+    border-bottom: 0.5px solid #C6C6C8;;
+}
+.li_teacher_info{
+    width: 75%;
+    text-align: left;
+
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.2vw;
+    line-height: 1.4vw;
+    /* identical to box height, or 110% */
+
+    letter-spacing: -0.408px;
+
+    color: #000000;
+}
+.li_teacher_button button{
+    position: relative;
+    font-family: 'SF Pro';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1vw;
+    line-height: 1.2vw;
+    bottom: 0.1vw;
+    /* identical to box height, or 129% */
+    background-color: transparent;
+    border: 0;
+    text-align: right;
+    letter-spacing: -0.408px;
+
+    /* Label Color / Light / Secondary */
+
+    color: rgba(60, 60, 67, 0.6);
+}
+
+#lesson_info_form{
+    margin-left: 12vw;
+}
+#lesson_info_p{
+    margin-left: 29vw;
+    top: 3vw;
+}

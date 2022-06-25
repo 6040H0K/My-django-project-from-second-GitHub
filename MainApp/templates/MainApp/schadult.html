@@ -44,6 +44,15 @@
                         <button class="menu_school_button" name = 'button_menu' value="4">Список уроків</button>
                     </div>
                 </li>
+                <li class='menu_school_li'>
+                    {% if menu_class_select == 5 %} 
+                        <div class='menu_school_div menu_school_selected'>
+                    {% else %}
+                        <div class='menu_school_div'>
+                    {% endif %}  
+                        <button class="menu_school_button" name = 'button_menu' value="7">Оцінки</button>
+                    </div>
+                </li>
             </ul>
         <p class="schadult_h">Розклад на {{day}}</p>
         <div class="schadult_main">
@@ -55,7 +64,11 @@
                         {% for j in range_schadult %}
                             <li class="schadult_li" id='li{{j.num}}'>
                                 <select name="{{j.num}}" class="edit_schadult_select" id="">
-                                    <option class="edit_schadult_option" selected value="null">{{j.name.name}}</option>
+                                    {% if j.name != '' %}
+                                        <option class="edit_schadult_option" selected value="null">{{j.name.name}} ({{j.name.teacher.name}})</option>
+                                    {% else %}
+                                        <option class="edit_schadult_option" selected value="null">{{j.name.name}}</option>
+                                    {% endif %}
                                     {% for lesson in lessons_range %}
                                         <option class="edit_schadult_option"  value="{{lesson.ID}}">{{lesson.name}} ({{lesson.teacher.name}})</option>
                                     {% endfor %}

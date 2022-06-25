@@ -119,11 +119,13 @@
     height: 2vw;
     position: absolute;
     left: 33vw;
-    top: 1.7vw;
+    top: 1.3vw;
     /* z-index: 2; */
     text-align: center;
 
     color: transparent;
+    background-color: transparent;
+    border: 0;
     /* background-color: red; */
     font-family: 'Gilroy';
     font-style: normal;
@@ -132,7 +134,7 @@
     line-height: 1vw;
     /* z-index: 1; */
 }
-.form_school:hover div{
+.form_school:hover .disable_error{
     color: #FFFFFF;
 }
 .ul_school{
@@ -148,7 +150,8 @@
     /* margin-left: 7vw;
     margin-right: 13vw; */
     text-align: center;
-    
+    top: 2vw;
+
     font-family: 'Gilroy';
     font-style: normal;
     font-weight: 500;
@@ -156,7 +159,6 @@
     line-height: 1.4vw;
     /* identical to box height */
 
-    text-transform: capitalize;
 
     /* Text */
 

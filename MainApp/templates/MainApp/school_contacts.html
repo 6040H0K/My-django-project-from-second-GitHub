@@ -1,0 +1,73 @@
+{% extends 'MainApp/base.html' %}
+
+{% load static %}
+{% block content %}
+    <main class="base_main">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <img class = 'phone_school' src="{% static 'image/Phone_school.png' %}" alt="">
+            <img class = 'google_school' src="{% static 'image/google_school.png' %}" alt="">
+            <img class = 'facebook_school' src="{% static 'image/Facebook_school.png' %}" alt="">
+            <img class = 'instagram_school' src="{% static 'image/Instagram_school.png' %}" alt="">
+
+            <img class = 'school_contacts_image1' src="{% static 'image/school_contacts_image1.png' %}" alt="">
+            <img class = 'school_contacts_image2' src="{% static 'image/school_contacts_image2.png' %}" alt="">
+            <ul class='menu_school_ul'>
+                <li class='menu_school_li'>
+                    {% if menu_school_select == 1 %} 
+                        <div class='menu_school_div menu_school_selected'>
+                    {% else %}
+                        <div class='menu_school_div'>
+                    {% endif %}   
+                        <button class="menu_school_button" name = 'button_menu' value="1">{{school.title}}</button>
+                    </div>
+                    
+                    
+                </li>
+                <li class='menu_school_li'>
+                    {% if menu_school_select == 2 %} 
+                        <div class='menu_school_div menu_school_selected'>
+                    {% else %}
+                        <div class='menu_school_div'>
+                    {% endif %}  
+                        <button class="menu_school_button" name = 'button_menu' value="2">Інформація</button>
+                    </div>
+                </li>
+                <li class='menu_school_li'>
+                    {% if menu_school_select == 3 %} 
+                        <div class='menu_school_div menu_school_selected'>
+                    {% else %}
+                        <div class='menu_school_div'>
+                    {% endif %}  
+                        <button class="menu_school_button" name = 'button_menu' value="3">Контакти</button>
+                    </div>
+                </li>
+                <li>
+                    <p class="p_name_contacts_school">
+                        Контакти
+                    </p>
+                </li>
+                <li>
+                    <p class="p_phone_school">
+                        +38{{school.phone}}
+                    </p>
+                </li>
+                <li>
+                    <p class="p_email_school">
+                        {{school.email}}
+                    </p>
+                </li>
+                <li>
+                    <p class="p_facebook_school">
+                        {{school.facebook}}
+                    </p>
+                </li>
+                <li>
+                    <p class="p_instagram_school">
+                        {{school.instagram}}
+                    </p>
+                </li>
+            </ul>
+        </form>
+    </main>
+{% endblock %}

@@ -1,29 +1,95 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>{{teacher.name}}</h1>
-    <table>
-    {% for i in lessons %}
+{% extends 'MainApp/base.html' %}
+
+{% load static %}
+
+{% block content %}
+<main class="base_main">
     <form action="" method="POST">
         {% csrf_token %}
-        <tr>
-            <td>
-                <button name='but' value="{{i.ID}}">Переглянути</button>
-            </td>
-            <td>
-                {{i.name}}
-            </td>
-        </tr>
-        
-        
-    
+        <ul class='menu_school_ul'>
+            <li class='menu_school_li'>
+                {% if menu_class_select == 1 %} 
+                    <div class='menu_school_div menu_school_selected'>
+                {% else %}
+                    <div class='menu_school_div'>
+                {% endif %}   
+                    <button class="menu_school_button" name = 'button_menu' value="1">{{teacher.name}}</button>
+                </div>
+                
+                
+            </li>
+            <li class='menu_school_li'>
+                {% if menu_class_select == 2 %} 
+                    <div class='menu_school_div menu_school_selected'>
+                {% else %}
+                    <div class='menu_school_div'>
+                {% endif %}  
+                    <button class="menu_school_button" name = 'button_menu' value="2">Розклад</button>
+                </div>
+            </li>
+        </ul>
     </form>
-    {% endfor %}
-</table>
-</body>
-</html>
+    <div class="teacher_main">
+        <img class = 'image_teacher_info' src="{% static 'image/teacher_page.png' %}" alt="">
+        <p class="h_teacher_info"> Класи вчителя: </p>
+        <form action="" method="POST" class="form_teacher_info">
+            {% csrf_token %}
+            <ol class="ol_teacher_info">
+                {% for i in clases %}
+                <li class = 'ol_li_teacher_info'>
+                    <ul class="ul_for_li_teacher_info">
+                        <li class="li_teacher_info">
+                            {{i.rank}} - {{i.name}}
+                        </li>
+                        <li class="li_teacher_button">
+                            <button name="view" value="{{i.ID}}" class="button_teacher_info">􀋮</button>
+                            <button name="edit" value="{{i.ID}}" class="button_teacher_info">􀈎</button>
+                        </li>
+                    </ul>
+                </li>
+                {% endfor %}
+            </ol>
+        </form>
+        <p class="h_teacher_info1"> Уроки вчителя: </p>
+        <form action="" method="POST" id="form_teacher_info1" class="form_teacher_info">
+            {% csrf_token %}
+            <ol class="ol_teacher_info" >
+                {% for i in lessons %}
+                <li class = 'ol_li_teacher_info'>
+                    <ul class="ul_for_li_teacher_info">
+                        <li class="li_teacher_info">
+                            {{i.name}}
+                        </li>
+                        <li class="li_teacher_button">
+                            <button name="view_lesson" value="{{i.ID}}" class="button_teacher_info">􀋮</button>
+                        </li>
+                    </ul>
+                </li>
+                {% endfor %}
+            </ol>
+        </form>
+    </div>
+</main>
+
+                    {% if make != None %}
+                    <div class='div_new_school'>
+                        <form action="" method="POST">
+                            {% csrf_token %}
+                            <button class='but_new_school'></button>
+                        </form>
+                        <form action="" method="POST" class='form_new_school'>
+                            {% csrf_token %}
+                            <p class = 'h_new_school'>Редагувати клас</p>
+                            <input class='input_new_school' type="text" placeholder="Літера класу" name="name" autocomplete="off" value="{{make.name}}">
+                            <select class='select_new_school' name="teacher" class="reg_input" id="" >
+                                <option value="{{make.class_teacher.ID}}" selected>{{make.class_teacher.name}}</option>
+                                {% for teach in teacher_range %}
+                                <option value="{{teach.ID}}">{{teach.name}}</option>
+                                {% endfor %}
+                            </select>
+                            <input class = 'input_new_school' value="{{make.rank}}" type="number" name="rank" placeholder="Номер класу" autocomplete="off"  min="1" max="12">
+                            <button name="save_school" value="{{make.ID}}" class="button_new_school" autocomplete="off">Зберегти</button>
+                        </form>
+                    </div>
+                {% endif %}
+{% endblock %}

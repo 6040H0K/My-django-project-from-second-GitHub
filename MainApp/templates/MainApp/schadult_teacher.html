@@ -1,0 +1,64 @@
+{% extends 'MainApp/base.html' %}
+
+{% load static %}
+{% block content %}
+    <main class="base_main">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <ul class='menu_school_ul'>
+                <li class='menu_school_li'>
+                    {% if menu_class_select == 1 %} 
+                        <div class='menu_school_div menu_school_selected'>
+                    {% else %}
+                        <div class='menu_school_div'>
+                    {% endif %}   
+                        <button class="menu_school_button" name = 'button_menu' value="1">{{teacher.name}}</button>
+                    </div>
+                    
+                    
+                </li>
+                <li class='menu_school_li'>
+                    {% if menu_class_select == 2 %} 
+                        <div class='menu_school_div menu_school_selected'>
+                    {% else %}
+                        <div class='menu_school_div'>
+                    {% endif %}  
+                        <button class="menu_school_button" name = 'button_menu' value="2">Розклад</button>
+                    </div>
+                </li>
+            </ul>
+        <p class="schadult_h">Розклад на {{day}}</p>
+        <div class="schadult_main">
+            <img class = 'home_image schadult1_image' src="{% static 'image/schadult1.png' %}" alt="">
+            <img class = 'home_image schadult2_image' src="{% static 'image/schadult2.png' %}" alt="">
+            <div class="schadult_box">
+                <ol class="schadult_ol">
+                    {% for j in range_schadult %}
+                        <li class="schadult_li" id='li{{j.num}}'>
+                            <!-- <p>{{j.num}}.</p>  -->
+                            {% if j != None %}
+                                {{j.class}} ({{j.name}})
+                            {% else %}
+                                {{j.class}}
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ol>
+            </div>
+            <div class="select_day_div">
+                    {% csrf_token %}
+                    <ul class="select_day_ul">
+                        {% for j in range_days %}
+                            <li class="select_day_li">
+                                {% if j.id == day_id %}
+                                    <button name="day_change" value="{{j.id}}" class="select_day_button" id="button_select_day">{{j.name}}</button>
+                                {% else %}
+                                    <button name="day_change" value="{{j.id}}" class="select_day_button" >{{j.name}}</button>
+                                {% endif %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+            </div>
+        </form>
+    </main>
+{% endblock %}

@@ -5,6 +5,13 @@
 @font-face{
     font-family: 'SF Pro' ;
     src: url("https://fonts.googleapis.com/css?family=SF+Pro&display=swap");
+    /* src: url("fonts/sf\ pro.ttf"); */
+}
+*{
+    text-transform: none;
+}
+li{
+    text-transform: none;
 }
 body{
     overflow: hidden;
@@ -104,6 +111,12 @@ body{
     background-color: transparent;
     height: 2.38vw;
     width: 100%;
+}
+.logo{
+    position: absolute;
+    width: 7.5vw;
+    height: 4.7vw;
+    left: 4.2vw;
 }
 .menu_text{
     /* display: inline-block; */

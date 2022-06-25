@@ -15,9 +15,17 @@
     <link rel="stylesheet" href="{% static 'about_us.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'about_site.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'contacts.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'student.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'teacher.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'school_contacts.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'school_info.css' %}" type="text/css">
+    
+
     </head>
     <body>
+        
         {% block main-menu %}
+        <img src="{% static 'image/logo.png' %}" class="logo" alt="">
         <nav class="menu">
           <ul class="menu_ul">
                 {% if select_menu == 0 %}

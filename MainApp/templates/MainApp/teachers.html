@@ -28,7 +28,7 @@
                     {% csrf_token %}
                     <!-- <div class="div_school"> -->
                         <!-- <p> Переглянути</p> -->
-                        <button name='id'  value="{{i.ID}}" class='button_schools'>
+                        <div  class='button_schools'>
                             <ul class='ul_school'>
                                 <li class="li_school">
                                     {{i.name}}
@@ -43,14 +43,14 @@
                                     <button class="button_del" name="button_del"> </button>
                                 </li> -->
                             </ul>
-                        </button>
+                        </div>
                         <button name="button_edit" value="{{i.ID}}" class="button_edit_school">
                             􀈎
                         </button>
                         <button name="button_del" value="{{i.ID}}"class="button_del_school">
                             􀆚
                         </button>
-                        <div class="disable_error">Переглянути</div>
+                        <button name='id'  value="{{i.ID}}" class="disable_error">Переглянути</button>
                     <!-- </div> -->
                 </form>
             </li>

@@ -1,0 +1,118 @@
+{% extends 'MainApp/base.html' %}
+
+{% load static %}
+{% block content %}
+    <main class="base_main">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <ul class='menu_school_ul'>
+                <li class='menu_school_li'>
+                    {% if menu_class_select == 1 %} 
+                        <div class='menu_school_div menu_school_selected'>
+                    {% else %}
+                        <div class='menu_school_div'>
+                    {% endif %}   
+                        <button class="menu_school_button" name = 'button_menu' value="1">{{class.rank}} - {{class.name}}</button>
+                    </div>
+                    
+                    
+                </li>
+                <li class='menu_school_li'>
+                    {% if menu_class_select == 2 %} 
+                        <div class='menu_school_div menu_school_selected'>
+                    {% else %}
+                        <div class='menu_school_div'>
+                    {% endif %}  
+                        <button class="menu_school_button" name = 'button_menu' value="2">Розклад</button>
+                    </div>
+                </li>
+                <li class='menu_school_li'>
+                    {% if menu_class_select == 3 %} 
+                        <div class='menu_school_div menu_school_selected'>
+                    {% else %}
+                        <div class='menu_school_div'>
+                    {% endif %}  
+                        <button class="menu_school_button" name = 'button_menu' value="3">Список учнів</button>
+                    </div>
+                </li>
+                <li class='menu_school_li'>
+                    {% if menu_class_select == 4 %} 
+                        <div class='menu_school_div menu_school_selected'>
+                    {% else %}
+                        <div class='menu_school_div'>
+                    {% endif %}  
+                        <button class="menu_school_button" name = 'button_menu' value="4">Список уроків</button>
+                    </div>
+                </li>
+                <li class='menu_school_li'>
+                    {% if menu_class_select == 5 %} 
+                        <div class='menu_school_div menu_school_selected'>
+                    {% else %}
+                        <div class='menu_school_div'>
+                    {% endif %}  
+                        <button class="menu_school_button" name = 'button_menu' value="7">Оцінки</button>
+                    </div>
+                </li>
+            </ul>
+        </form>
+        <div class="div_schools">
+            <ul class='ul_schools'>
+                {% for i in lessons %}
+                <li class="li_schools">
+                    <form action="" class="form_school" method="POST">
+                        {% csrf_token %}
+                        <!-- <div class="div_school"> -->
+                            <!-- <p> Переглянути</p> -->
+                            <div  class='button_schools'>
+                                <ul class='ul_school'>
+                                    <!-- <li class="li_school">
+                                        {{i.ID}}
+                                    </li> -->
+                                    <li class="li_school">
+                                        {{i.name}}
+                                    </li>
+                                    <li class="li_school">
+                                        {{i.teacher.name}}
+                                    </li>
+                                </ul>
+                            </div>
+                            <button name="button_del" value="{{i.ID}}"class="button_del_school">
+                                􀆚
+                            </button>
+                            <button name='id'  value="{{i.ID}}" class="disable_error">Переглянути</button>
+                        <!-- </div> -->
+                    </form>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <p class="p_make_school">
+            <form action="" method="POST">
+                {% csrf_token %}
+                <button  class="button_make_school" name='make' value="1">Додати урок</button>
+            </form>
+        </p>
+    </main>
+        {% if make == True %}
+    
+        <div class='div_new_school'>
+            <form action="" method="POST">
+                {% csrf_token %}
+                <button class='but_new_school'></button>
+            </form>
+            <form action="" method="POST" class='form_new_school'>
+                {% csrf_token %}
+                    <p class = 'h_new_school'>Додати урок</p>
+                        <select class='select_new_school' name="lesson" class="reg_input" id="" >
+                            <option value="null" selected>Урок</option>
+                            {% for lesson in lessons_range %}
+                                {% if lesson not in lessons %}
+                                    <option value="{{lesson.ID}}">{{lesson.name}} ({{lesson.teacher.name}})</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                        <button value="1" name="new_lesson" class="button_new_school" autocomplete="off">Додати</button>
+            </form>
+        </div>
+    {% endif %}
+{% endblock %}
