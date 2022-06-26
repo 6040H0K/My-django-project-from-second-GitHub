@@ -14,7 +14,7 @@ li{
     text-transform: none;
 }
 body{
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 .menu{
     position: absolute;

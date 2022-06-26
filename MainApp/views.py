@@ -414,7 +414,7 @@ class Class_students(TemplateView):
 
                     self.error_text = 'Заповніть усі поля'
                         
-        return render(request, self.template_name, context={'class':clas, 'menu_class_select':4,
+        return render(request, self.template_name, context={'class':clas, 'menu_class_select':3,
                                                             'select_menu':4, 'range':students_range,
                                                             'make':make, 'id_student_for_parents_form':id_student_for_parents_form
                                 })
