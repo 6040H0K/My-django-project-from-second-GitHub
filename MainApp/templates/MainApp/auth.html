@@ -12,25 +12,26 @@
                 <p class="text_name_auth"> Авторизація </p>
                 <button class='choise_1' name='button_choise' value="0"><img src="{% static 'image/home2.png' %}" class="img_btn_1">Учень</button>
                 <button class='choise_1' name='button_choise' value="1"><img src="{% static 'image/home1.png' %}" class="img_btn_2">Вчитель</button>
-                <button class='choise' name='button_choise' value="2"><img src="{% static 'image/school1.png' %}" class="img_btn_3">Школа</button>
-                <button class='choise' name='button_choise' value="3"><img src="{% static 'image/school2.png' %}" class="img_btn_4">Адміністратор</button>
+                <button class='choise' name='button_choise' value="2"><img src="{% static 'image/school1.png' %}" class="img_btn_3">Адміністратор</button>
+                <button class='choise' name='button_choise' value="3"><img src="{% static 'image/school2.png' %}" class="img_btn_4">Школа</button>
             </form>
         </main>
     {% endif %}
     {% if type_page == '1' %}
     
         <main >
-            <form action="" method="POST">
+            <form action="" method="POST" class="form_auth_school_1">
                 {% csrf_token %}
-                <select name="school_name" id="">
+                <p class="p_text_auth_teacher"> Авторизуватись як вчитель </p>
+                <select name="school_name" id="" class="select_school_teacher">
                     <option value="None" selected>Школа</option>
                     {% for i in school_range %}
                         <option value="{{i.id}}">{{i.title}}</option>
                     {% endfor %}
                 </select>
-                <input type="text" placeholder="Логін" name='login' autocomplete="off">
-                <input type="password" placeholder="Пароль" name='password' autocomplete="off">
-                <button name="submit" value="teacher">Вхід</button>
+                <input type="text" placeholder="Логін" name='login' autocomplete="off" class="input_login_teacher">
+                <input type="password" placeholder="Пароль" name='password' autocomplete="off" class="input_password_teacher">
+                <button name="submit" value="teacher" class="button_auth_teacher">Вхід</button>
                 {% if error_text == '1' %}
                     <p>Error</p>
                 {% endif %}
@@ -40,17 +41,18 @@
     {% if type_page == '0' %}
     
         <main>
-            <form action="" method="POST">
+            <form action="" method="POST" class="form_auth_school_1">
                 {% csrf_token %}
-                <select name="school_name" id="">
+                <p class="p_text_auth_student"> Авторизуватись як учень </p>
+                <select name="school_name" id="" class="select_school_student">
                     <option value="None" selected>Школа</option>
                     {% for i in school_range %}
                         <option value="{{i.id}}">{{i.title}}</option>
                     {% endfor %}
                 </select>
-                <input type="text" placeholder="Логін" name='login' autocomplete="off">
-                <input type="password" placeholder="Пароль" name='password' autocomplete="off">
-                <button name="submit" value="student">Вхід</button>
+                <input type="text" placeholder="Логін" name='login' autocomplete="off" class="input_login_student">
+                <input type="password" placeholder="Пароль" name='password' autocomplete="off" class="input_password_student">
+                <button name="submit" value="student" class="button_auth_student">Вхід</button>
                 {% if error_text == '1' %}
                     <p>Error</p>
                 {% endif %}
@@ -60,11 +62,12 @@
     {% if type_page == '2' %}
     
         <main>
-            <form action="" method="POST">
-                {% csrf_token %}
-                <input type="text" placeholder="Логін" name='login' autocomplete="off">
-                <input type="password" placeholder="Пароль" name='password' autocomplete="off">
-                <button name="submit" value="school">Вхід</button>
+            <form action="" method="POST" class="form_auth_school_2">
+                {% csrf_token %} 
+                <p class="p_text_auth_school"> Авторизуватись як школа </p>
+                <input type="text" placeholder="Логін" name='login' autocomplete="off" class="input_login_school">
+                <input type="password" placeholder="Пароль" name='password' autocomplete="off" class="input_password_school">
+                <button name="submit" value="school" class="button_auth_school">Вхід</button>
                 {% if error_text == '1' %}
                     <p>Error</p>
                 {% endif %}
@@ -74,11 +77,12 @@
     {% if type_page == '3' %}
     
         <main>
-            <form action="" method="POST">
+            <form action="" method="POST" class="form_auth_school_2">
                 {% csrf_token %}
-                <input type="text" placeholder="Логін" name='login' autocomplete="off">
-                <input type="password" placeholder="Пароль" name='password' autocomplete="off">
-                <button name="submit" value="admin">Вхід</button>
+                <p class="p_text_auth_admin"> Авторизуватись як адміністратор </p>
+                <input type="text" placeholder="Логін" name='login' autocomplete="off" class="input_login_admin">
+                <input type="password" placeholder="Пароль" name='password' autocomplete="off" class="input_password_admin">
+                <button name="submit" value="admin" class="button_auth_admin">Вхід</button>
                 {% if error_text == '1' %}
                     <p>Error</p>
                 {% endif %}

@@ -56,7 +56,6 @@
 .base_main{
     display: flex;
     justify-content: center;
-    /* align-items: center; */
 }
 .text_name_auth{
     display: flex;
@@ -67,4 +66,396 @@
     margin-top: 5vw;
     height: 2vw;
     margin-left: 35vw;
+}
+
+ /* ######################################################### */
+
+.form_auth_school_1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    flex-direction: column;
+    width: 47.2vw;
+    height: 35.8vw;
+    left: 14.6vw;
+    top: 4.7vw;
+    padding: 1vw;
+    background: #FFFFFF;
+    border-radius: 15px;
+}
+
+.select_school_teacher{
+    position: absolute;
+    width: 34vw;
+    height: 4.6vw;
+    left: 7vw;
+    top: 12.9vw;
+    background: #F5F5F5;
+    border-radius: 15px;
+
+    padding-left: 1.1vw;
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1vw;
+    line-height: 0.8vw;
+    color: #7E858E;
+}
+
+
+.input_login_teacher{
+    position: absolute;
+    width: 32.7vw;
+    height: 4.6vw;
+    left: 7vw;
+    top: 7.3vw;
+    background: #F5F5F5;
+    border-radius: 15px;
+
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1vw;
+    line-height: 0.8vw;
+    border-width: 0.1vw;
+    padding-left: 1.1vw;
+}
+
+
+.input_password_teacher{
+    position: absolute;
+    width: 32.7vw;
+    height: 4.6vw;
+    left: 7vw;
+    top: 18.5vw;
+    background: #F5F5F5;
+    border-radius: 15px;
+
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1vw;
+    line-height: 0.8vw;
+    border-width: 0.1vw;
+    padding-left: 1.1vw;
+}
+
+.button_auth_teacher{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 1.2vw 1.8vw;
+    gap: 1.2vw;
+
+    position: absolute;
+    width: 8.4vw;
+    height: 3.6vw;
+    left: 19.3vw;
+    top: 25vw;
+    border-width: 0.1vw;
+
+    background: #E19A38;
+    border-radius: 5px;
+
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1vw;
+    line-height: 1.25vw;
+    color: #121212;
+}
+
+.p_text_auth_teacher{
+    position: absolute;
+    width: 30vw;
+    height: 0.8vw;
+    left: 9.9vw;
+    top: 2.6vw;
+
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1.4vw;
+    line-height: 0.8vw;
+
+    color: #121212;
+}
+
+ /* ######################################################### */
+
+.select_school_student{
+    position: absolute;
+    width: 34vw;
+    height: 4.6vw;
+    left: 7vw;
+    top: 12.9vw;
+    background: #F5F5F5;
+    border-radius: 15px;
+
+    padding-left: 1.1vw;
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1vw;
+    line-height: 0.8vw;
+    color: #7E858E;
+}
+
+
+.input_login_student{
+    position: absolute;
+    width: 32.7vw;
+    height: 4.6vw;
+    left: 7vw;
+    top: 7.3vw;
+    background: #F5F5F5;
+    border-radius: 15px;
+
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1vw;
+    line-height: 0.8vw;
+    border-width: 0.1vw;
+    padding-left: 1.1vw;
+}
+
+
+.input_password_student{
+    position: absolute;
+    width: 32.7vw;
+    height: 4.6vw;
+    left: 7vw;
+    top: 18.5vw;
+    background: #F5F5F5;
+    border-radius: 15px;
+
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1vw;
+    line-height: 0.8vw;
+    border-width: 0.1vw;
+    padding-left: 1.1vw;
+}
+
+.button_auth_student{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 1.2vw 1.8vw;
+    gap: 1.2vw;
+
+    position: absolute;
+    width: 8.4vw;
+    height: 3.6vw;
+    left: 19.3vw;
+    top: 25vw;
+    border-width: 0.1vw;
+
+    background: #E19A38;
+    border-radius: 5px;
+
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1vw;
+    line-height: 1.25vw;
+    color: #121212;
+}
+
+.p_text_auth_student{
+    position: absolute;
+    width: 30vw;
+    height: 0.8vw;
+    left: 9.9vw;
+    top: 2.6vw;
+
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1.4vw;
+    line-height: 0.8vw;
+
+    color: #121212;
+}
+
+/* ######################################################### */
+
+.form_auth_school_2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    flex-direction: column;
+    width: 47.2vw;
+    height: 31.2vw;
+    left: 14.6vw;
+    top: 9.3vw;
+    padding: 1vw;
+    background: #FFFFFF;
+    border-radius: 15px;
+}
+
+.input_login_school{
+    position: absolute;
+    width: 32.7vw;
+    height: 4.6vw;
+    left: 7vw;
+    top: 9.6vw;
+    background: #F5F5F5;
+    border-radius: 15px;
+
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1vw;
+    line-height: 0.8vw;
+    border-width: 0.1vw;
+    padding-left: 1.1vw;
+}
+
+
+.input_password_school{
+    position: absolute;
+    width: 32.7vw;
+    height: 4.6vw;
+    left: 7vw;
+    top: 16.2vw;
+    background: #F5F5F5;
+    border-radius: 15px;
+
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1vw;
+    line-height: 0.8vw;
+    border-width: 0.1vw;
+    padding-left: 1.1vw;
+}
+
+.button_auth_school{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 1.2vw 1.8vw;
+    gap: 1.2vw;
+
+    position: absolute;
+    width: 8.4vw;
+    height: 3.6vw;
+    left: 19.3vw;
+    top: 22.7vw;
+    border-width: 0.1vw;
+
+    background: #E19A38;
+    border-radius: 5px;
+
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1vw;
+    line-height: 1.25vw;
+    color: #121212;
+}
+
+.p_text_auth_school{
+    position: absolute;
+    width: 30vw;
+    height: 0.8vw;
+    left: 9.9vw;
+    top: 4.9vw;
+
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1.4vw;
+    line-height: 0.8vw;
+
+    color: #121212;
+}
+
+/* ######################################################### */
+
+.input_login_admin{
+    position: absolute;
+    width: 32.7vw;
+    height: 4.6vw;
+    left: 7vw;
+    top: 9.6vw;
+    background: #F5F5F5;
+    border-radius: 15px;
+
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1vw;
+    line-height: 0.8vw;
+    border-width: 0.1vw;
+    padding-left: 1.1vw;
+}
+
+
+.input_password_admin{
+    position: absolute;
+    width: 32.7vw;
+    height: 4.6vw;
+    left: 7vw;
+    top: 16.2vw;
+    background: #F5F5F5;
+    border-radius: 15px;
+
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1vw;
+    line-height: 0.8vw;
+    border-width: 0.1vw;
+    padding-left: 1.1vw;
+}
+
+.button_auth_admin{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 1.2vw 1.8vw;
+    gap: 1.2vw;
+
+    position: absolute;
+    width: 8.4vw;
+    height: 3.6vw;
+    left: 19.3vw;
+    top: 22.7vw;
+    border-width: 0.1vw;
+
+    background: #E19A38;
+    border-radius: 5px;
+
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1vw;
+    line-height: 1.25vw;
+    color: #121212;
+}
+
+.p_text_auth_admin{
+    position: absolute;
+    width: 30vw;
+    height: 0.8vw;
+    left: 9.9vw;
+    top: 4.9vw;
+
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1.4vw;
+    line-height: 0.8vw;
+
+    color: #121212;
 }
