@@ -1,6 +1,6 @@
 {% extends 'MainApp/base.html' %}
 
-
+{% load static %}
 {% block content %}
 <main class='base_main'>
     <ul class="ul_named">
@@ -48,10 +48,10 @@
                             </ul>
                         </div>
                         <button name="button_edit" value="{{i.id}}" class="button_edit_school">
-                            􀈎
+                            <img src="{% static 'image/edit.png' %}" alt="">
                         </button>
                         <button name="button_del" value="{{i.id}}"class="button_del_school">
-                            􀆚
+                            <img src="{% static 'image/del.png' %}" alt="">
                         </button>
                         <button name='id'  value="{{i.id}}" class="disable_error">Переглянути</button>
                     <!-- </div> -->
@@ -61,10 +61,12 @@
         </ul>
     </div>
     <p class="p_make_school">
+        {% if perms.MainApp.show_school %}
         <form action="" method="POST">
             {% csrf_token %}
             <button  class="button_make_school" name='make' value="1">Cтворити школу</button>
         </form>
+        {% endif %}
     </p>
 </main>
     {% if make == True %}
@@ -74,7 +76,7 @@
                 {% csrf_token %}
                 <button class='but_new_school'></button>
             </form>
-            <form action="" method="POST" class='form_new_school'>
+            <form action="" method="POST" class='form_new_student'>
                 {% csrf_token %}
                 
                     {% if info_for_edit == None %}
@@ -83,6 +85,7 @@
                         <input class='input_new_school' type="number" placeholder="Номер школи" name="num" autocomplete="off">
                         <input class='input_new_school' type="text" placeholder="Місто" name="town" autocomplete="off">
                         <input class='input_new_school' type="text" placeholder="Пароль" name="password" autocomplete="off">
+                        <input class='input_new_school' type="email" placeholder="Email" name="email" autocomplete="off">
                         <button value="1" name="new_school" class="button_new_school" autocomplete="off">Створити</button>
                     {% else %}
                         <p class = 'h_new_school'>Редагувати школу</p>
@@ -90,6 +93,7 @@
                         <input class='input_new_school' type="number" placeholder="Номер школи" name="num" autocomplete="off" value="{{info_for_edit.number}}">
                         <input class='input_new_school' type="text" placeholder="Місто" name="town" autocomplete="off" value="{{info_for_edit.town}}">
                         <input class='input_new_school' type="text" placeholder="Пароль" name="password" autocomplete="off" value="{{info_for_edit.password}}">
+                        <input class='input_new_school' type="email" placeholder="Email" name="email" autocomplete="off" value="{{info_for_edit.email}}">>
                         <button value="{{info_for_edit.id}}" name="save_school" class="button_new_school" autocomplete="off">Збергти</button>
                     {% endif %}
             </form>

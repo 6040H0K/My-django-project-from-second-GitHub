@@ -26,6 +26,7 @@
                         <button class="menu_school_button" name = 'button_menu' value="2">Розклад</button>
                     </div>
                 </li>
+                {% if not perms.MainApp.view_student %}
                 <li class='menu_school_li'>
                     {% if menu_class_select == 3 %} 
                         <div class='menu_school_div menu_school_selected'>
@@ -44,6 +45,7 @@
                         <button class="menu_school_button" name = 'button_menu' value="4">Список уроків</button>
                     </div>
                 </li>
+                {% endif %}
                 <li class='menu_school_li'>
                     {% if menu_class_select == 5 %} 
                         <div class='menu_school_div menu_school_selected'>
@@ -100,6 +102,7 @@
                         {% endfor %}
                     </ul>
             </div>
+        {% if not perms.MainApp.view_student %}
         </div>
             {% csrf_token %}
             {% if edit %}
@@ -108,5 +111,6 @@
                 <button class="edit_schadult_button" name="edit_schadult" value="1">Редагувати розклад</button>
             {% endif %}
         </form>
+        {% endif %}
     </main>
 {% endblock %}

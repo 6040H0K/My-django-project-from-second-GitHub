@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{% static 'base.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'schools.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'home.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'auth.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'school.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'class.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'schadult.css' %}" type="text/css">
@@ -20,13 +21,21 @@
     <link rel="stylesheet" href="{% static 'teacher.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'school_contacts.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'school_info.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'marks.css' %}" type="text/css">
     
 
     </head>
     <body>
         
         {% block main-menu %}
+        <form action="" method="POST" class="account_form">
+            {% csrf_token %}
+            <button class="account_button" name="account" value="{{account.value}}">{{account.name}}</button>
+            <button class="account_button" name="account" value="{{account.value}}"><img class = 'account_img' src="{% static 'image/acc.png' %}" alt=""></button>
+            <input type="hidden" name="type_user" value="{{account.type_user}}">
+        </form>
         <img src="{% static 'image/logo.png' %}" class="logo" alt="">
+        
         <nav class="menu">
           <ul class="menu_ul">
                 {% if select_menu == 0 %}
@@ -39,7 +48,7 @@
                     
                             <li class="menu_li">
                                 <span   class="menu_span">
-                                    <p class='menu_icon'>􀎟</p>
+                                    <img class="menu_icon" src="{% static 'image/home.png' %}" alt="">
                                     <p class="menu_text">Головна</p>
                                 </span>
                             </li>
@@ -56,7 +65,7 @@
                         <button class="menu_a" name='button_id_menu' value="2">
                             <li class="menu_li">
                                 <span   class="menu_span">
-                                    <p class='menu_icon'>􀫔</p>
+                                    <img class="menu_icon" src="{% static 'image/school.png' %}" alt="">
                                     {% if type_menu == 1 %}
                                     <p class="menu_text">Школи</p>
                                     {% else %}
@@ -68,85 +77,94 @@
                         </button>
                     </form>
                     </div>
-                
-                {% if select_menu == 2 %}
-                    <div class="menu_div_selected">
-                {% else %}
-                    <div class="menu_div">
+                {% if perms.MainApp.show_school %}
+                    {% if select_menu == 2 %}
+                        <div class="menu_div_selected">
+                    {% else %}
+                        <div class="menu_div">
+                    {% endif %}
+                        <form action="" method="GET" class="menu_form">
+                            {% if type_menu == 1 %}
+                            {% else %}
+                            <button class="menu_a" name='button_id_menu' value="3">
+                                <li class="menu_li">
+                                    <span   class="menu_span">
+                                            <img class="menu_icon" src="{% static 'image/teachers.png' %}" alt="">
+                                            <p class="menu_text">Вчителі</p> 
+                                        
+                                    </span>  
+                                </li>
+                            </button>
+                            {% endif %}
+                        </form>
+                        </div>
                 {% endif %}
+                {% if perms.MainApp.teacher or perms.MainApp.show_school %}
+                    {% if select_menu == 3 %}
+                        <div class="menu_div_selected">
+                    {% else %}
+                        <div class="menu_div">
+                    {% endif %}
                     <form action="" method="GET" class="menu_form">
                         {% if type_menu == 1 %}
                         {% else %}
-                        <button class="menu_a" name='button_id_menu' value="3">
+                        <button class="menu_a" name='button_id_menu' value="4">
                             <li class="menu_li">
                                 <span   class="menu_span">
-                                    
-                                        <p class='menu_icon'>􀓤</p>
-                                        <p class="menu_text">Вчителі</p> 
-                                    
+                                        <img class="menu_icon_pupils" src="{% static 'image/pupils.png' %}" alt="">
+                                        <p class="menu_text">Учні</p>
                                 </span>  
                             </li>
                         </button>
                         {% endif %}
                     </form>
                     </div>
-                {% if select_menu == 3 %}
-                    <div class="menu_div_selected">
-                {% else %}
-                    <div class="menu_div">
                 {% endif %}
-                <form action="" method="GET" class="menu_form">
-                    {% if type_menu == 1 %}
+                    {% if select_menu == 4 %}
+                        <div class="menu_div_selected">
                     {% else %}
-                    <button class="menu_a" name='button_id_menu' value="4">
-                        <li class="menu_li">
-                            <span   class="menu_span">
-                                    <p class='menu_icon'>􀉬</p>
-                                    <p class="menu_text">Учні</p>
-                            </span>  
-                        </li>
-                    </button>
+                        <div class="menu_div">
                     {% endif %}
-                </form>
+                    <form action="" method="GET" class="menu_form">
+                        {% if type_menu == 1 %}
+                        {% else %}
+                        <button class="menu_a" name='button_id_menu' value="5">
+                            <li class="menu_li">
+                                <span   class="menu_span">
+                                        <img class="menu_icon_classes" src="{% static 'image/classes.png' %}" alt="">
+                                        {% if perms.MainApp.view_student %}
+                                        <p class="menu_text">Клас</p>
+                                        {% else %}
+                                        <p class="menu_text">Класи</p>
+                                        {% endif %}
+                                </span>  
+                            </li>
+                        </button>
+                        {% endif %}
+                    </form>
                     </div>
-                {% if select_menu == 4 %}
-                    <div class="menu_div_selected">
-                {% else %}
-                    <div class="menu_div">
+                
+                {% if perms.MainApp.teacher or perms.MainApp.show_school %}
+                    {% if select_menu == 5 %}
+                        <div class="menu_div_selected">
+                    {% else %}
+                        <div class="menu_div">
+                    {% endif %}
+                    <form action="" method="GET" class="menu_form">
+                        {% if type_menu == 1 %}
+                        {% else %}
+                        <button class="menu_a" name='button_id_menu' value="6">
+                            <li class="menu_li">
+                                <span   class="menu_span">
+                                        <img class="menu_icon" src="{% static 'image/lessons.png' %}" alt="">
+                                        <p class="menu_text">Уроки</p>
+                                </span>  
+                            </li>
+                        </button>
+                        {% endif %}
+                    </form>
+                        </div>
                 {% endif %}
-                <form action="" method="GET" class="menu_form">
-                    {% if type_menu == 1 %}
-                    {% else %}
-                    <button class="menu_a" name='button_id_menu' value="5">
-                        <li class="menu_li">
-                            <span   class="menu_span">
-                                    <p class='menu_icon'>􀝋</p>
-                                    <p class="menu_text">Класи</p>
-                            </span>  
-                        </li>
-                    </button>
-                    {% endif %}
-                </form>
-                    </div>
-                {% if select_menu == 5 %}
-                    <div class="menu_div_selected">
-                {% else %}
-                    <div class="menu_div">
-                {% endif %}
-                <form action="" method="GET" class="menu_form">
-                    {% if type_menu == 1 %}
-                    {% else %}
-                    <button class="menu_a" name='button_id_menu' value="6">
-                        <li class="menu_li">
-                            <span   class="menu_span">
-                                    <p class='menu_icon'>􀌱</p>
-                                    <p class="menu_text">Уроки</p>
-                            </span>  
-                        </li>
-                    </button>
-                    {% endif %}
-                </form>
-                    </div>
                 {% if select_menu == 6 %}
                     <div class="menu_div_selected">
                 {% else %}
@@ -158,7 +176,7 @@
                     <button class="menu_a" name='button_id_menu' value="7">
                         <li class="menu_li">
                             <span   class="menu_span">
-                                    <p class='menu_icon'>􀅵</p>
+                                    <img class="menu_icon" src="{% static 'image/info.png' %}" alt="">
                                     <p class="menu_text">Інформація</p>
                                 
                             </span>  
@@ -176,7 +194,7 @@
                     <button class="menu_a" name='button_id_menu' value="8">
                         <li class="menu_li">
                             <span   class="menu_span">
-                                    <p class='menu_icon'>􀷄</p>
+                                    <img class="menu_icon" src="{% static 'image/exit.png' %}" alt="">
                                     <p class="menu_text">Вихід</p>
                             </span>  
                         </li>

@@ -42,8 +42,12 @@
                             {{i.rank}} - {{i.name}}
                         </li>
                         <li class="li_teacher_button">
-                            <button name="view" value="{{i.ID}}" class="button_teacher_info">􀋮</button>
-                            <button name="edit" value="{{i.ID}}" class="button_teacher_info">􀈎</button>
+                            <button name="view" value="{{i.ID}}" class="button_teacher_info">
+                                <img class = 'img_view_teacher_info' src="{% static 'image/see.png' %}" alt="">
+                            </button>
+                            <button name="edit" value="{{i.ID}}" class="button_teacher_info">
+                                <img class = 'img_edit_teacher_info'src="{% static 'image/edit.png' %}" alt="">
+                            </button>
                         </li>
                     </ul>
                 </li>

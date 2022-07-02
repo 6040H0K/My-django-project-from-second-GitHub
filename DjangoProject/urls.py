@@ -18,17 +18,17 @@ from django.urls import path, include
 from MainApp.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', home),
+    path('', Auth.as_view()),
     path('home/', home, name = 'home'),
     path('school/<int:id_school>/home_page/', home, name = 'home_page'),
     path('schools/', Schoolswork.as_view(), name = "schools"),
     path('school/<int:id>/', Show_school.as_view(), name = "school"),
     # path('school/<int:id>/<int:id_class>/lessons/', Edit_lessons.as_view(), name = "lessons_class"), ------------
-    path('school/<int:id>/<int:id_class>/marks/<int:month>/', Show_marks.as_view(), name = "marks"),
-    path('school/<int:id>/<int:id_class>/marks/<int:month>/student=<int:id_student>/', Show_marks.as_view(), name = "marks"),
-    path('school/<int:id>/<int:id_class>/marks/<int:month>/lesson=<int:id_lesson>/', Show_marks.as_view(), name = "marks"),
-    # path('auth/', Auth.as_view(), name='auth'), ------------
-    # path('auth/<int:type_page>/', Auth.as_view(), name='auth'), ------------
+    path('school/<int:id>/clases/<int:id_class>/marks/<int:month>/type=<int:type_page>/', Show_marks.as_view(), name = "marks"),
+    path('school/<int:id>/clases/<int:id_class>/marks/<int:month>/student=<int:id_student>type=<int:type_page>/', Show_marks.as_view(), name = "marks"),
+    path('school/<int:id>/clases/<int:id_class>/marks/<int:month>/lesson=<int:id_lesson>type=<int:type_page>/', Show_marks.as_view(), name = "marks"),
+    path('auth/', Auth.as_view(), name='auth'),
+    path('auth/<int:type_page>/', Auth.as_view(), name='auth'), 
     # path('school/<int:id>/lesson/<int:id_lesson>/', Teacher_class_page.as_view(), name='teacher_class_page'), ------------
     path('school/<int:id_school>/teachers/', Teachers.as_view(), name='teachers'),
     path('school/<int:id_school>/teachers/<int:id_teacher>/', Teacher_show.as_view(), name='teacher'),

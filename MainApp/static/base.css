@@ -14,7 +14,20 @@ li{
     text-transform: none;
 }
 body{
-    /* overflow: hidden; */
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+body::-webkit-scrollbar {
+    width: 0.59vw;
+    background-color: #C4C4C4;
+    border-radius: 15px;
+}
+body::-webkit-scrollbar-thumb {
+
+    /* Primary */
+
+    background-color: #E19A38;
+    border-radius: 15px;
 }
 .menu{
     position: absolute;
@@ -46,8 +59,10 @@ body{
     /* 􀓤 */
 
     /* display: inline; */
-    margin: 0;
-    width: 50%;
+    margin-left: 2vw;
+    margin-right: 1vw;
+    width: 2.1vw;
+    height: 1.8vw;
     text-align: center;
     font-family: 'SF Pro';
     font-style: normal;
@@ -57,9 +72,41 @@ body{
 
     /* White */
     color: #FFFFFF;
-
-
 }
+
+.menu_icon_classes{
+    margin-left: 1.2vw;
+    margin-right: 1vw;
+    width: 3.5vw;
+    height: 1.8vw;
+    text-align: center;
+    font-family: 'SF Pro';
+    font-style: normal;
+    font-weight: 510;
+    font-size: 2vw;
+    line-height: 2.26vw;
+
+    /* White */
+    color: #FFFFFF;
+}
+
+.menu_icon_pupils{
+    margin-left: 1.7vw;
+    margin-right: 1vw;
+    width: 2.6vw;
+    height: 1.8vw;
+    text-align: center;
+    font-family: 'SF Pro';
+    font-style: normal;
+    font-weight: 510;
+    font-size: 2vw;
+    line-height: 2.26vw;
+
+    /* White */
+    color: #FFFFFF;
+}
+
+
 .menu_ul{
     margin-top: -2vw;
     position: relative;
@@ -97,6 +144,7 @@ body{
 .menu_span{
     display: flex;
     position: relative;
+    margin-top: 0.5vw;
     /* text-decoration: none; */
     align-items: center;
     /* width: 100%; */
@@ -139,4 +187,42 @@ body{
     color: #FFFFFF;
 }
 
+.account_form{
+    display: flex;
+    position: absolute;
+    width: 10vw;
+    height: 3vw;
+    right: 2vw;
+    top: 0.5vw;
+}
 
+.account_img{
+    position: relative;
+    /* display: inline; */
+    width: 100%;
+    height: 100%;
+}
+
+.account_button{
+    /* display: inline; */
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    background-color: transparent;
+
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1.2vw;
+    line-height: 1vw;
+    /* identical to box height, or 100% */
+    
+    text-align: left;
+    
+    /* Text */
+    
+    color: #121212;
+    
+
+}

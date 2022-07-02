@@ -1,5 +1,5 @@
 {% extends 'MainApp/base.html' %}
-
+{% load static %}
 
 {% block content %}
 <main class='base_main'>
@@ -42,10 +42,10 @@
                             </ul>
                         </div>
                         <button name="button_edit" value="{{i.ID}}" class="button_edit_school">
-                            􀈎
+                            <img src="{% static 'image/edit.png' %}" alt="">
                         </button>
                         <button name="button_del" value="{{i.ID}}"class="button_del_school">
-                            􀆚
+                            <img src="{% static 'image/del.png' %}" alt="">
                         </button>
                         <button name='id'  value="{{i.ID}}" class="disable_error">Переглянути</button>
                     <!-- </div> -->
@@ -57,7 +57,9 @@
     <p class="p_make_school">
         <form action="" method="POST">
             {% csrf_token %}
+            {% if perms.MainApp.show_school %}
             <button  class="button_make_school" name='make' value="1">Cтворити урок</button>
+            {% endif %}
         </form>
     </p>
 </main>

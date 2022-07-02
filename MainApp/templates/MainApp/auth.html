@@ -1,13 +1,10 @@
-<!DOCTYPE html>
+{% extends 'MainApp/base.html' %}
+
 {% load static %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="{% static 'auth.css' %}" type="text/css">
-</head>
-<body>
+{% block content %}
+    <main class="base_main">
+
+    
     {% if type_page == 'start' %}
         <main>
             <form action="" method="POST">
@@ -39,5 +36,53 @@
             </form>
         </main>
     {% endif %}
-</body>
-</html>
+    {% if type_page == '0' %}
+    
+        <main>
+            <form action="" method="POST">
+                {% csrf_token %}
+                <select name="school_name" id="">
+                    <option value="None" selected>Школа</option>
+                    {% for i in school_range %}
+                        <option value="{{i.id}}">{{i.title}}</option>
+                    {% endfor %}
+                </select>
+                <input type="text" placeholder="Логін" name='login' autocomplete="off">
+                <input type="password" placeholder="Пароль" name='password' autocomplete="off">
+                <button name="submit" value="student">Вхід</button>
+                {% if error_text == '1' %}
+                    <p>Error</p>
+                {% endif %}
+            </form>
+        </main>
+    {% endif %}
+    {% if type_page == '2' %}
+    
+        <main>
+            <form action="" method="POST">
+                {% csrf_token %}
+                <input type="text" placeholder="Логін" name='login' autocomplete="off">
+                <input type="password" placeholder="Пароль" name='password' autocomplete="off">
+                <button name="submit" value="school">Вхід</button>
+                {% if error_text == '1' %}
+                    <p>Error</p>
+                {% endif %}
+            </form>
+        </main>
+    {% endif %}
+    {% if type_page == '3' %}
+    
+        <main>
+            <form action="" method="POST">
+                {% csrf_token %}
+                <input type="text" placeholder="Логін" name='login' autocomplete="off">
+                <input type="password" placeholder="Пароль" name='password' autocomplete="off">
+                <button name="submit" value="admin">Вхід</button>
+                {% if error_text == '1' %}
+                    <p>Error</p>
+                {% endif %}
+            </form>
+        </main>
+    {% endif %}
+</main>
+{% endblock %}

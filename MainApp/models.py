@@ -12,6 +12,8 @@ class School(models.Model):
     class_form = models.JSONField()
     lesson_form = models.JSONField()
     password = models.CharField(max_length=255)
+    login = models.CharField(max_length=255, default=' ')
+    email = models.CharField(max_length=255, default=' ')
     time_create = models.DateTimeField(auto_now_add = True)
     time_update = models.DateTimeField(auto_now= True)
     news_text1 = models.CharField(max_length=1000, default='На цьому місці ви можете дізнатися останні новини вашої школи')
