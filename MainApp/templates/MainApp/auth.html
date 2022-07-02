@@ -9,16 +9,17 @@
         <main>
             <form action="" method="POST">
                 {% csrf_token %}
-                <button class='choise_1' name='button_choise' value="0"><strong>Учень</strong></button>
-                <button class='choise_1' name='button_choise' value="1"><strong>Вчитель</strong> </button>
-                <button class='choise' name='button_choise' value="2"><strong>Школа</strong> </button>
-                <button class='choise' name='button_choise' value="3"><strong> Адміністратор </strong> </button>
+                <p class="text_name_auth"> Авторизація </p>
+                <button class='choise_1' name='button_choise' value="0"><img src="{% static 'image/home2.png' %}" class="img_btn_1">Учень</button>
+                <button class='choise_1' name='button_choise' value="1"><img src="{% static 'image/home1.png' %}" class="img_btn_2">Вчитель</button>
+                <button class='choise' name='button_choise' value="2"><img src="{% static 'image/school1.png' %}" class="img_btn_3">Школа</button>
+                <button class='choise' name='button_choise' value="3"><img src="{% static 'image/school2.png' %}" class="img_btn_4">Адміністратор</button>
             </form>
         </main>
     {% endif %}
     {% if type_page == '1' %}
     
-        <main>
+        <main >
             <form action="" method="POST">
                 {% csrf_token %}
                 <select name="school_name" id="">
