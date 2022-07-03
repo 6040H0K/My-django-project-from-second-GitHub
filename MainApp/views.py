@@ -750,7 +750,7 @@ class Auth(TemplateView):
             if request.POST.get('submit') == 'school':
                 user = authenticate(username = request.POST.get('login'), password = request.POST.get('password'))
                 if user is not None:
-                    if user.is_active and user.has_perm('MainApp.show_school'):
+                    if user.is_active and user.has_perm('MainApp.show_school') and not user.is_superuser:
                         login(request, user)
                         return redirect('/school/' + str(School.objects.get(login = request.POST.get('login')).id))
             if request.POST.get('submit') == 'admin':
