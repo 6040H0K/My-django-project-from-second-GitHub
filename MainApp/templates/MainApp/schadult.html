@@ -82,7 +82,7 @@
                         {% for j in range_schadult %}
                             <li class="schadult_li" id='li{{j.num}}'>
                                 <!-- <p>{{j.num}}.</p>  -->
-                                {{j.name.name}}
+                                {{j.name.name}} ({{j.name.teacher.name}})
                             </li>
                         {% endfor %}
                     {% endif %}

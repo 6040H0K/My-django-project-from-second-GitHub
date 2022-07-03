@@ -198,10 +198,12 @@
                     <button class="menu_a" name='button_id_menu' value="8">
                         <li class="menu_li">
                             <span   class="menu_span">
-                                    <img class="menu_icon" src="{% static 'image/exit.png' %}" alt="">
                                     {% if request.user.is_authenticated %}
-                                        <p class="menu_text">Вихід</p>
+                                    <img class="menu_icon" src="{% static 'image/exit.png' %}" alt="">
+                                    
+                                    <p class="menu_text">Вихід</p>
                                     {% else %}
+                                    <ion-icon class="menu_icon" name="enter-outline"></ion-icon>
                                         <p class="menu_text">Вхід</p>
                                     {% endif %}
                             </span>  
@@ -216,4 +218,6 @@
         {% block content %}
         {% endblock %}
     </body>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </html>
