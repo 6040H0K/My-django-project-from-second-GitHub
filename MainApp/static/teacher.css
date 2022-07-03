@@ -86,7 +86,7 @@
 .ol_li_teacher_info{
     padding-top: 1vw;
     /* height: 2vw; */
-    border-bottom: 0.5px solid #C6C6C8;;
+    border-bottom: 0.5px solid #C6C6C8;
 }
 .li_teacher_info{
     width: 75%;
@@ -120,6 +120,17 @@
     /* Label Color / Light / Secondary */
 
     color: rgba(60, 60, 67, 0.6);
+}
+.site_school_a{
+    position: relative;
+    top: -2.2vw;
+    left: 8vw;
+    /* display: inline; */
+    /* color: #C6C6C8; */
+    text-decoration: underline #E19A38;
+}
+.p_info_scholl_site{
+    display: inline;
 }
 .img_edit_teacher_info{
     position: relative;

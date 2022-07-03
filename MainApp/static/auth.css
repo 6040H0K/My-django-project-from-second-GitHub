@@ -13,28 +13,87 @@
     font-weight: 600;
     font-size: 1.2vw;
 }
+
+a{
+    text-decoration: none;
+    color: #121212;
+}
+.p_1{
+    position: absolute;
+    left: 11vw;
+    top: 8.5em;
+    border-width: 0.07vw;
+    /* background-color: #E19A38; */
+    /* border-radius: 2vw; */
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 2vw;
+    margin: 0;
+}
+.p_2{
+    position: absolute;
+    left: 44vw;
+    top: 8.5em;
+    border-width: 0.07vw;
+    /* background-color: #E19A38; */
+    /* border-radius: 2vw; */
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 2vw;
+    margin: 0;
+}
+.p_3{
+    position: absolute;
+    left: 11vw;
+    top: 16em;
+    border-width: 0.07vw;
+    /* background-color: #E19A38; */
+    /* border-radius: 2vw; */
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 2vw;
+    margin: 0;
+}
+.p_4{
+    position: absolute;
+    left: 44vw;
+    top: 16em;
+    border-width: 0.07vw;
+    /* background-color: #E19A38; */
+    /* border-radius: 2vw; */
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 2vw;
+    margin: 0;
+}
+
 .img_btn_1{
     position: absolute;
     height: 12.5vw;
-    left: 17.5vw;
-    top: 12vw;
+    left: 23vw;
+    top: 10em;
+    /* z-index: 1; */
 }
 .img_btn_2{
     position: absolute;
     height: 12.5vw;
-    left: 49.5vw;
-    top: 12vw;
+    left: 57vw;
+    top: 10em;
 }
 .img_btn_3{
     position: absolute;
     height: 12.5vw;
-    left: 47.5vw;
+    left: 53.5vw;
     top: 27vw;
 }
 .img_btn_4{
     position: absolute;
     height: 12.5vw;
-    left: 17.5vw;
+    left: 25vw;
     top: 27vw;
 }
 
@@ -93,7 +152,7 @@
     top: 12.9vw;
     background: #F5F5F5;
     border-radius: 15px;
-
+    border: 0;
     padding-left: 1.1vw;
     font-family: 'Gilroy';
     font-style: normal;
@@ -111,6 +170,7 @@
     left: 7vw;
     top: 7.3vw;
     background: #F5F5F5;
+    border: 0;
     border-radius: 15px;
 
     font-family: 'Gilroy';
@@ -126,6 +186,7 @@
 .input_password_teacher{
     position: absolute;
     width: 32.7vw;
+    border: 0;
     height: 4.6vw;
     left: 7vw;
     top: 18.5vw;
@@ -147,6 +208,7 @@
     justify-content: center;
     align-items: center;
     padding: 1.2vw 1.8vw;
+    border: 0;
     gap: 1.2vw;
 
     position: absolute;
@@ -170,6 +232,7 @@
 .p_text_auth_teacher{
     position: absolute;
     width: 30vw;
+    border: 0;
     height: 0.8vw;
     left: 9.9vw;
     top: 2.6vw;
@@ -190,6 +253,7 @@
     width: 34vw;
     height: 4.6vw;
     left: 7vw;
+    border: 0;
     top: 12.9vw;
     background: #F5F5F5;
     border-radius: 15px;
@@ -210,6 +274,7 @@
     height: 4.6vw;
     left: 7vw;
     top: 7.3vw;
+    border: 0;
     background: #F5F5F5;
     border-radius: 15px;
 
@@ -229,6 +294,7 @@
     height: 4.6vw;
     left: 7vw;
     top: 18.5vw;
+    border: 0;
     background: #F5F5F5;
     border-radius: 15px;
 
@@ -243,6 +309,7 @@
 
 .button_auth_student{
     display: flex;
+    border: 0;
     flex-direction: row;
     justify-content: center;
     align-items: center;
@@ -254,6 +321,7 @@
     height: 3.6vw;
     left: 19.3vw;
     top: 25vw;
+    border: 0;
     border-width: 0.1vw;
 
     background: #E19A38;
@@ -270,6 +338,7 @@
 .p_text_auth_student{
     position: absolute;
     width: 30vw;
+    
     height: 0.8vw;
     left: 9.9vw;
     top: 2.6vw;
@@ -304,6 +373,7 @@
     position: absolute;
     width: 32.7vw;
     height: 4.6vw;
+    border: 0;
     left: 7vw;
     top: 9.6vw;
     background: #F5F5F5;
@@ -313,6 +383,7 @@
     font-style: normal;
     font-weight: 400;
     font-size: 1vw;
+    
     line-height: 0.8vw;
     border-width: 0.1vw;
     padding-left: 1.1vw;
@@ -326,6 +397,7 @@
     left: 7vw;
     top: 16.2vw;
     background: #F5F5F5;
+    border: 0;
     border-radius: 15px;
 
     font-family: 'Gilroy';
@@ -342,6 +414,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    border: 0;
     padding: 1.2vw 1.8vw;
     gap: 1.2vw;
 
@@ -386,6 +459,7 @@
     width: 32.7vw;
     height: 4.6vw;
     left: 7vw;
+    border: 0;
     top: 9.6vw;
     background: #F5F5F5;
     border-radius: 15px;
@@ -405,6 +479,7 @@
     width: 32.7vw;
     height: 4.6vw;
     left: 7vw;
+    border: 0;
     top: 16.2vw;
     background: #F5F5F5;
     border-radius: 15px;
@@ -422,6 +497,7 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
+    border: 0;
     align-items: center;
     padding: 1.2vw 1.8vw;
     gap: 1.2vw;

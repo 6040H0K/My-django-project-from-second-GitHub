@@ -26,7 +26,7 @@
                         <button class="menu_school_button" name = 'button_menu' value="2">Розклад</button>
                     </div>
                 </li>
-                {% if not perms.MainApp.view_student %}
+                {% if perms.MainApp.show_school or perms.MainApp.teacher %}
                 <li class='menu_school_li'>
                     {% if menu_class_select == 3 %} 
                         <div class='menu_school_div menu_school_selected'>

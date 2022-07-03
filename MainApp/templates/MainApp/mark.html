@@ -27,7 +27,7 @@
                     <button class="menu_school_button" name = 'button_menu' value="2">Розклад</button>
                 </div>
             </li>
-            {% if not perms.MainApp.view_student %}
+            {% if perms.MainApp.show_school or perms.MainApp.teacher %}
             <li class='menu_school_li'>
                 {% if menu_class_select == 3 %} 
                     <div class='menu_school_div menu_school_selected'>
@@ -76,7 +76,7 @@
                     </div>
                 </li>
             {% elif type_page == 2 %}
-            {% if not perms.MainApp.view_student %}
+            {% if perms.MainApp.show_school or perms.MainApp.teacher %}
                 <li class='menu_school_li'>
                     {% if menu_class_select == 1 %} 
                         <div class='menu_school_div menu_school_selected'>
@@ -132,6 +132,7 @@
                 {% for i in lessons %}
                     <option class="filter_option" value="{{i.ID}}">{{i.name}} ({{i.teacher.name}})</option>
                 {% endfor %}
+                <option class="filter_option" value="null"></option>
             </select>
             <button name='but_filtr' class="filter_button" value="1">Фільтрувати</button>
         
@@ -139,23 +140,70 @@
 
     <div class="marks_table">
         <ul class="main_ul_for_marks">
-        {% if student != None %}
+        {% if student != None and lesson != None %}
             {% for i in range %}
                 <li class="li_main_ul">
                     <ul class="second_ul">
                         <li class="marks_p_li">{{i.name}}</li>
                         <li class="li_for_ul">
                             <ul class="marks_ul">
-                                {% if not perms.MainApp.view_student %}
+                                {% if perms.MainApp.show_school or perms.MainApp.teacher %}
                                     {% for j in i.marks %}
+                                    <div class="date_div">
+                                        <p class='date_p'>{{j.ID|add:"+1"}}.{{id_month}}</p>
                                         <!-- <li class="marks_li"></li> -->
                                             <input class="marks_input" type="number" name ='{{i.ID}}-{{j.ID}}' min="1" max="12" value="{{j.mark}}">
+                                        <!-- </li> -->
+                                        </div>
+                                    {% endfor %}
+                                {% else %}
+                                {% for j in i.marks %}
+                                <!-- <li class="marks_li"></li> -->
+                                <div class="date_div">
+                                    <p class='date_p'>{{j.ID|add:"+1"}}.{{id_month}}</p>
+                                    {% if j.mark != '' %}
+                                    <p class="mark_p">{{j.mark}}</p>
+                                    {% else %}
+                                    <p class="mark_p_clear mark_p">-</p>
+                                    {% endif %}
+
+                                </div>
+                                <!-- </li> -->
+                                {% endfor %}
+                                {% endif %}
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            {% endfor %}
+        {% elif student != None %}
+            {% for i in range %}
+                <li class="li_main_ul">
+                    <ul class="second_ul">
+                        <li class="marks_p_li">{{i.name}}</li>
+                        <li class="li_for_ul">
+                            <ul class="marks_ul">
+                                {% if perms.MainApp.show_school or perms.MainApp.teacher %}
+                                    {% for j in i.marks %}
+                                        <!-- <li class="marks_li"></li> -->
+                                        <div class="date_div">
+                                            <p class='date_p'>{{j.ID|add:"+1"}}.{{id_month}}</p>
+                                            <input class="marks_input" type="number" name ='{{i.ID}}-{{j.ID}}' min="1" max="12" value="{{j.mark}}">
+                                        </div>
                                         <!-- </li> -->
                                     {% endfor %}
                                 {% else %}
                                 {% for j in i.marks %}
                                 <!-- <li class="marks_li"></li> -->
-                                    <li class="narks_input">{{j.mark}}</li>
+                                <div class="date_div">
+                                    <p class='date_p'>{{j.ID|add:"+1"}}.{{id_month}}</p>
+                                    {% if j.mark != '' %}
+                                    <p class="mark_p">{{j.mark}}</p>
+                                    {% else %}
+                                    <p class="mark_p_clear mark_p">-</p>
+                                    {% endif %}
+
+                                </div>
                                 <!-- </li> -->
                                 {% endfor %}
                                 {% endif %}
@@ -171,20 +219,27 @@
                     <li class="marks_p_li">{{i.name}}</li>
                     <li class="li_for_ul">
                         <ul class="marks_ul">
-                            {% if not perms.MainApp.view_student %}
+                            {% if perms.MainApp.show_school or perms.MainApp.teacher %}
                             {% for j in i.marks %}
+                            <div class="date_div">
+                                <p class='date_p'>{{j.ID|add:"+1"}}.{{id_month}}</p>
                                 <!-- <li class="marks_li"></li> -->
                                     <input class="marks_input" type="number" name ='{{i.stud_id}}-{{j.ID}}' min="1" max="12" value="{{j.mark}}"></button>
                                 <!-- </li> -->
+                                </div>
                             {% endfor %}
                             {% else %}
                             {% for j in i.marks %}
                                 <!-- <li class="marks_li"></li> -->
-                                    {% if j.mark %}
-                                        <li class="marks_input_li">{{j.mark}}</li>
+                                <div class="date_div">
+                                    <p class='date_p'>{{j.ID|add:"+1"}}.{{id_month}}</p>
+                                    {% if j.mark != '' %}
+                                    <p class="mark_p">{{j.mark}}</p>
                                     {% else %}
-                                        <li class="marks_input_li">  </li>
+                                    <p class="mark_p_clear mark_p">-</p>
                                     {% endif %}
+
+                                </div>
                                 <!-- </li> -->
                                 {% endfor %}
                                 {% endif %}
@@ -197,7 +252,7 @@
 
 
     </div>
-    {% if not perms.MainApp.view_student %}
+    {% if perms.MainApp.show_school or perms.MainApp.teacher %}
         {% if student != None or lesson != None %}
         <button name='save_marks' class="button_save_marks" value="1">Зберегти</button>
         {% endif %}

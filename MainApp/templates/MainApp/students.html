@@ -41,10 +41,10 @@
                                 </li>
                             </ul>
                         </div>
-                        <button name="button_edit" value="{{i.ID}}" class="button_edit_school">
+                        <button name="button_edit" value="{{i.student.id}}" class="button_edit_school">
                             <img src="{% static 'image/edit.png' %}" alt="">
                         </button>
-                        <button name="button_del" value="{{i.ID}}"class="button_del_school">
+                        <button name="button_del" value="{{i.student.id}}"class="button_del_school">
                             <img src="{% static 'image/del.png' %}" alt="">
                         </button>
                         <button name='id'  value="{{i.student.id}}" class="disable_error">Переглянути</button>
@@ -72,6 +72,7 @@
             </form>
             <form action="" method="POST" class='form_new_student'>
                 {% csrf_token %}
+                {% if info_for_edit == None %}
                 <p class = 'h_new_school'>Створити учня</p>
 
                     <input class="input_new_school" type="text" name= 'name' placeholder="Ім'я учня">
@@ -88,7 +89,6 @@
                     <input class="input_new_school" type="tel" name="number_phone" 
                     pattern="[0-9]{3}[0-9]{3}[0-9]{4}"
                     placeholder="Номер телефону учня (0951234567)">
-                    <!-- <small>Format: 0951234567</small> -->
             
                     <input class="input_new_school" type="text" name= 'adress' placeholder="Адреса проживання">
                     <select class='select_new_school' name="class_stud" id="">
@@ -99,6 +99,35 @@
                     </select>
             
                     <button value="1" name="next1" class="button_new_school"  >Створити</button>
+                {% else %}
+                    <p class = 'h_new_school'>Редагувати учня</p>
+
+                    <input class="input_new_school" type="text" name= 'name' placeholder="Ім'я учня" value="{{info_for_edit.name}}">
+            
+                    <input class="input_new_school" type="text" name= 'surname' placeholder="Прізвище учня" value="{{info_for_edit.surname}}">
+            
+                    <input class="input_new_school" type="text" name= 'second_name' placeholder="По батькові учня" value="{{info_for_edit.second_name}}">
+            
+            
+                    <input class="input_new_school" type="email" name = 'email' placeholder="Email" value="{{info_for_edit.email}}">
+            
+            
+                    <input class="input_new_school" type="tel" name="number_phone" 
+                    pattern="[0-9]{3}[0-9]{3}[0-9]{4}"
+                    placeholder="Номер телефону учня (0951234567)" value="{{info_for_edit.number_phone}}">
+            
+                    <input class="input_new_school" type="text" name= 'adress' placeholder="Адреса проживання" value="{{info_for_edit.adress}}">
+                    <!-- <select class='select_new_school' name="class_stud" id="">
+                        <option selected value='class.ID'>{{class.name}}</option>
+                        {% for i in clases %}
+                            {% if class.ID != i.ID %}
+                            <option value="{{i.ID}}">{{i.rank}}-{{i.name}}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select> -->
+            
+                    <button value="{{info_for_edit.id}}" name="save_student" class="button_new_school"  >Продовжити</button>
+                {% endif %}
             </form>
         </div>
     {% endif %}
@@ -111,7 +140,8 @@
             </form>
             <form action="" method="POST" class='form_new_student'>
                 {% csrf_token %}
-                <p class = 'h_new_school'>Інформація про батьків (Необов'язково) {{id_student_for_parents_form}}</p>
+                {% if info_for_edit == None %}
+                <p class = 'h_new_school'>Інформація про батьків (Необов'язково) </p>
                         <input class="input_new_school" type="text" name= 'name_parrent1' placeholder="Повне ім`я одного з батьків">
                     
                         <input class="input_new_school" type="tel" name="number_phone_parrent1" 
@@ -130,6 +160,26 @@
                         <input type="hidden" name="student_id" value="{{id_student_for_parents_form}}">
             
                     <button value="1" name="new_student" class="button_new_school" autocomplete="off">Завершити</button>
+                    {% else %}
+                    <p class = 'h_new_school'>Інформація про батьків (Ребагування) </p>
+                    <input class="input_new_school" type="text" name= 'name_parrent1' value="{{info_for_edit.name_parrent1}}" placeholder="Повне ім`я одного з батьків">
+                
+                    <input class="input_new_school" type="tel" name="number_phone_parrent1" 
+                    pattern="[0-9]{3}[0-9]{3}[0-9]{4}"
+                    placeholder="Номер телефону одного з батьків (0951234567)" value="{{info_for_edit.number_phone_parrent1}}">
+                
+                    <input class="input_new_school" type="text" name= 'work_parrent1' value="{{info_for_edit.work_parrent1}}" placeholder="Місце праці одного з батьків">
+                
+                    <input class="input_new_school" type="text" name= 'name_parrent2' value="{{info_for_edit.name_parrent2}}" placeholder="Повне ім`я одного з батьків">
+                
+                    <input class="input_new_school" type="tel" name="number_phone_parrent2" 
+                    pattern="[0-9]{3}[0-9]{3}[0-9]{4}"
+                    placeholder="Номер телефону одного з батьків (0951234567)" value="{{info_for_edit.number_phone_parrent2}}">
+            
+                    <input class="input_new_school" type="text" name= 'work_parrent2' value="{{info_for_edit.work_parrent2}}" placeholder="Місце праці одного з батьків">
+        
+                <button value="{{info_for_edit.id}}" name="save_student1" class="button_new_school" autocomplete="off">Завершити</button>
+                {% endif %}
             </form>
         </div>
     {% endif %}

@@ -27,6 +27,7 @@ urlpatterns = [
     path('school/<int:id>/clases/<int:id_class>/marks/<int:month>/type=<int:type_page>/', Show_marks.as_view(), name = "marks"),
     path('school/<int:id>/clases/<int:id_class>/marks/<int:month>/student=<int:id_student>type=<int:type_page>/', Show_marks.as_view(), name = "marks"),
     path('school/<int:id>/clases/<int:id_class>/marks/<int:month>/lesson=<int:id_lesson>type=<int:type_page>/', Show_marks.as_view(), name = "marks"),
+    path('school/<int:id>/clases/<int:id_class>/marks/<int:month>/student=<int:id_student>lesson=<int:id_lesson>type=<int:type_page>/', Show_marks.as_view(), name = "marks"),
     path('auth/', Auth.as_view(), name='auth'),
     path('auth/<int:type_page>/', Auth.as_view(), name='auth'), 
     # path('school/<int:id>/lesson/<int:id_lesson>/', Teacher_class_page.as_view(), name='teacher_class_page'), ------------
@@ -47,6 +48,7 @@ urlpatterns = [
     path('school/<int:id_school>/clases/<int:id_class>/schadult/<str:day>/', Schadult.as_view(), name = 'schadult'),
     path('school/<int:id_school>/clases/<int:id_class>/schadult/<str:day>/<str:edit>/', Schadult.as_view(), name = 'edit_schadult'),
     path('school/<int:id_school>/info_site/<str:type_info>/', Info.as_view(), name = "info"),
+    path('info_site/<str:type_info>/', Info.as_view(), name = "info"),
     # path('school/<int:id>/lesson/<int:id_lesson>/<int:id_class>', Show_lesson_marks.as_view(), name='Show_lesson_marks') ------------
     
     # path(r'schools/(?P<id>[_\w+])$', show_school, name='school')

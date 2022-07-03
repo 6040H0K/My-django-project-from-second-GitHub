@@ -47,6 +47,22 @@
     height: 30vw;
     /* background-color: aqua; */
 }
+.date_p{
+    margin: 0;
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1vw;
+    line-height: 1.3vw;
+    border-bottom: 0.2vw solid #B9B9B9;
+    border-right: 0.2vw solid #B9B9B9;
+}
+.date_div{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    
+}
 .marks_p_li{
 
     margin: 0;
@@ -132,6 +148,7 @@
     height: 2vw;
     background: #F5F5F5;
     display: inline-block;
+    padding-left: 1vw;
     border: 0;
     border-right: 0.2vw solid #B9B9B9;
 
@@ -145,6 +162,18 @@
 
 
     color: #000000;
+}
+.mark_p{
+    border-right: 0.2vw solid #B9B9B9;
+    margin: 0;
+    padding-left: 2vw;
+    padding-right: 2vw;
+    padding-top: 1vw;
+    padding-bottom: 1vw;
+    
+}
+.mark_p_clear{
+    color: transparent;
 }
 .marks_input_li{
     position: relative;

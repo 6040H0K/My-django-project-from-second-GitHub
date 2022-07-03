@@ -28,12 +28,14 @@
     <body>
         
         {% block main-menu %}
+        {% if request.user.is_authenticated %}
         <form action="" method="POST" class="account_form">
             {% csrf_token %}
             <button class="account_button" name="account" value="{{account.value}}">{{account.name}}</button>
             <button class="account_button" name="account" value="{{account.value}}"><img class = 'account_img' src="{% static 'image/acc.png' %}" alt=""></button>
             <input type="hidden" name="type_user" value="{{account.type_user}}">
         </form>
+        {% endif %}
         <img src="{% static 'image/logo.png' %}" class="logo" alt="">
         
         <nav class="menu">
@@ -55,7 +57,7 @@
                         </button>
                     </form>
                     </div>
-
+                {% if request.user.is_authenticated %}
                 {% if select_menu == 1 %}
                     <div class="menu_div_selected">
                 {% else %}
@@ -77,6 +79,7 @@
                         </button>
                     </form>
                     </div>
+                {% endif %}
                 {% if perms.MainApp.show_school %}
                     {% if select_menu == 2 %}
                         <div class="menu_div_selected">
@@ -120,6 +123,7 @@
                     </form>
                     </div>
                 {% endif %}
+                {% if request.user.is_authenticated %}
                     {% if select_menu == 4 %}
                         <div class="menu_div_selected">
                     {% else %}
@@ -132,7 +136,7 @@
                             <li class="menu_li">
                                 <span   class="menu_span">
                                         <img class="menu_icon_classes" src="{% static 'image/classes.png' %}" alt="">
-                                        {% if perms.MainApp.view_student %}
+                                        {% if perms.MainApp.view_student and not request.user.is_superuser %}
                                         <p class="menu_text">Клас</p>
                                         {% else %}
                                         <p class="menu_text">Класи</p>
@@ -143,7 +147,7 @@
                         {% endif %}
                     </form>
                     </div>
-                
+                {% endif %}
                 {% if perms.MainApp.teacher or perms.MainApp.show_school %}
                     {% if select_menu == 5 %}
                         <div class="menu_div_selected">
@@ -171,7 +175,7 @@
                     <div class="menu_div">
                 {% endif %}
                 <form action="" method="GET" class="menu_form">
-                    {% if type_menu == 1 %}
+                    {% if type_menu == 1 and request.user.is_authenticated %}
                     {% else %}
                     <button class="menu_a" name='button_id_menu' value="7">
                         <li class="menu_li">
@@ -195,7 +199,11 @@
                         <li class="menu_li">
                             <span   class="menu_span">
                                     <img class="menu_icon" src="{% static 'image/exit.png' %}" alt="">
-                                    <p class="menu_text">Вихід</p>
+                                    {% if request.user.is_authenticated %}
+                                        <p class="menu_text">Вихід</p>
+                                    {% else %}
+                                        <p class="menu_text">Вхід</p>
+                                    {% endif %}
                             </span>  
                         </li>
                     </button>

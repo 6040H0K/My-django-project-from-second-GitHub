@@ -10,10 +10,14 @@
             <form action="" method="POST">
                 {% csrf_token %}
                 <p class="text_name_auth"> Авторизація </p>
-                <button class='choise_1' name='button_choise' value="0"><img src="{% static 'image/home2.png' %}" class="img_btn_1">Учень</button>
-                <button class='choise_1' name='button_choise' value="1"><img src="{% static 'image/home1.png' %}" class="img_btn_2">Вчитель</button>
-                <button class='choise' name='button_choise' value="2"><img src="{% static 'image/school1.png' %}" class="img_btn_3">Адміністратор</button>
-                <button class='choise' name='button_choise' value="3"><img src="{% static 'image/school2.png' %}" class="img_btn_4">Школа</button>
+                <button class='choise_1' name='button_choise' value="0"><img src="{% static 'image/home2.png' %}" class="img_btn_1"></button>
+                <button class='choise_1' name='button_choise' value="1"><img src="{% static 'image/home1.png' %}" class="img_btn_2"></button>
+                <button class='choise' name='button_choise' value="2"><img src="{% static 'image/school1.png' %}" class="img_btn_3"></button>
+                <button class='choise' name='button_choise' value="3"><img src="{% static 'image/school2.png' %}" class="img_btn_4"></button>
+                <a class="p_1" href="/auth/0"> Учень </a>
+                <a class="p_2" href="/auth/1"> Вчитель </a>
+                <a class="p_3" href="/auth/3"> Адміністратор </a>
+                <a class="p_4" href="/auth/2"> Школа </a>
             </form>
         </main>
     {% endif %}

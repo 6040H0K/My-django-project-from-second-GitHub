@@ -69,7 +69,7 @@
         {% endif %}
     </p>
 </main>
-    {% if make == True %}
+    {% if make == 1 %}
     
         <div class='div_new_school'>
             <form action="" method="POST">
@@ -86,16 +86,56 @@
                         <input class='input_new_school' type="text" placeholder="Місто" name="town" autocomplete="off">
                         <input class='input_new_school' type="text" placeholder="Пароль" name="password" autocomplete="off">
                         <input class='input_new_school' type="email" placeholder="Email" name="email" autocomplete="off">
-                        <button value="1" name="new_school" class="button_new_school" autocomplete="off">Створити</button>
+                        <input class='input_new_school' type="url" placeholder="Сайт школи" name="site" autocomplete="off">
+                        <input class="input_new_school" type="tel" name="phone" 
+                            pattern="[0-9]{3}[0-9]{3}[0-9]{4}"
+                            placeholder="Номер телефону (0951234567)">
+                        <button value="1" name="next1" class="button_new_school" autocomplete="off">Створити</button>
                     {% else %}
                         <p class = 'h_new_school'>Редагувати школу</p>
                         <input class='input_new_school' type="text" placeholder="Назва школи" name="name" autocomplete="off" value="{{info_for_edit.title}}">
                         <input class='input_new_school' type="number" placeholder="Номер школи" name="num" autocomplete="off" value="{{info_for_edit.number}}">
                         <input class='input_new_school' type="text" placeholder="Місто" name="town" autocomplete="off" value="{{info_for_edit.town}}">
                         <input class='input_new_school' type="text" placeholder="Пароль" name="password" autocomplete="off" value="{{info_for_edit.password}}">
-                        <input class='input_new_school' type="email" placeholder="Email" name="email" autocomplete="off" value="{{info_for_edit.email}}">>
-                        <button value="{{info_for_edit.id}}" name="save_school" class="button_new_school" autocomplete="off">Збергти</button>
+                        <input class='input_new_school' type="email" placeholder="Email" name="email" autocomplete="off" value="{{info_for_edit.email}}">
+                        <input class='input_new_school' type="url" placeholder="Сайт школи" name="site" autocomplete="off" value="{{info_for_edit.school_site}}">
+                        <input class="input_new_school" type="tel" name="phone" 
+                            pattern="[0-9]{3}[0-9]{3}[0-9]{4}"
+                            placeholder="Номер телефону (0951234567)" value="{{info_for_edit.school_phone}}">
+                        <button value="{{info_for_edit.id}}" name="save_school" class="button_new_school" autocomplete="off">Продовжити</button>
                     {% endif %}
+            </form>
+        </div>
+    {% endif %}
+    {% if make == 2 %}
+    
+        <div class='div_new_school'>
+            <form action="" method="POST">
+                {% csrf_token %}
+                <button class='but_new_school'></button>
+            </form>
+            <form action="" method="POST" class='form_new_student'>
+                {% csrf_token %}
+                {% if info_for_edit == None %}
+                <p class = 'h_new_school'>Додаткова інформація про школу</p>
+                <input class='input_new_school' type="text" placeholder="Адреса" name="adress" autocomplete="off">
+                <input class='input_new_school' type="text" placeholder="Тип школи" name="school_type" autocomplete="off">
+                <input class='input_new_school' type="text" placeholder="Повне ім'я директора" name="director" autocomplete="off">
+                <input class='input_new_school' type="text" placeholder="Профіль школи" name="profil" autocomplete="off">
+                <input class='input_new_school' type="text" placeholder="Facebook" name="facebook" autocomplete="off">
+                <input class='input_new_school' type="text" placeholder="Instagram" name="instagram" autocomplete="off">
+                <input type="hidden" name="school_id" value="{{id_school_for_info_form}}">
+                    <button value="1" name="new_school" class="button_new_school" autocomplete="off">Завершити</button>
+                {% else %}
+                <p class = 'h_new_school'>Редагувати школу</p>
+                <input class='input_new_school' type="text" placeholder="Адреса" name="adress" autocomplete="off" value="{{info_for_edit.adress}}">
+                <input class='input_new_school' type="text" placeholder="Тип школи" name="school_type" autocomplete="off" value="{{info_for_edit.school_type}}">
+                <input class='input_new_school' type="text" placeholder="Повне ім'я директора" name="director" autocomplete="off" value="{{info_for_edit.school_director}}">
+                <input class='input_new_school' type="text" placeholder="Профіль школи" name="profil" autocomplete="off" value="{{info_for_edit.school_profil}}">
+                <input class='input_new_school' type="text" placeholder="Facebook" name="facebook" autocomplete="off" value="{{info_for_edit.facebook}}">
+                <input class='input_new_school' type="text" placeholder="Instagram" name="instagram" autocomplete="off"nvalue="{{info_for_edit.instagram}}">
+                <button value="{{info_for_edit.id}}" name="save_school1" class="button_new_school" autocomplete="off">Збергти</button>
+                {% endif %}
             </form>
         </div>
     {% endif %}

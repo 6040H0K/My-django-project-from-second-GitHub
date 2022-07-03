@@ -1,6 +1,6 @@
 .p_info_scholl_city{
     position: absolute;
-    width: 8vw;
+    width: 15.9vw; 
     height: 2.1vw;
     left: 1.2vw;
     top: 7.6vw;
@@ -30,7 +30,7 @@
 
 .p_info_scholl_type{
     position: absolute;
-    width: 10vw;   
+    width: 15.9vw; 
     height: 2.1vw;
     left: 1.2vw;
     top: 14.7vw;
