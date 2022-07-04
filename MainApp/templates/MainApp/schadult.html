@@ -72,7 +72,8 @@
                                         <option class="edit_schadult_option" selected value="null">{{j.name.name}}</option>
                                     {% endif %}
                                     {% for lesson in lessons_range %}
-                                        <option class="edit_schadult_option"  value="{{lesson.ID}}">{{lesson.name}} ({{lesson.teacher.name}})</option>
+                                        
+                                            <option class="edit_schadult_option"  value="{{lesson.ID}}">{{lesson.name}} ({{lesson.teacher.name}})</option>
                                     {% endfor %}
                                     <option class="edit_schadult_option" value="pass"> </option>
                                 </select>
@@ -82,7 +83,7 @@
                         {% for j in range_schadult %}
                             <li class="schadult_li" id='li{{j.num}}'>
                                 <!-- <p>{{j.num}}.</p>  -->
-                                {{j.name.name}} ({{j.name.teacher.name}})
+                                    {{j.name.name}} - {{j.name.teacher.name}}
                             </li>
                         {% endfor %}
                     {% endif %}
