@@ -165,7 +165,7 @@ body::-webkit-scrollbar-thumb {
     width: 7.5vw;
     height: 4.7vw;
     left: 4.2vw;
-    top: -0.4em;
+    top: 0.1em;
 }
 .menu_text{
     /* display: inline-block; */
