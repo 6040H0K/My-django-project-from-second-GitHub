@@ -1,0 +1,15 @@
+{% extends 'MainApp/base.html' %}
+
+{% load static %}
+{% block content %}
+<main class='base_main'>
+    <div class="book_named_div">
+        <p class="book_named">
+            {{book.title}} - {{book.avtor}} 
+        </p>
+    </div>
+    <div class="book_div">
+        <embed type="text/html" src="{% static 'books/1.pdf' %}" width="100%" height="100%">
+    </div>
+</main>
+{% endblock %}

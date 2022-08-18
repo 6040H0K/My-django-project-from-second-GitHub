@@ -27,6 +27,11 @@ class School(models.Model):
     news_text1 = models.CharField(max_length=1000, default='На цьому місці ви можете дізнатися останні новини вашої школи')
     news_text2 = models.CharField(max_length=1000, default='А це на випадок якщо новин занадто багато')
 
+class Book_model(models.Model):
+    title = models.CharField(max_length=255)
+    avtor = models.CharField(max_length=255)
+    url = models.CharField(max_length=255)
+    
 
 class Student(models.Model):
     name = models.CharField(max_length=255)

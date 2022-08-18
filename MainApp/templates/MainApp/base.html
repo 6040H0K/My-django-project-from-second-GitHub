@@ -148,6 +148,27 @@
                     </form>
                     </div>
                 {% endif %}
+                {% if request.user.is_authenticated %}
+                    {% if select_menu == 9 %}
+                        <div class="menu_div_selected">
+                    {% else %}
+                        <div class="menu_div">
+                    {% endif %}
+                    <form action="" method="GET" class="menu_form">
+                        {% if type_menu == 1 %}
+                        {% else %}
+                        <button class="menu_a" name='button_id_menu' value="9">
+                            <li class="menu_li">
+                                <span   class="menu_span">
+                                        <img class="menu_icon_classes" src="{% static 'image/books.png' %}" alt="">
+                                        <p class="menu_text">Підручники</p>
+                                </span>  
+                            </li>
+                        </button>
+                        {% endif %}
+                    </form>
+                    </div>
+                {% endif %}
                 {% if perms.MainApp.teacher or perms.MainApp.show_school %}
                     {% if select_menu == 5 %}
                         <div class="menu_div_selected">

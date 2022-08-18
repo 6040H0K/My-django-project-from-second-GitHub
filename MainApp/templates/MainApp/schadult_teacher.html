@@ -2,6 +2,7 @@
 
 {% load static %}
 {% block content %}
+    
     <main class="base_main">
         <form action="" method="POST">
             {% csrf_token %}
@@ -38,6 +39,8 @@
                             <!-- <p>{{j.num}}.</p>  -->
                             {% if j != None %}
                                 {{j.class}} ({{j.name}})
+                    
+                                <img class ='image_home_work' src="{% static 'image/house.png' %}" alt="">
                             {% else %}
                                 {{j.class}}
                             {% endif %}
@@ -60,5 +63,16 @@
                     </ul>
             </div>
         </form>
+        
     </main>
+    {% if homework %}
+    <div class='div_new_school homework'>
+            <form class="homework homework_form" action="" method = 'POST'>
+                {% csrf_token %}
+                <p class = 'h_new_school homework'>Завдання на дім</p>
+                <input type="text" class="input_new_school homework">
+                <button value="1" name="save_homework" class="button_new_school homework">Зберегти</button>
+            </form>
+    </div>
+    {% endif %}
 {% endblock %}

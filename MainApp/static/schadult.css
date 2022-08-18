@@ -19,8 +19,15 @@
     border-radius: 15px;
 }
 .schadult_ol{
+    
     padding-left: 7%;
     width: 90%;
+}
+.image_home_work{
+    position: absolute;
+    left: 24vw;
+    width: 1.5vw;
+    height: 2vh;
 }
 .schadult_li{
     /* display: flex; */

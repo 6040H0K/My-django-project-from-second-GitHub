@@ -1,0 +1,52 @@
+{% extends 'MainApp/base.html' %}
+
+{% load static %}
+{% block content %}
+<main class='base_main'>
+    <ul class="ul_named">
+        <li class="li_named">
+            <h3 class="h3_named">
+                Назва
+            </h3>
+        </li>
+        <li class="li_named">
+            <h3 class="h3_named">
+                Автор
+            </h3>
+        </li>
+    </ul>
+    <div class="div_schools">
+        <ul class='ul_schools'>
+            {% for i in range %}
+            <li class="li_schools">
+                <form action="" class="form_school" method="POST">
+                    {% csrf_token %}
+                        <div class='button_schools'>
+                            <ul class='ul_school'>
+                                <li class="li_school">
+                                    {{i.title}}
+                                </li>
+                                <li class="li_school">
+                                    {{i.avtor}}
+                                </li>
+                            </ul>
+                        </div>
+                        <button name="button_del" value="{{i.id}}"class="button_del_school">
+                            <img src="{% static 'image/del.png' %}" alt="">
+                        </button>
+                        <button name='id'  value="{{i.id}}" class="disable_error">Переглянути</button>
+                </form>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <p class="p_make_school">
+        {% if perms.MainApp.show_school %}
+        <form action="" method="POST">
+            {% csrf_token %}
+            <button  class="button_make_school" name='make' value="1">Додати підручник</button>
+        </form>
+        {% endif %}
+    </p>
+</main>
+{% endblock %}

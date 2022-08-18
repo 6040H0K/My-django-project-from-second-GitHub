@@ -72,6 +72,8 @@ def buttons_menu(request, school_id = None, aut = True):
         elif request.GET.get('button_id_menu') == '8':
             logout(request)
             return '/auth'
+        elif request.GET.get('button_id_menu') == '9':
+            return '/school/' + str(school_id) + '/books'
     if request.method == 'POST':
         if request.POST.get('account'):
 
@@ -1186,6 +1188,40 @@ class Clases(TemplateView):
                             'range': self.range_cycle, 'teacher_range':teacher_range,
                             'error': self.error_text, 'make':make,'select_menu': 4, 'info_for_edit':info_for_edit,
                             'account':check_account(request,id_school)})
+class Books(TemplateView):
+    template_name = "MainApp/books.html"
+    range_cycle = 0
+    error_text = None
+    def dispatch(self, request, id_school):
+        tmp = buttons_menu(request, id_school)
+        if tmp != None:
+            return redirect(tmp)
+        make = False
+        all_books = Book_model.objects.all()
+        school = School.objects.get(pk = id_school)
+        if request.method == 'POST':
+            if request.POST.get('id'):
+                return redirect('/school/' + str(id_school) + '/books/' + str(request.POST.get('id')))
+        return render(request, self.template_name, 
+                    context= {'school': school,'select_menu': 9, 'range':all_books, 'make':make,
+                            'account':check_account(request,id_school)})
+class Book(TemplateView):
+    template_name = "MainApp/book.html"
+    range_cycle = 0
+    error_text = None
+    def dispatch(self, request, id_school, id_book):
+        tmp = buttons_menu(request, id_school)
+        if tmp != None:
+            return redirect(tmp)
+        book = Book_model.objects.get(pk = id_book)
+        book_file = str(id_book) + '.pdf'
+        school = School.objects.get(pk = id_school)
+        if request.method == 'POST':
+            if request.POST.get('make') == '1':
+                make = True
+        return render(request, self.template_name, 
+                    context= {'school': school,'select_menu': 9, 'book':book, 'book_file':book_file,
+                            'account':check_account(request,id_school)})
 class Teacher_schadult(TemplateView):
     template_name = "MainApp/schadult_teacher.html"
     def dispatch(self, request, id_school, id_teacher, day):
@@ -1215,6 +1251,7 @@ class Teacher_schadult(TemplateView):
                         'name':j['name']['name']}
             except:
                 pass
+        print(range_schadult)
             # if flag:
             #     range_schadult.append({'class':None,'name':None})
         range_days = [{'id':'Mon', 'name':'Понеділок'},
