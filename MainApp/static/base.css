@@ -31,6 +31,12 @@
     font-size: 1.19vw;
     line-height: 2.14vw;
 }
+button:hover{
+    cursor: pointer;
+}
+.account_form{
+    z-index: 1000000;
+}
 embed{
     background-color: #C4C4C4;
 }
